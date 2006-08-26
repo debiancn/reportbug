@@ -3,7 +3,7 @@ Section: utils
 Priority: standard
 Maintainer: Chris Lawrence <lawrencc@debian.org>
 Standards-Version: 3.6.1
-Build-Depends-Indep: debhelper (>> 4), python2.3 (>= 2.3-4)
+Build-Depends: debhelper (>> 4), python2.3 (>= 2.3-4)
 
 Package: reportbug
 Architecture: all
