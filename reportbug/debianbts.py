@@ -2,7 +2,7 @@
 # debianbts.py - Routines to deal with the debbugs web pages
 #
 #   Written by Chris Lawrence <lawrencc@debian.org>
-#   (C) 1999-2005 Chris Lawrence
+#   (C) 1999-2006 Chris Lawrence
 #
 # This program is freely distributable per the following license:
 #
@@ -22,13 +22,26 @@
 #
 # Version ##VERSION##; see changelog for revision history
 #
-# $Id: debianbts.py,v 1.17 2005-02-01 18:58:43 lawrencc Exp $
+# $Id: debianbts.py,v 1.17.2.1 2006-08-26 17:01:53 lawrencc Exp $
 
 import sgmllib, glob, os, re, reportbug, rfc822, time, urllib, checkversions
 from urlutils import open_url
-from types import StringTypes
 import sys
 
+import mailbox
+import email
+import email.Errors
+import cStringIO
+import cgi
+
+def msgfactory(fp):
+    try:
+        return email.message_from_file(fp)
+    except email.Errors.MessageParseError:
+        # Don't return None since that will
+        # stop the mailbox iterator
+        return ''
+    
 class Error(Exception):
     pass
 
@@ -135,7 +148,7 @@ def convert_severity(severity, type='debbugs'):
 debother = {
     'base' : 'General bugs in the base system',
 # Actually a real package, but most people don't have boot-floppies installed for good reason
-    'boot-floppy' : '(Obsolete, please use boot-floppies instead.)',
+#    'boot-floppy' : '(Obsolete, please use boot-floppies instead.)',
     'boot-floppies' : 'Bugs in the woody installation subsystem',
     'bugs.debian.org' : 'The bug tracking system, @bugs.debian.org',
     'cdimage.debian.org' : 'CD Image issues',
@@ -146,8 +159,8 @@ debother = {
     'general' : 'General problems (e.g., that many manpages are mode 755)',
     'install' : 'Problems with the sarge installer.',
     'installation' : 'General installation problems not covered otherwise.',
-    'kernel' : '(Obsolete, please use "kernel-image" instead.)',
-    'kernel-image' : 'Problems with the Linux kernel, or the kernel shipped with Debian',
+#    'kernel' : '(Obsolete, please use "linux-image" instead.)',
+    'linux-image' : 'Problems with the Linux kernel, or the kernel shipped with Debian',
     'listarchives' :  'Problems with the WWW mailing list archives',
     'lists.debian.org' : 'The mailing lists, debian-*@lists.debian.org.',
     'mirrors' : 'Problems with Debian archive mirrors.',
@@ -158,6 +171,7 @@ debother = {
 #slink-cd -- Slink CD 
 #spam -- Spam (reassign spam to here so we can complain about it)
     'security.debian.org' : 'Problems with the security updates server',
+    'upgrade-reports' : 'Reports of successful and unsucessful upgrades',
     'wnpp' : 'Work-Needing and Prospective Packages list',
     'www.debian.org' : 'Problems with the WWW site (including other *.debian.org sites)'
     }
@@ -234,6 +248,7 @@ def handle_wnpp(package, bts, ui, fromaddr, online=True, http_proxy=None):
   Upstream Author : Name <somebody@example.org>
 * URL             : http://www.example.org/
 * License         : (GPL, LGPL, BSD, MIT/X, etc.)
+  Programming Lang: (C, C++, C#, Perl, Python, etc.)
   Description     : %s
 
 (Include the long description here.)
@@ -291,7 +306,8 @@ def handle_wnpp(package, bts, ui, fromaddr, online=True, http_proxy=None):
 SYSTEMS = { 'debian' :
             { 'name' : 'Debian', 'email': '%s@bugs.debian.org',
               'btsroot' : 'http://www.debian.org/Bugs/',
-              'otherpkgs' : debother, 'nonvirtual' : ['kernel-image'],
+              'otherpkgs' : debother,
+              'nonvirtual' : ['linux-image', 'kernel-image'],
               'specials' : { 'wnpp': handle_wnpp },
               # Dependency packages
               'deppkgs' : ('gcc', 'g++', 'cpp', 'gcj', 'gpc', 'gobjc',
@@ -352,15 +368,13 @@ TAGS = {
 ##    'woody' : 'This bug only applies to the woody release (Debian 3.0).',
 ##    'sarge' : 'This bug only applies to the sarge release (Debian 3.1).',
 ##    'sid' : 'This bug only applies to the unstable branch of Debian.',
-    'experimental' : 'This bug only applies to a package in the experimental '
-    'branch of Debian.',
     "l10n" : "This bug reports a localization/internationalization issue.",
 ##    'done' : 'No more tags.',
     }
 
 EXTRA_TAGS = ['potato', 'woody', 'sarge', 'security', 'sid', 'upstream']
 
-TAGLIST = ['l10n', 'patch', 'experimental']
+TAGLIST = ['l10n', 'patch']
 CRITICAL_TAGLIST = ['security']
 
 def yn_bool(setting):
@@ -374,24 +388,30 @@ def yn_bool(setting):
 def cgi_report_url(system, number, archived=False, mbox=False):
     root = SYSTEMS[system].get('cgiroot')
     if root:
-        return '%sbugreport.cgi?bug=%d&archive=%s&mbox=%s' % (
+        return '%sbugreport.cgi?bug=%d&archived=%s&mbox=%s' % (
             root, number, archived, yn_bool(mbox))
     return None
 
 def cgi_package_url(system, package, archived=False, source=False,
-                    repeatmerged=True):
+                    repeatmerged=True, version=None):
     root = SYSTEMS[system].get('cgiroot')
     if not root: return None
     
-    package = urllib.quote_plus(package.lower())
-    qtype = "pkg"
+    #package = urllib.quote_plus(package.lower())
     if source:
-        qtype = "src"
-        
-    repeat = yn_bool(repeatmerged)
-    archive = yn_bool(archived)
+        query = {'src' : package.lower()}
+    else:
+        query = {'pkg' : package.lower()}
 
-    return '%spkgreport.cgi?%s=%s&archive=%s&repeatmerged=%s&show_list_header=no&show_list_footer=no' % (root, qtype, package, archive, repeat)
+    query['repeatmerged'] = yn_bool(repeatmerged)
+    query['archived'] = yn_bool(archived)
+
+    if version:
+        query['version'] = str(version)
+    
+    qstr = urllib.urlencode(query)
+    #print qstr
+    return '%spkgreport.cgi?%s' % (root, qstr)
 
 def package_url(system, package, mirrors=None, source=False,
                 repeatmerged=True):
@@ -479,6 +499,8 @@ class BTSParser(sgmllib.SGMLParser):
         self.mode = mode
         self.cgi = cgi
         self.followups = followups
+        self.inbuglist = self.intrailerinfo = False
+        self.bugtitle = None
         if followups:
             self.preblock = []
         else:
@@ -490,7 +512,7 @@ class BTSParser(sgmllib.SGMLParser):
 
     def handle_data(self, data):
         if self.savedata is not None:
-            self.savedata = self.savedata + data
+            self.savedata += data
 
     # --- Hooks to save data; shouldn't need to be overridden
 
@@ -499,18 +521,10 @@ class BTSParser(sgmllib.SGMLParser):
 
     def save_end(self, mode=False):
         data = self.savedata
+        if not mode and data:
+            data = ' '.join(data.split())
         self.savedata = None
-        if not mode: data = ' '.join(data.split())
         return data
-
-    def check_li(self):
-        if self.mode == 'summary':
-            data = self.save_end()
-            if data:
-                self.lidatalist.append(data)
-                self.bugcount = self.bugcount + 1
-
-            self.lidata = False
 
     def start_h1(self, attrs):
         self.save_bgn()
@@ -528,17 +542,54 @@ class BTSParser(sgmllib.SGMLParser):
 
     def end_h2(self):
         if self.mode == 'summary':
-            self.hierarchy.append( (self.save_end(), []) )
+            hiertitle = self.save_end()
+            if 'bug' in hiertitle:
+                self.hierarchy.append( (hiertitle, []) )
         self.endh2 = True # We are at the end of a title, flag <pre>
 
-    def do_br(self, attrs):
-        if self.lidata and self.mode == 'summary': self.check_li()
+    def start_ul(self, attrs):
+        if self.mode == 'summary':
+            for k, v in attrs:
+                if k == 'class' and v == 'bugs':
+                    self.inbuglist = True
 
+    def end_ul(self):
+        if self.inbuglist:
+            self.check_li()
+        
+        self.inbuglist = False
+
+    def do_br(self, attrs):
         if self.mode == 'title':
             self.savedata = ""
-        
-    def do_li(self, attrs):
+        elif self.mode == 'summary' and self.inbuglist and not self.intrailerinfo:
+            self.bugtitle = self.save_end()
+            self.intrailerinfo = True
+            self.save_bgn()
+
+    def check_li(self):
         if self.mode == 'summary':
+            if not self.intrailerinfo:
+                self.bugtitle = self.save_end()
+                trailinfo = ''
+            else:
+                trailinfo = self.save_end()
+
+            match = re.search(r'fixed:\s+([\w.+~-]+(\s+[\w.+~:-]+)?)', trailinfo)
+            if match:
+                bugid, title = re.split(r':\s+', self.bugtitle, 1)
+                buginfo = '%s [FIXED %s]: %s' % (bugid, match.group(1),
+                                                    title)
+            else:
+                buginfo = self.bugtitle
+            
+            self.lidatalist.append(buginfo)
+            self.bugcount += 1
+
+            self.lidata = self.intrailerinfo = False
+
+    def do_li(self, attrs):
+        if self.mode == 'summary' and self.inbuglist:
             if self.lidata: self.check_li()
 
             self.lidata = True
@@ -605,10 +656,61 @@ def parse_html_report(number, url, http_proxy, followups=False, cgi=True):
 
     return (title, output)
 
+# XXX: Need to handle charsets properly
+def parse_mbox_report(number, url, http_proxy, followups=False):
+    page = open_url(url, http_proxy)
+    if not page:
+        return None
+
+    # Make this seekable
+    wholefile = cStringIO.StringIO(page.read())
+
+    mbox = mailbox.UnixMailbox(wholefile, msgfactory)
+    title = ''
+
+    output = []
+    for message in mbox:
+        if not message:
+            pass
+        
+        subject = message.get('Subject')
+        if not title:
+            title = subject
+
+        date = message.get('Date')
+        fromhdr = message.get('From')
+
+        body = entry = ''
+        for part in message.walk():
+            if part.get_content_type() == 'text/plain' and not body:
+                body = part.get_payload(None, True)
+
+        if fromhdr:
+            entry += 'From: %s%s' % (fromhdr, os.linesep)
+
+        if subject and subject != title:
+            entry += 'Subject: %s%s' % (subject, os.linesep)
+
+        if date:
+            entry += 'Date: %s%s' % (date, os.linesep)
+
+        if entry:
+            entry += os.linesep
+
+        entry += body.rstrip('\n') + os.linesep
+
+        output.append(entry)
+
+    if not output:
+        return None
+
+    title = "#%d: %s" % (number, title)
+    return (title, output)
+
 def get_cgi_reports(package, system='debian', http_proxy='', archived=False,
-                    source=False):
-    page = open_url(cgi_package_url(system, package, archived, source),
-                    http_proxy)
+                    source=False, version=None):
+    page = open_url(cgi_package_url(system, package, archived, source,
+                                    version=version), http_proxy)
     if not page:
         return (0, None, None)
 
@@ -626,8 +728,9 @@ def get_cgi_report(number, system='debian', http_proxy='', archived=False,
                    followups=False):
     number = int(number)
 
-    url = cgi_report_url(system, number, archived='no')
-    return parse_html_report(number, url, http_proxy, followups, cgi=True)
+    url = cgi_report_url(system, number, archived='no', mbox=True)
+    return parse_mbox_report(number, url, http_proxy, followups)
+    #return parse_html_report(number, url, http_proxy, followups, cgi=True)
 
 def get_btsroot(system, mirrors=None):
     if mirrors:
@@ -637,12 +740,12 @@ def get_btsroot(system, mirrors=None):
                 return alternates[mirror]
     return SYSTEMS[system].get('btsroot', '')
 
-def get_reports(package, system='debian', mirrors=None,
+def get_reports(package, system='debian', mirrors=None, version=None,
                 http_proxy='', archived=False, source=False):
-    if isinstance(package, StringTypes):
+    if isinstance(package, basestring):
         if SYSTEMS[system].get('cgiroot'):
             result = get_cgi_reports(package, system, http_proxy, archived,
-                                     source)
+                                     source, version=version)
             if result: return result
 
         url = package_url(system, package, mirrors, source)
@@ -681,10 +784,14 @@ def get_report(number, system='debian', mirrors=None,
                http_proxy='', archived=False, followups=False):
     number = int(number)
     if SYSTEMS[system].get('cgiroot'):
-        result = get_cgi_report(number, system, http_proxy, archived,followups)
+        result = get_cgi_report(number, system, http_proxy, archived,
+                                followups)
         if result: return result
         
     url = report_url(system, number, mirrors)
     if not url: return None
 
     return parse_html_report(number, url, http_proxy, followups, cgi=False)
+
+if __name__ == '__main__':
+    print get_cgi_report(2)

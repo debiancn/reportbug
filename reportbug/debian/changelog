@@ -1,3 +1,10 @@
+reportbug (3.8.1) stable; urgency=low
+
+  * Update BTS parsing code to cope with changes in formatting at
+    bugs.debian.org.  (Closes: #354710)
+
+ -- Chris Lawrence <lawrencc@debian.org>  Sat, 26 Aug 2006 12:00:08 -0500
+
 reportbug (3.8) unstable; urgency=medium
 
   * Create .reportbugrc with mode 600.  (Closes: #295407)
