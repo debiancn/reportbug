@@ -32,7 +32,7 @@ import sgmllib
 import gc
 import time
 
-import reportbug
+import utils
 from urlutils import open_url
 from reportbug.exceptions import (
     NoNetwork,
@@ -300,7 +300,7 @@ def check_available(package, version, dists=None, check_incoming=True,
     stuff = get_versions_available(package, dists, http_proxy, arch)
     avail.update(stuff)
     if check_newqueue:
-        srcpackage = reportbug.get_source_name(package)
+        srcpackage = utils.get_source_name(package)
 	if srcpackage is None:
 	    srcpackage = package
         stuff = get_newqueue_available(srcpackage, dists, http_proxy, arch)

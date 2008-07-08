@@ -27,9 +27,8 @@
 DEBUGGER = 'lawrencc@debian.org'
 DEFAULT_BTS = 'debian'
 
-import sys, os
-sys.path = ['/usr/share/reportbug'] + sys.path
-
+import sys
+import os
 import optparse
 import re
 import locale
@@ -142,7 +141,7 @@ def handle_editing(filename, dmessage, options, sendto, attachments, package,
                    editor=None, charset='utf-8'):
     if not editor:
         editor = options.editor
-    editor = reportbug.which_editor(editor)
+    editor = utils.which_editor(editor)
     message = None
     skip_editing = False
     while True:

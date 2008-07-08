@@ -24,7 +24,7 @@ SOFTWARE."""
 __all__ = ['bugreport', 'utils', 'urlutils', 'checkbuildd', 'checkversions',
            'debianbts', 'exceptions', 'submit', 'tempfile']
 
-VERSION_NUMBER = "3.41"
+VERSION_NUMBER = "3.42"
 if VERSION_NUMBER.startswith('#'):
     VERSION_NUMBER = '(unreleased)'
 

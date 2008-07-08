@@ -37,9 +37,9 @@ from exceptions import (
     NoNetwork,
     )
 
-from __init__ import VERSION
+from __init__ import VERSION_NUMBER
 
-UA_STR = 'reportbug/'+VERSION+' (Debian)'
+UA_STR = 'reportbug/'+VERSION_NUMBER+' (Debian)'
 
 def decode (page):
     "gunzip or deflate a compressed page"

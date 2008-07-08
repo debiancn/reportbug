@@ -46,18 +46,19 @@ STATUSDB = os.path.join(DPKGLIB, 'status')
 PSEUDOHEADERS = ('Package', 'Version', 'Severity', 'File', 'Tags',
                  'Justification', 'Followup-For', 'Owner', 'User', 'Usertags')
 
-import imp
+AVAILABLE_UIS = ['text']
 
-VALID_UIS = ['newt', 'text', 'gnome2', 'urwid']
-AVAILABLE_UIS = []
-for ui in VALID_UIS:
-    pkgname = 'dreportbug.ui.%s' % ui
+try:
+    import ui.urwid
+    AVAILABLE_UIS.append('urwid')
+except:
+    pass
 
-    try:
-        if imp.find_module(pkgname):
-            AVAILABLE_UIS.append(ui)
-    except ImportError:
-        pass
+try:
+    import ui.gnome2
+    AVAILABLE_UIS.append('gnome2')
+except:
+    pass
 
 UIS = {'text': 'A text-oriented console interface',
        'urwid': 'A menu-based console interface',

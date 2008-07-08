@@ -39,11 +39,10 @@ from email.MIMEMessage import MIMEMessage
 from email.Header import Header
 import mimetypes
 
-import reportbug
-from reportbug import VERSION, VERSION_NUMBER
+from __init__ import VERSION, VERSION_NUMBER
 import debianbts
 from tempfiles import TempFile, open_write_safe, tempfile_prefix
-from reportbug_exceptions import (
+from exceptions import (
     NoMessage,
     )
 import ui.text as ui
