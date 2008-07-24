@@ -1,4 +1,4 @@
-#!/usr/bin/python -S
+#!/usr/bin/python
 # -*- python -*-
 # reportbug - Report a bug in the Debian distribution.
 #   Written by Chris Lawrence <lawrencc@debian.org>
@@ -24,7 +24,7 @@ SOFTWARE."""
 __all__ = ['bugreport', 'utils', 'urlutils', 'checkbuildd', 'checkversions',
            'debianbts', 'exceptions', 'submit', 'tempfile']
 
-VERSION_NUMBER = "3.42"
+VERSION_NUMBER = "3.44"
 if VERSION_NUMBER.startswith('#'):
     VERSION_NUMBER = '(unreleased)'
 
