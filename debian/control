@@ -38,6 +38,7 @@ Description: reports bugs in the Debian distribution
  Debian bug tracking system.
 
 Package: python-reportbug
+Section: python
 Architecture: all
 Depends: ${python:Depends}, apt
 Suggests: reportbug
