@@ -13,7 +13,7 @@ build-stamp:
 	dh_testdir
 
 	# Test if versions are synchronized; this will bomb if not synced
-	@python -c "import reportbug, sys; sys.exit(reportbug.VERSION_NUMBER != '$(VERSION)')"
+	@python -c "import reportbug, sys; sys.exit(reportbug.VERSION_NUMBER != '$(VERSION)')" || (echo 'Please update reportbug/__version__'; exit 1)
 
 	po4a po4a/po4a.cfg
 	python setup.py build
@@ -40,7 +40,7 @@ install-stamp: build-stamp
 	dh_installdirs
 
 	# Add here commands to install the package into debian/reportbug.
-	python setup.py install --root $(CURDIR)/debian/reportbug
+	python setup.py install --root $(CURDIR)/debian/reportbug --install-lib $(CURDIR)/debian/python-reportbug/usr/lib
 
 	chmod 0755 `pwd`/debian/reportbug/usr/bin/*
 	cp -p reportbug.conf `pwd`/debian/reportbug/etc

@@ -24,9 +24,7 @@ SOFTWARE."""
 __all__ = ['bugreport', 'utils', 'urlutils', 'checkbuildd', 'checkversions',
            'debianbts', 'exceptions', 'submit', 'tempfile']
 
-VERSION_NUMBER = "3.44"
-if VERSION_NUMBER.startswith('#'):
-    VERSION_NUMBER = '(unreleased)'
+VERSION_NUMBER = "3.99.0"
 
 VERSION = "reportbug "+VERSION_NUMBER
 COPYRIGHT = VERSION + '\nCopyright (C) 1999-2008 Chris Lawrence <lawrencc@debian.org>'
