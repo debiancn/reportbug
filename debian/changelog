@@ -1,3 +1,9 @@
+reportbug (6.6.6~bpo8+1) jessie-backports; urgency=medium
+
+  * Rebuild for jessie-backports.
+
+ -- Sandro Tosi <morph@debian.org>  Mon, 08 Feb 2016 23:32:30 +0000
+
 reportbug (6.6.6) unstable; urgency=medium
 
   * reportbug/utils.py
