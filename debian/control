@@ -6,9 +6,9 @@ Uploaders: Sandro Tosi <morph@debian.org>, Chris Lawrence <lawrencc@debian.org>
 Standards-Version: 3.9.8
 Build-Depends: debhelper (>= 9), python3, dh-python, gettext
 Build-Depends-Indep: python3-nose, python3-setuptools, python3-mock
-Vcs-Git: git://anonscm.debian.org/reportbug/reportbug.git
-Vcs-Browser: http://anonscm.debian.org/gitweb/?p=reportbug/reportbug.git
-Homepage: http://alioth.debian.org/projects/reportbug/
+Vcs-Git: https://anonscm.debian.org/git/reportbug/reportbug.git
+Vcs-Browser: https://anonscm.debian.org/git/reportbug/reportbug.git
+Homepage: https://alioth.debian.org/projects/reportbug/
 
 Package: reportbug
 Architecture: all
