@@ -36,6 +36,7 @@ from email.mime.base import MIMEBase
 from email.mime.message import MIMEMessage
 import mimetypes
 
+from . import _
 from .__init__ import VERSION, VERSION_NUMBER
 from .tempfiles import TempFile, open_write_safe, tempfile_prefix
 from .exceptions import (
@@ -105,7 +106,7 @@ def sign_message(body, fromaddr, package='x', pgp_addr=None, sign='gpg', draftpa
         fh, tmpfile2 = TempFile(prefix=tempfile_prefix(package), dir=draftpath)
         fh.write(body)
         fh.close()
-        ewrite('gpg/pgp failed; input file in %s\n', tmpfile2)
+        ewrite(_('gpg/pgp failed; input file in %s\n'), tmpfile2)
         body = None
     return body
 
@@ -125,7 +126,7 @@ def mime_attach(body, attachments, charset, body_charset=None):
             fp = open(attachment)
             fp.close()
         except EnvironmentError as x:
-            ewrite("Warning: opening '%s' failed: %s.\n", attachment,
+            ewrite(_("Warning: opening '%s' failed: %s.\n"), attachment,
                    x.strerror)
             failed = True
             continue
@@ -214,7 +215,7 @@ def send_report(body, attachments, mua, fromaddr, sendto, ccaddr, bccaddr,
     if attachments and not mua:
         (message, failed) = mime_attach(body, attachments, charset, body_charset)
         if failed:
-            ewrite("Error: Message creation failed, not sending\n")
+            ewrite(_("Error: Message creation failed, not sending\n"))
             mua = mta = smtphost = None
     else:
         message = MIMEText(body)
@@ -272,8 +273,10 @@ def send_report(body, attachments, mua, fromaddr, sendto, ccaddr, bccaddr,
             # it'd send a SIGPIPE, so crash only if that's not the case
             if e.errno != errno.EPIPE:
                 raise e
-        if not ui.yes_no('Does your report seem satisfactory', 'Yes, send it.',
-                         'No, don\'t send it.'):
+        if not ui.yes_no(
+                _('Does your report seem satisfactory'),
+                _('Yes, send it.'),
+                _('No, don\'t send it.')):
             smtphost = mta = None
 
     filename = None
@@ -291,15 +294,15 @@ def send_report(body, attachments, mua, fromaddr, sendto, ccaddr, bccaddr,
             try:
                 os.rename(msgname, msgname + '~')
             except OSError:
-                ewrite('Unable to rename existing %s as %s~\n',
+                ewrite(_('Unable to rename existing %s as %s~\n'),
                        msgname, msgname)
         try:
             pipe = open_write_safe(msgname, 'w')
         except OSError:
             # we can't write to the selected file, use a temp file instead
             fh, newmsgname = TempFile(prefix=tfprefix, dir=draftpath)
-            ewrite('Writing to %s failed; '
-                   'using instead %s\n', msgname, newmsgname)
+            ewrite(_('Writing to %s failed; '
+                   'using instead %s\n'), msgname, newmsgname)
             msgname = newmsgname
             # we just need a place where to write() and a file handler
             # is here just for that
@@ -318,14 +321,14 @@ def send_report(body, attachments, mua, fromaddr, sendto, ccaddr, bccaddr,
             envfrom = email.utils.parseaddr(envelopefrom)[1]
         else:
             envfrom = faddr
-        ewrite("Sending message via %s...\n", mta)
+        ewrite(_("Sending message via %s...\n"), mta)
         pipe = os.popen('%s -f %s -oi -oem %s' % (
             mta, shlex.quote(envfrom), jalist), 'w')
         using_sendmail = True
 
     # saving a backup of the report
     backupfh, backupname = TempFile(prefix=tempfile_prefix(package, 'backup'), dir=draftpath)
-    ewrite('Saving a backup of the report at %s\n', backupname)
+    ewrite(_('Saving a backup of the report at %s\n'), backupname)
     backupfh.write(message)
     backupfh.close()
 
@@ -337,7 +340,7 @@ def send_report(body, attachments, mua, fromaddr, sendto, ccaddr, bccaddr,
         retry = 0
         while tryagain:
             tryagain = False
-            ewrite("Connecting to %s via SMTP...\n", smtphost)
+            ewrite(_("Connecting to %s via SMTP...\n"), smtphost)
             try:
                 conn = None
                 # if we're using reportbug.debian.org, send mail to
@@ -357,7 +360,7 @@ def send_report(body, attachments, mua, fromaddr, sendto, ccaddr, bccaddr,
                 if smtpuser:
                     if not smtppasswd:
                         smtppasswd = ui.get_password(
-                            'Enter SMTP password for %s@%s: ' %
+                            _('Enter SMTP password for %s@%s: ') %
                             (smtpuser, smtphost))
                     conn.login(smtpuser, smtppasswd)
                 refused = conn.sendmail(fromaddr, toaddrs, message)
@@ -365,7 +368,7 @@ def send_report(body, attachments, mua, fromaddr, sendto, ccaddr, bccaddr,
             except (socket.error, smtplib.SMTPException) as x:
                 # If wrong password, try again...
                 if isinstance(x, smtplib.SMTPAuthenticationError):
-                    ewrite('SMTP error: authentication failed.  Try again.\n')
+                    ewrite(_('SMTP error: authentication failed.  Try again.\n'))
                     tryagain = True
                     smtppasswd = None
                     retry += 1
@@ -375,9 +378,10 @@ def send_report(body, attachments, mua, fromaddr, sendto, ccaddr, bccaddr,
                         tryagain = False
 
                 # In case of failure, ask to retry or to save & exit
-                if ui.yes_no('SMTP send failure: %s. Do you want to retry (or else save the report and exit)?' % x,
-                             'Yes, please retry.',
-                             'No, save and exit.'):
+                if ui.yes_no(
+                        _('SMTP send failure: %s. Do you want to retry (or else save the report and exit)?') % x,
+                        _('Yes, please retry.'),
+                        _('No, save and exit.')):
                     tryagain = True
                     continue
                 else:
@@ -387,23 +391,23 @@ def send_report(body, attachments, mua, fromaddr, sendto, ccaddr, bccaddr,
                     fh.write(message)
                     fh.close()
 
-                    ewrite('Wrote bug report to %s\n', msgname)
+                    ewrite(_('Wrote bug report to %s\n'), msgname)
         # Handle when some recipients are refused.
         if refused:
             for (addr, err) in refused.items():
-                ewrite('Unable to send report to %s: %d %s\n', addr, err[0],
+                ewrite(_('Unable to send report to %s: %d %s\n'), addr, err[0],
                        err[1])
             fh, msgname = TempFile(prefix=tfprefix, dir=draftpath)
             fh.write(message)
             fh.close()
 
-            ewrite('Wrote bug report to %s\n', msgname)
+            ewrite(_('Wrote bug report to %s\n'), msgname)
     else:
         try:
             pipe.write(message)
             pipe.flush()
             if msgname:
-                ewrite("Bug report written as %s\n", msgname)
+                ewrite(_("Bug report written as %s\n"), msgname)
         except IOError:
             failed = True
             pipe.close()
@@ -413,37 +417,40 @@ def send_report(body, attachments, mua, fromaddr, sendto, ccaddr, bccaddr,
             fh, msgname = TempFile(prefix=tfprefix, dir=draftpath)
             fh.write(message)
             fh.close()
-            ui.long_message('Error: send/write operation failed, bug report '
-                            'saved to %s\n', msgname)
+            ui.long_message(
+                    _('Error: send/write operation failed, bug report '
+                      'saved to %s\n'),
+                    msgname)
 
     if mua:
-        ewrite("Spawning %s...\n", mua.name)
+        ewrite(_("Spawning %s...\n"), mua.name)
         returnvalue = 0
         succeeded = False
         while not succeeded:
             returnvalue = mua.send(filename)
             if returnvalue != 0:
-                ewrite("Mutt users should be aware it is mandatory to edit the draft before sending.\n")
-                mtitle = 'Report has not been sent yet; what do you want to do now?'
+                ewrite(_("Mutt users should be aware it is mandatory "
+                         "to edit the draft before sending.\n"))
+                mtitle = _('Report has not been sent yet; what do you want to do now?')
                 mopts = 'Eq'
-                moptsdesc = {'e': 'Edit the message.',
-                             'q': 'Quit reportbug; will save the draft for future use.'}
+                moptsdesc = {'e': _('Edit the message.'),
+                             'q': _('Quit reportbug; will save the draft for future use.')}
                 x = ui.select_options(mtitle, mopts, moptsdesc)
                 if x == 'q':
                     failed = True
                     fh, msgname = TempFile(prefix=tfprefix, dir=draftpath)
                     fh.write(message)
                     fh.close()
-                    ewrite('Draft saved into %s\n', msgname)
+                    ewrite(_('Draft saved into %s\n'), msgname)
                     succeeded = True
             else:
                 succeeded = True
 
     elif not failed and (using_sendmail or smtphost):
         if kudos:
-            ewrite('\nMessage sent to: %s\n', sendto)
+            ewrite(_('\nMessage sent to: %s\n'), sendto)
         else:
-            ewrite("\nBug report submitted to: %s\n", sendto)
+            ewrite(_("\nBug report submitted to: %s\n"), sendto)
 
         addresses = []
         for addr in alist:
@@ -451,24 +458,24 @@ def send_report(body, attachments, mua, fromaddr, sendto, ccaddr, bccaddr,
                 addresses.append(addr)
 
         if len(addresses):
-            ewrite("Copies sent to:\n")
+            ewrite(_("Copies sent to:\n"))
             for address in addrs:
                 ewrite('  %s\n', address)
 
         if debbugs_cc and rtype == 'debbugs':
-            ewrite("Copies will be sent after processing to:\n")
+            ewrite(_("Copies will be sent after processing to:\n"))
             for address in cclist:
                 ewrite('  %s\n', address)
 
     if not (exinfo or kudos) and rtype == 'debbugs' and sysinfo and 'email' in sysinfo and not failed \
             and mailing:
         ewrite('\n')
-        ui.final_message(
+        ui.final_message(_(
             """If you want to provide additional information, please wait to
 receive the bug tracking number via email; you may then send any extra
 information to %s (e.g. %s), where n is the bug number.  Normally you
 will receive an acknowledgement via email including the bug report number
-within an hour; if you haven't received a confirmation, then the bug reporting process failed at some point (reportbug or MTA failure, BTS maintenance, etc.).\n""",
+within an hour; if you haven't received a confirmation, then the bug reporting process failed at some point (reportbug or MTA failure, BTS maintenance, etc.).\n"""),
             (sysinfo['email'] % 'n'), (sysinfo['email'] % '999999'))
 
     # If we've stored more than one copy of the message, delete the
@@ -481,5 +488,5 @@ within an hour; if you haven't received a confirmation, then the bug reporting p
 
     if filename and os.path.exists(filename) and not mua:
         # Message is misleading if an MUA is used.
-        ewrite("A copy of the report is stored as: %s\n" % filename)
+        ewrite(_("A copy of the report is stored as: %s\n") % filename)
     return

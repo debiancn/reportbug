@@ -24,6 +24,7 @@
 from html.parser import HTMLParser
 
 from . import utils
+from . import _
 from .urlutils import open_url
 from reportbug.exceptions import (
     NoNetwork,

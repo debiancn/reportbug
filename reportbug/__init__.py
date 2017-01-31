@@ -30,3 +30,9 @@ VERSION_NUMBER = "7.1.6"
 VERSION = "reportbug " + VERSION_NUMBER
 COPYRIGHT = VERSION + '\nCopyright (C) 1999-2008 Chris Lawrence <lawrencc@debian.org>' + \
                       '\nCopyright (C) 2008-2017 Sandro Tosi <morph@debian.org>'
+
+# Initialize gettext at the top of package
+import gettext
+t = gettext.translation('python3-reportbug', fallback=True)
+_ = t.gettext
+

@@ -71,10 +71,7 @@ from reportbug.ui import (
 
 # ui = getUI('text')
 
-try:
-    gettext.install('reportbug')
-except IOError:
-    pass
+gettext.install('reportbug')
 
 
 # Magic constant time
@@ -95,7 +92,7 @@ def efail(*args):
 
 # Lame message when we store a report as a temp file.
 def stopmsg(filename):
-    ui.final_message(
+    ui.final_message(_(
         'reportbug stopped; your incomplete report is stored as "%s".\n'
         'This file may be located in a temporary directory; if so, it might '
         'disappear without any further notice. To recover this file to use '
@@ -104,7 +101,7 @@ def stopmsg(filename):
         'Alternatively, you can copy the content of the temporary file (both '
         'headers and body) and copy it into your MUA and send the mail to '
         'submit@bugs.debian.org, editing the subject and bug text as needed '
-        '(but not altering the other information).\n', filename)
+        '(but not altering the other information).\n'), filename)
 
 
 def check_attachment_size(attachfile, maxsize):
@@ -154,7 +151,7 @@ def include_file_in_report(message, message_filename,
             os.unlink(message_filename)
             message_filename = temp_filename
         except (IOError, OSError) as exc:
-            ui.display_failure('Unable to attach file %s\n%s\n',
+            ui.display_failure(_('Unable to attach file %s\n%s\n'),
                                include_filename, str(exc))
     else:
         attachment_filenames.append(include_filename)
@@ -184,10 +181,10 @@ def handle_editing(filename, dmessage, options, sendto, attachments, package,
         if not message:
             x = ''
             while x != 'y':
-                x = ui.select_options('Done editing', 'Ynq',
-                                      {'y': 'Continue (editing done).',
-                                       'n': "Don't continue yet.",
-                                       'q': 'Exit without sending report.'})
+                x = ui.select_options(_('Done editing'), 'Ynq',
+                                      {'y': _('Continue (editing done).'),
+                                       'n': _("Don't continue yet."),
+                                       'q': _('Exit without sending report.')})
                 if x == 'q':
                     stopmsg(filename)
                     sys.exit(1)
@@ -195,24 +192,24 @@ def handle_editing(filename, dmessage, options, sendto, attachments, package,
             message = open(filename).read()
             changed = True
 
-        prompt = 'Submit this report on %s (e to edit)' % package
+        prompt = _('Submit this report on %s (e to edit)') % package
 
         if options.kudos:
-            prompt = 'Send this message (e to edit)'
-            ewrite("Message will be sent to %s\n", sendto)
+            prompt = _('Send this message (e to edit)')
+            ewrite(_("Message will be sent to %s\n"), sendto)
         elif options.outfile:
-            ewrite("Report will be saved as %s\n", options.outfile)
+            ewrite(_("Report will be saved as %s\n"), options.outfile)
         else:
-            ewrite("Report will be sent to %s\n", sendto)
+            ewrite(_("Report will be sent to %s\n"), sendto)
 
         if attachments:
-            ewrite('Attachments:\n')
+            ewrite(_('Attachments:\n'))
             for name in attachments:
                 ewrite(' %s\n', name)
 
         subject = re.search('^Subject: ', message, re.M | re.I)
         if not subject:
-            ui.long_message('No subject found in message.  Please edit again.\n')
+            ui.long_message(_('No subject found in message.  Please edit again.\n'))
 
         menuopts = "Ynaceilmpqdts"
 
@@ -224,51 +221,51 @@ def handle_editing(filename, dmessage, options, sendto, attachments, package,
             for itp_line in debbugs.itp_template.rsplit('\n'):
                 # if the line is not empty and it's in the message the user wrote
                 if itp_line in message and itp_line != '':
-                    ewrite("Wrong line: %s\n", itp_line)
+                    ewrite(_("Wrong line: %s\n"), itp_line)
                     menuopts = "Eq"
-                    prompt = 'ERROR: you have composed a WNPP bug report with fields unchanged from the template; this will NOT be submitted. Please edit all fields so they contain correct values (e to edit)'
+                    prompt = _('ERROR: you have composed a WNPP bug report with fields unchanged from the template; this will NOT be submitted. Please edit all fields so they contain correct values (e to edit)')
 
         if options.outfile:
-            yesmessage = 'Save the report into %s .' % options.outfile
+            yesmessage = _('Save the report into %s .') % options.outfile
         else:
-            yesmessage = 'Submit the bug report via email.'
+            yesmessage = _('Submit the bug report via email.')
 
         x = ui.select_options(prompt, menuopts,
                               {'y': yesmessage,
-                               'n': "Don't submit the bug report; instead, "
-                                    "save it in a temporary file (exits reportbug).",
-                               'q': "Save it in a temporary file and quit.",
-                               'a': "Attach a file.",
-                               'd': "Detach an attachment file.",
-                               'i': "Include a text file.",
-                               'c': "Change editor and re-edit.",
-                               'e': 'Re-edit the bug report.',
-                               'l': 'Pipe the message through the pager.',
-                               'p': 'print message to stdout.',
-                               't': 'Add tags.',
-                               's': 'Add a X-Debbugs-CC recipient (a CC but after BTS processing).',
-                               'm': "Choose a mailer to edit the report."})
+                               'n': _("Don't submit the bug report; instead, "
+                                    "save it in a temporary file (exits reportbug)."),
+                               'q': _("Save it in a temporary file and quit."),
+                               'a': _("Attach a file."),
+                               'd': _("Detach an attachment file."),
+                               'i': _("Include a text file."),
+                               'c': _("Change editor and re-edit."),
+                               'e': _('Re-edit the bug report.'),
+                               'l': _('Pipe the message through the pager.'),
+                               'p': _('print message to stdout.'),
+                               't': _('Add tags.'),
+                               's': _('Add a X-Debbugs-CC recipient (a CC but after BTS processing).'),
+                               'm': _("Choose a mailer to edit the report.")})
 
         if x in ('a', 'i'):
             invalid = True
             while invalid:
                 if x == 'i':
-                    attachfile = ui.get_filename('Choose a text file to include: ')
+                    attachfile = ui.get_filename(_('Choose a text file to include: '))
                 else:
-                    attachfile = ui.get_filename('Choose a file to attach: ')
+                    attachfile = ui.get_filename(_('Choose a file to attach: '))
                 if attachfile:
                     # expand vars & glob the input string
                     attachfile = os.path.expanduser(attachfile)
                     attachfglob = glob(attachfile)
                     # check if the globbing returns any result
                     if not attachfglob:
-                        ui.display_failure("Can't find %s to include!\n", attachfile)
+                        ui.display_failure(_("Can't find %s to include!\n"), attachfile)
                     # loop over the globbed 'attachfile', you can specify wildcards now
                     for attachf in attachfglob:
                         if os.access(attachf, os.R_OK) and os.path.isfile(attachf):
                             if check_attachment_size(attachf, options.max_attachment_size):
-                                ewrite('The attachment file %s size is bigger than the maximum of %d bytes: '
-                                       'reduce its size else the report cannot be sent\n' %
+                                ewrite(_('The attachment file %s size is bigger than the maximum of %d bytes: '
+                                       'reduce its size else the report cannot be sent\n') %
                                        (attachf, options.max_attachment_size))
                             else:
                                 invalid = False
@@ -279,37 +276,37 @@ def handle_editing(filename, dmessage, options, sendto, attachments, package,
                                 if not inline:
                                     skip_editing = True
                         else:
-                            ui.display_failure("Cannot include %s!\n", attachf)
+                            ui.display_failure(_("Cannot include %s!\n"), attachf)
                 else:
                     break
         elif x == 'd':
             skip_editing = True
             if not attachments:
-                ewrite('No attachment file to detach.\n')
+                ewrite(_('No attachment file to detach.\n'))
             else:
-                detachprompt = 'Choose an attachment file to detach (an empty line will exit): '
+                detachprompt = _('Choose an attachment file to detach (an empty line will exit): ')
                 myattachments = []
                 myattachments = [(x, '') for x in attachments]
                 filetodetach = ui.menu(detachprompt, myattachments,
-                                       'Select the file:', default='', empty_ok=True)
+                                       _('Select the file:'), default='', empty_ok=True)
                 # only if selection is not empty and the file is in the attachment list
                 if filetodetach != '' and filetodetach in attachments:
                     attachments.remove(filetodetach)
-                    ewrite('Attachment file "%s" successfully detached.\n\n', filetodetach)
+                    ewrite(_('Attachment file "%s" successfully detached.\n\n'), filetodetach)
                 else:
-                    ewrite('Nothing to detach.\n\n')
+                    ewrite(_('Nothing to detach.\n\n'))
         elif x == 'c':
-            ed = ui.get_filename('Choose editor: ', default=options.editor)
+            ed = ui.get_filename(_('Choose editor: '), default=options.editor)
             if ed:
                 editor = ed
         elif x == 'm':
             mailers = [(x, '') for x in list(utils.MUA.keys())]
             mailers.sort()
-            mailer = ui.menu('Choose a mailer for your report', mailers,
-                             'Select mailer: ', default='', empty_ok=True)
+            mailer = ui.menu(_('Choose a mailer for your report'), mailers,
+                             _('Select mailer: '), default='', empty_ok=True)
             if mailer and mailer != -1:
                 if not utils.mua_exists(utils.MUA[mailer]):
-                    ewrite("Selected mail user agent cannot be found.\n")
+                    ewrite(_("Selected mail user agent cannot be found.\n"))
                 else:
                     # get the MUA
                     mailer = utils.MUA.get(mailer)
@@ -317,9 +314,9 @@ def handle_editing(filename, dmessage, options, sendto, attachments, package,
                     if attachments:
                         # notify that they will be lost
                         if ui.yes_no(
-                                'Editing the report will lose all attachments: are you sure you want to continue?',
-                                'Yes, please',
-                                'No, thanks',
+                                _('Editing the report will lose all attachments: are you sure you want to continue?'),
+                                _('Yes, please'),
+                                _('No, thanks'),
                                 True):
                             # if ok, go into the MUA
                             options.mua = mailer
@@ -347,8 +344,8 @@ def handle_editing(filename, dmessage, options, sendto, attachments, package,
             skip_editing = True
             ntags = debbugs.get_tags(severity, mode)
             newtaglist = ui.select_multiple(
-                'Do any of the following apply to this report?', ntags,
-                'Please select tags: ')
+                _('Do any of the following apply to this report?'), ntags,
+                _('Please select tags: '))
             if newtaglist:
                 oldtags = ''
                 newtags = ''
@@ -368,24 +365,24 @@ def handle_editing(filename, dmessage, options, sendto, attachments, package,
         elif x == 's':
             skip_editing = True
             ccemail = ui.get_string(
-                ('Please add the email address. Just press ENTER if you '
-                 'don\'t want anymore.'), empty_ok=True, force_prompt=True)
+                (_('Please add the email address. Just press ENTER if you '
+                 'don\'t want anymore.')), empty_ok=True, force_prompt=True)
             if ccemail:
                 CCS.append(ccemail)
         elif x == 'y':
             if message == dmessage:
                 x = ui.select_options(
-                    'Report is unchanged.  Edit this report or quit', 'Eqs',
-                    {'q': "Don't submit the bug report; instead, save it "
-                          "in a temporary file and quit.",
-                     'e': 'Re-edit the bug report.',
-                     's': 'Send report anyway.'})
+                    _('Report is unchanged.  Edit this report or quit'), 'Eqs',
+                    {'q': _("Don't submit the bug report; instead, save it "
+                          "in a temporary file and quit."),
+                     'e': _('Re-edit the bug report.'),
+                     's': _('Send report anyway.')})
                 if x == 'q':
                     stopmsg(filename)
                     sys.exit(1)
                     break
                 elif x == 's':
-                    ewrite('Sending empty report anyway...\n')
+                    ewrite(_('Sending empty report anyway...\n'))
                     break
             else:
                 break
@@ -394,20 +391,20 @@ def handle_editing(filename, dmessage, options, sendto, attachments, package,
 
 
 def find_package_for(filename, notatty=False, pathonly=False):
-    ewrite("Finding package for '%s'...\n", filename)
+    ewrite(_("Finding package for '%s'...\n"), filename)
     (newfilename, packages) = utils.find_package_for(filename, pathonly)
     if newfilename != filename:
         filename = newfilename
-        ewrite("Resolved as '%s'.\n", filename)
+        ewrite(_("Resolved as '%s'.\n"), filename)
     if not packages:
-        ewrite("No packages match.\n")
+        ewrite(_("No packages match.\n"))
         return (filename, None)
     elif len(packages) > 1:
         packlist = list(packages.items())
         packlist.sort()
 
         if notatty:
-            print("Please re-run reportbug selecting one of these packages:")
+            print(_("Please re-run reportbug selecting one of these packages:"))
             for pkg, files in packlist:
                 print("  " + pkg)
             sys.exit(1)
@@ -418,21 +415,24 @@ def find_package_for(filename, notatty=False, pathonly=False):
                 files[3:] = ['...']
             packs.append((pkg, ', '.join(files)))
 
-        package = ui.menu("Multiple packages match: ", packs, 'Select one '
-                                                              'of these packages: ', any_ok=True)
+        package = ui.menu(
+                _("Multiple packages match: "),
+                packs,
+                _('Select one of these packages: '),
+                any_ok=True)
         # for urwid, when pressing 'Cancel' in the menu
         if package == -1:
             package = None
         return (filename, package)
     else:
         package = list(packages.keys())[0]
-        ewrite("Using package '%s'.\n", package)
+        ewrite(_("Using package '%s'.\n"), package)
         return (filename, package)
 
 
 def validate_package_name(package):
     if not re.match(r'^[a-z0-9][a-z0-9\-\+\.]+$', package):
-        ui.long_message("%s is not a valid package name.", package)
+        ui.long_message(_("%s is not a valid package name."), package)
         package = None
     return package
 
@@ -440,10 +440,14 @@ def validate_package_name(package):
 def get_other_package_name(others):
     """Displays the list of pseudo-packages and returns the one selected."""
 
-    result = ui.menu("Please enter the name of the package in which you "
-                     "have found a problem, or choose one of these bug "
-                     "categories:", others, "Enter a package: ", any_ok=True,
-                     default='')
+    result = ui.menu(
+            _("Please enter the name of the package in which you "
+              "have found a problem, or choose one of these bug "
+              "categories:"),
+            others,
+            _("Enter a package: "),
+            any_ok=True,
+            default='')
     if result:
         return result
     else:
@@ -452,14 +456,14 @@ def get_other_package_name(others):
 
 def get_package_name(bts='debian', mode=MODE_EXPERT):
     others = debbugs.SYSTEMS[bts].get('otherpkgs')
-    prompt = "Please enter the name of the package in which you have found " \
-             "a problem"
+    prompt = _("Please enter the name of the package in which you have "
+             "found a problem")
     if others:
-        prompt += ", or type 'other' to report a more general problem."
+        prompt += _(", or type 'other' to report a more general problem.")
     else:
         prompt += '.'
-    prompt += " If you don't know what package the bug is in, " \
-              "please contact debian-user@lists.debian.org for assistance."
+    prompt += _(" If you don't know what package the bug is in, "
+              "please contact debian-user@lists.debian.org for assistance.")
 
     options = []
     pkglist = subprocess.getoutput('apt-cache pkgnames')
@@ -481,52 +485,58 @@ def get_package_name(bts='debian', mode=MODE_EXPERT):
 
     if package in ('kernel', 'linux-image'):
         ui.long_message(
-            "Automatically selecting the package for the running kernel")
+            _("Automatically selecting the package for the running kernel"))
         package = utils.get_running_kernel_pkg()
 
     if mode < MODE_STANDARD:
         if package == 'reportbug':
-            if not ui.yes_no('Is "reportbug" actually the package you are '
+            if not ui.yes_no(_('Is "reportbug" actually the package you are '
                              'having problems with',
                              'Yes, I am actually experiencing a problem with '
                              'reportbug.',
                              'No, I really meant to file a bug report on '
-                             'another package.'):
+                             'another package.')):
                 return get_package_name(bts, mode)
 
     if mode < MODE_EXPERT:
         if package in ('bugs.debian.org', 'debbugs'):
-            if ui.yes_no('Are you reporting a problem with this program '
-                         '(reportbug)', 'Yes, this is actually a bug in '
-                                        'reportbug.', 'No, this is really a problem in the '
-                                                      'bug tracking system itself.'):
+            if ui.yes_no(
+                    _('Are you reporting a problem with this program '
+                      '(reportbug)'),
+                    _('Yes, this is actually a bug in reportbug.'),
+                    _('No, this is really a problem in the bug tracking '
+                      'system itself.')):
                 package = 'reportbug'
 
         if package in ('general', 'project', 'debian-general'):
-            ui.long_message(
+            ui.long_message(_(
                 "If you have a general problem, please do consider using "
                 'the available Debian support channels to narrow the problem '
                 'down. This will help us together to resolve the problem '
-                'quicker. See https://www.debian.org/support')
+                'quicker. See https://www.debian.org/support'))
             if not ui.yes_no(
-                    "Are you sure this bug doesn't apply to a specific package?",
-                    'Yes, this bug is truly general.',
-                    'No, this is not really a general bug.', False):
+                    _("Are you sure this bug doesn't apply to a "
+                      "specific package?"),
+                    _('Yes, this bug is truly general.'),
+                    _('No, this is not really a general bug.'),
+                    False):
                 return get_package_name(bts, mode)
 
         if package == 'wnpp':
             if not ui.yes_no(
-                    'Are you sure you want to file a WNPP report?',
-                    'Yes, I am a developer or know what I\'m doing.',
-                    'No, I am not a developer and I don\'t know what wnpp means.',
+                    _('Are you sure you want to file a WNPP report?'),
+                    _('Yes, I am a developer or know what I\'m doing.'),
+                    _('No, I am not a developer and I don\'t know what '
+                      'wnpp means.'),
                     False):
                 return get_package_name(bts, mode)
 
         if package in ('ftp.debian.org', 'release.debian.org'):
-            if not ui.yes_no('Are you sure you want to file a bug on %s?' % (package),
-                             'Yes, I am a developer or know what I\'m doing.',
-                             'No, I am not a developer and I don\'t know what %s is.' % (package),
-                             False):
+            if not ui.yes_no(
+                    _('Are you sure you want to file a bug on %s?') % (package),
+                    _('Yes, I am a developer or know what I\'m doing.'),
+                    _('No, I am not a developer and I don\'t know what %s is.') % (package),
+                    False):
                 return get_package_name(bts, mode)
 
     return package
@@ -549,14 +559,18 @@ def offer_configuration(options):
     ui.charset = charset
 
     if not options.configure:
-        ui.long_message('Welcome to reportbug!  Since it looks like this is '
-                        'the first time you have used reportbug, we are '
-                        'configuring its behavior.  These settings will be '
-                        'saved to the file "%s", which you will be free to '
-                        'edit further.\n\n', utils.USERFILE)
-    mode = ui.menu('Please choose the default operating mode for reportbug.',
-                   utils.MODES, 'Select mode: ', options.mode,
-                   order=utils.MODELIST)
+        ui.long_message(_(
+            'Welcome to reportbug!  Since it looks like this is '
+            'the first time you have used reportbug, we are '
+            'configuring its behavior.  These settings will be '
+            'saved to the file "%s", which you will be free to '
+            'edit further.\n\n'), utils.USERFILE)
+    mode = ui.menu(
+            _('Please choose the default operating mode for reportbug.'),
+            utils.MODES,
+            _('Select mode: '),
+            options.mode,
+            order=utils.MODELIST)
 
     if options.configure or not options.interface:
         # if there is only one UI available, the it's 'text', else ask
@@ -564,21 +578,25 @@ def offer_configuration(options):
             interface = 'text'
         else:
             interface = ui.menu(
-                'Please choose the default interface for reportbug.', AVAILABLE_UIS,
-                'Select interface: ', options.interface, order=['text'])
+                    _('Please choose the default interface for reportbug.'),
+                    AVAILABLE_UIS,
+                    _('Select interface: '),
+                    options.interface,
+                    order=['text'])
     else:
         interface = options.interface
 
-    online = ui.yes_no('Will reportbug often have direct '
-                       'Internet access?  (You should answer yes to this '
-                       'question unless you know what you are doing and '
-                       'plan to check whether duplicate reports have been '
-                       'filed via some other channel.)',
-                       'Yes, reportbug should assume it has access to the '
-                       'network always.',
-                       'No, I am only online occasionally to send and '
-                       'receive mail.',
-                       default=(not options.offline))
+    online = ui.yes_no(
+            _('Will reportbug often have direct '
+              'Internet access?  (You should answer yes to this '
+              'question unless you know what you are doing and '
+              'plan to check whether duplicate reports have been '
+              'filed via some other channel.)'),
+            _('Yes, reportbug should assume it has access to the '
+              'network always.'),
+            _('No, I am only online occasionally to send and '
+              'receive mail.'),
+            default=(not options.offline))
 
     def_realname, def_email = utils.get_email()
 
@@ -590,41 +608,49 @@ def offer_configuration(options):
     except UnicodeDecodeError:
         realname = ''
 
-    realname = ui.get_string('What real name should be used for sending bug '
-                             'reports?', default=realname, force_prompt=True)
+    realname = ui.get_string(
+            _('What real name should be used for sending bug reports?'),
+            default=realname,
+            force_prompt=True)
     realname = realname.replace('"', '\\"')
 
     is_addr_ok = False
     while not is_addr_ok:
-        from_addr = ui.get_string(
+        from_addr = ui.get_string(_(
             'Which of your email addresses should be used when sending bug '
             'reports? (Note that this address will be visible in the bug tracking '
             'system, so you may want to use a webmail address or another address '
-            'with good spam filtering capabilities.)',
+            'with good spam filtering capabilities.)'),
             default=(options.email or def_email), force_prompt=True)
         is_addr_ok = utils.check_email_addr(from_addr)
         if not is_addr_ok:
-            ewrite('Your email address is not valid; please try another one.\n')
+            ewrite(
+                    _('Your email address is not valid;'
+                      ' please try another one.\n')
+                    )
     stupidmode = not ui.yes_no(
-        'Do you have a "mail transport agent" (MTA) like Exim, Postfix or '
-        'SSMTP configured on this computer to send mail to the Internet?',
-        'Yes, I can run /usr/sbin/sendmail without horrible things happening. '
-        'If you can send email from this machine without setting an SMTP Host '
-        'in your mailer, you should choose this answer.',
-        'No, I need to use an SMTP Host or I don\'t know if I have an MTA.',
+            _('Do you have a "mail transport agent" (MTA) like Exim, '
+              'Postfix or SSMTP configured on this computer to send mail '
+              'to the Internet?'),
+            _('Yes, I can run /usr/sbin/sendmail without horrible '
+              'things happening. If you can send email from this machine '
+              'without setting an SMTP Host in your mailer, '
+              'you should choose this answer.'),
+            _('No, I need to use an SMTP Host or I don\'t know if I have '
+              'an MTA.'),
         (not options.smtphost) if options.smtphost else False)
 
     if stupidmode:
         opts = []
         if options.smtphost:
             opts += [options.smtphost]
-        smtphost = ui.get_string(
+        smtphost = ui.get_string(_(
             'Please enter the name of your SMTP host.  Usually it\'s called '
             'something like "mail.example.org" or "smtp.example.org". '
             'If you need to use a different port than default, use the '
             '<host>:<port> alternative format.\n\n'
             'Just press ENTER if you don\'t have one or don\'t know, and '
-            'so a Debian SMTP host will be used.',
+            'so a Debian SMTP host will be used.'),
             options=opts, empty_ok=True, force_prompt=True)
         if smtphost:
             stupidmode = False
@@ -633,41 +659,47 @@ def offer_configuration(options):
 
     if smtphost:
         smtpuser = ui.get_string(
-            ('If you need to use a user name to send email via "%s" on your '
+            (_('If you need to use a user name to send email via "%s" on your '
              'computer, please enter that user name.  Just press ENTER if you '
-             'don\'t need a user name.' % smtphost), empty_ok=True, force_prompt=True)
+             'don\'t need a user name.') % smtphost),
+            empty_ok=True,
+            force_prompt=True)
     else:
         smtpuser = ''
 
     if smtphost:
         smtptls = ui.yes_no(
-            'Do you want to encrypt the SMTP connection with TLS (only '
-            'available if the SMTP host supports it)?', 'Yes', 'No',
-            default=False)
+                _('Do you want to encrypt the SMTP connection with TLS (only '
+                  'available if the SMTP host supports it)?'),
+                _('Yes'),
+                _('No'),
+                default=False)
 
-    http_proxy = ui.get_string(
+    http_proxy = ui.get_string(_(
         'Please enter the name of your proxy server.  It should only '
         'use this parameter if you are behind a firewall. '
         'The PROXY argument should be  formatted as a valid HTTP URL,'
         ' including (if necessary) a port number;'
         ' for example, http://192.168.1.1:3128/. '
-        'Just press ENTER if you don\'t have one or don\'t know.',
+        'Just press ENTER if you don\'t have one or don\'t know.'),
         empty_ok=True, force_prompt=True)
 
     if os.path.exists(utils.USERFILE):
         try:
             os.rename(utils.USERFILE, utils.USERFILE + '~')
         except OSError:
-            ui.display_failure('Unable to rename %s as %s~\n', utils.USERFILE,
-                               utils.USERFILE)
+            ui.display_failure(
+                    _('Unable to rename %s as %s~\n'),
+                    utils.USERFILE,
+                    utils.USERFILE)
 
     try:
         fd = os.open(utils.USERFILE, os.O_WRONLY | os.O_TRUNC | os.O_CREAT,
                      0o600)
     except OSError as x:
-        efail('Unable to save %s; most likely, you do not have a '
+        efail(_('Unable to save %s; most likely, you do not have a '
               'home directory.  Please fix this before using '
-              'reportbug again.\n', utils.USERFILE)
+              'reportbug again.\n'), utils.USERFILE)
 
     fp = os.fdopen(fd, 'w')
     print('# reportbug preferences file', file=fp)
@@ -741,8 +773,9 @@ def offer_configuration(options):
     print('# You can add other settings after this line.  See', file=fp)
     print('# /etc/reportbug.conf for a full listing of options.', file=fp)
     fp.close()
-    ui.final_message('Default preferences file written.  To reconfigure, '
-                     're-run reportbug with the "--configure" option.\n')
+    ui.final_message(
+            _('Default preferences file written.  To reconfigure, '
+              're-run reportbug with the "--configure" option.\n'))
 
 
 def verify_option(option, opt, value, parser, *args):
@@ -753,7 +786,7 @@ def verify_option(option, opt, value, parser, *args):
     elif value in valid:
         setattr(parser.values, option.dest, value)
     else:
-        ewrite('Ignored bogus setting for %s: %s\n' % (opt, value))
+        ewrite(_('Ignored bogus setting for %s: %s\n') % (opt, value))
 
 
 def verify_append_option(option, opt, value, parser, *args):
@@ -772,7 +805,7 @@ def verify_append_option(option, opt, value, parser, *args):
         except AttributeError:
             setattr(parser.values, option.dest, [value])
     else:
-        ewrite('Ignored bogus setting for %s: %s\n' % (opt, value))
+        ewrite(_('Ignored bogus setting for %s: %s\n') % (opt, value))
 
 
 def main():
@@ -781,7 +814,7 @@ def main():
     try:
         locale.setlocale(locale.LC_ALL, '')
     except locale.Error as x:
-        print('*** Warning:', x, file=sys.stderr)
+        print(_('*** Warning:'), x, file=sys.stderr)
 
     charset = locale.nl_langinfo(locale.CODESET)
     # It would be nice if there were some canonical character set conversion
@@ -804,208 +837,241 @@ def main():
         if option in utils.CONFIG_ARGS:
             defaults[option] = arg
         else:
-            sys.stderr.write('Warning: untranslated token "%s"\n' % option)
+            sys.stderr.write(_('Warning: untranslated token "%s"\n') % option)
 
     parser = optparse.OptionParser(
         usage='%prog [options] <package | filename>', version=VERSION)
     parser.set_defaults(**defaults)
     parser.add_option('-c', '--no-config-files', action="store_true",
-                      dest='noconf', help='do not include conffiles in report')
+                      dest='noconf',
+                      help=_('do not include conffiles in report'))
     parser.add_option('-C', '--class', action='callback', type='string',
                       callback=verify_option, dest="klass", metavar='CLASS',
                       callback_args=('Permitted report classes',
                                      debbugs.CLASSLIST),
-                      help='specify report class for GNATS BTSes')
+                      help=_('specify report class for GNATS BTSes'))
     parser.add_option('-d', '--debug', action='store_true', default=False,
-                      dest='debugmode', help='send report only to yourself')
+                      dest='debugmode',
+                      help=_('send report only to yourself'))
     parser.add_option('--test', action="store_true", default=False,
                       dest="testmode",
-                      help="operate in test mode (maintainer use only)")
+                      help=_("operate in test mode (maintainer use only)"))
     parser.add_option('-e', '--editor', dest='editor',
-                      help='specify an editor for your report')
+                      help=_('specify an editor for your report'))
     parser.add_option('-f', '--filename', dest='searchfor',
-                      help='report the bug against the package containing the specified file')
+                      help=_('report the bug against the package containing '
+                             'the specified file'))
     parser.add_option('--from-buildd', dest='buildd_format',
-                      help='parse information from buildd format: $source_$version')
+                      help=_('parse information from buildd format: '
+                             '$source_$version'))
     parser.add_option('--path', dest='pathonly', action="store_true",
-                      default=False, help='only search the path with -f')
+                      default=False, help=_('only search the path with -f'))
     parser.add_option('-g', '--gnupg', '--gpg', action='store_const',
                       dest='sign', const='gpg',
-                      help='sign report with GNU Privacy Guard (GnuPG/gpg)')
+                      help=_('sign report with GNU Privacy Guard (GnuPG/gpg)'))
     parser.add_option('-G', '--gnus', action='store_const', dest='mua',
                       const=utils.MUA['gnus'],
-                      help='send the report using Gnus')
+                      help=_('send the report using Gnus'))
     parser.add_option('--pgp', action='store_const', dest='sign',
                       const='pgp',
-                      help='sign report with Pretty Good Privacy (PGP)')
+                      help=_('sign report with Pretty Good Privacy (PGP)'))
     parser.add_option('-K', '--keyid', type="string", dest="keyid",
                       help="key ID to use for PGP/GnuPG signatures")
     parser.add_option('-H', '--header', action='append', dest='headers',
-                      help='add a custom RFC2822 header to your report')
+                      help=_('add a custom RFC2822 header to your report'))
     parser.add_option('-P', '--pseudo-header', action='append', dest='pseudos',
-                      help='add a custom pseudo-header to your report')
+                      help=_('add a custom pseudo-header to your report'))
     parser.add_option('--license', action='store_true', default=False,
-                      help='show copyright and license information')
+                      help=_('show copyright and license information'))
     parser.add_option('-m', '--maintonly', action='store_const',
                       dest='sendto', const='maintonly',
-                      help='send the report to the maintainer only')
+                      help=_('send the report to the maintainer only'))
     parser.add_option('-M', '--mutt', action='store_const', dest='mua',
                       const=utils.MUA['mutt'],
-                      help='send the report using mutt')
-    parser.add_option('--mirror', action='append', help='add a BTS mirror',
+                      help=_('send the report using mutt'))
+    parser.add_option('--mirror', action='append', help=_('add a BTS mirror'),
                       dest='mirrors')
     parser.add_option('-n', '--mh', '--nmh', action='store_const', dest='mua',
-                      help='send the report using mh/nmh',
+                      help=_('send the report using mh/nmh'),
                       const=utils.MUA['mh'])
     parser.add_option('-N', '--bugnumber', action='store_true',
-                      dest='bugnumber', help='specify a bug number to look for')
+                      dest='bugnumber',
+                      help=_('specify a bug number to look for'))
     parser.add_option('--mua', dest='mua',
-                      help='send the report using the specified mail user agent')
-    parser.add_option('--mta', dest='mta', help='send the report using the '
-                                                'specified mail transport agent')
+                      help=_('send the report using the specified mail '
+                             'user agent'))
+    parser.add_option('--mta', dest='mta',
+                      help=_('send the report using the specified mail '
+                             'transport agent'))
     parser.add_option('--list-cc', action='append', dest='listcc',
-                      help='send a copy to the specified address')
+                      help=_('send a copy to the specified address'))
     parser.add_option('-p', '--print', action='store_true', dest='printonly',
-                      help='output the report to standard output only')
+                      help=_('output the report to standard output only'))
     parser.add_option('--report-quiet', action='store_const', dest='sendto',
-                      const='quiet', help='file report without any mail to '
-                                          'the maintainer or tracking lists')
+                      const='quiet',
+                      help=_('file report without any mail to '
+                             'the maintainer or tracking lists'))
     parser.add_option('-q', '--quiet', action='store_true', dest='quietly',
-                      help='reduce the verbosity of the output', default=False)
-    parser.add_option('-s', '--subject', help='the subject for your report')
+                      help=_('reduce the verbosity of the output'),
+                      default=False)
+    parser.add_option('-s', '--subject',
+                      help=_('the subject for your report'))
     parser.add_option('-x', '--no-cc', dest='nocc', action='store_true',
-                      help='do not send a copy of the report to yourself')
+                      help=_('do not send a copy of the report to yourself'))
     parser.add_option('-z', '--no-compress', dest='nocompress',
-                      action='store_true', help='do not strip blank lines '
-                                                'and comments from config files')
-    parser.add_option('-o', '--output', dest='outfile', help='output the report'
-                                                             ' to the specified file (both mail headers and body)')
-    parser.add_option('-O', '--offline', help='disable all external queries',
+                      action='store_true',
+                      help=_('do not strip blank lines '
+                             'and comments from config files'))
+    parser.add_option('-o', '--output', dest='outfile',
+                      help=_('output the report to the specified '
+                             'file (both mail headers and body)'))
+    parser.add_option('-O', '--offline',
+                      help=_('disable all external queries'),
                       action='store_true')
     parser.add_option('-i', '--include', action='append',
-                      help='include the specified file in the report')
+                      help=_('include the specified file in the report'))
     parser.add_option('-A', '--attach', action='append', dest='attachments',
-                      help='attach the specified file to the report')
+                      help=_('attach the specified file to the report'))
     parser.add_option('-b', '--no-query-bts', action='store_true',
-                      dest='dontquery', help='do not query the BTS for reports')
+                      dest='dontquery',
+                      help=_('do not query the BTS for reports'))
     parser.add_option('--query-bts', action='store_false', dest='dontquery',
-                      help='query the BTS for reports')
+                      help=_('query the BTS for reports'))
     parser.add_option('-T', '--tag', action='callback', dest='tags',
                       callback=verify_append_option, type='string',
                       callback_args=('Permitted tags',
                                      debbugs.get_tags),
-                      help='add the specified tag to the report')
-    parser.add_option('--http_proxy', '--proxy', help='use this proxy for '
-                                                      'HTTP accesses')
-    parser.add_option('--email', help='specify originating email address')
-    parser.add_option('--realname', help='specify real name for your report')
-    parser.add_option('--smtphost', help='specify SMTP server for mailing')
-    parser.add_option('--tls', help='use TLS to talk to SMTP servers',
+                      help=_('add the specified tag to the report'))
+    parser.add_option('--http_proxy', '--proxy',
+                      help=_('use this proxy for HTTP accesses'))
+    parser.add_option('--email',
+                      help=_('specify originating email address'))
+    parser.add_option('--realname',
+                      help=_('specify real name for your report'))
+    parser.add_option('--smtphost',
+                      help=_('specify SMTP server for mailing'))
+    parser.add_option('--tls',
+                      help=_('use TLS to talk to SMTP servers'),
                       dest="smtptls", action='store_true')
     parser.add_option('--source', '--src', dest='source', default=False,
-                      help='report the bug against the source package ',
+                      help=_('report the bug against the source package'),
                       action='store_true')
-    parser.add_option('--smtpuser', help='username to use for SMTP')
-    parser.add_option('--smtppasswd', help='password to use for SMTP')
-    parser.add_option('--replyto', '--reply-to', help='specify Reply-To '
-                                                      'address for your report')
+    parser.add_option('--smtpuser', help=_('username to use for SMTP'))
+    parser.add_option('--smtppasswd', help=_('password to use for SMTP'))
+    parser.add_option('--replyto', '--reply-to',
+                      help=_('specify Reply-To address for your report'))
     parser.add_option('--query-source', action='store_true', dest='query_src',
-                      help='query on source packages, not binary packages')
+                      help=_('query on source packages, not binary packages'))
     parser.add_option('--no-query-source', action='store_false',
-                      dest='query_src', help='query on binary packages only')
-    parser.add_option('--security-team', action='store_true', dest='secteam', default=None,
-                      help='send the report only to the security team, if tag=security')
+                      dest='query_src',
+                      help=_('query on binary packages only'))
+    parser.add_option('--security-team',
+                      action='store_true',
+                      dest='secteam',
+                      default=None,
+                      help=_('send the report only to the security team, '
+                             'if tag=security'))
     parser.add_option('--no-security-team', action='store_false', default=None,
-                      dest='secteam', help='do not send the report only to the security team, if tag=security')
+                      dest='secteam',
+                      help=_('do not send the report only to the security '
+                             'team, if tag=security'))
     parser.add_option('--debconf', action='store_true',
-                      help='include debconf settings in your report')
+                      help=_('include debconf settings in your report'))
     parser.add_option('--no-debconf', action='store_false', dest='debconf',
-                      help='exclude debconf settings from your report')
-    parser.add_option('-j', '--justification', help='include justification '
-                                                    'for the severity of your report')
+                      help=_('exclude debconf settings from your report'))
+    parser.add_option('-j', '--justification',
+                      help=_('include justification for the severity '
+                             'of your report'))
     parser.add_option('-V', '--package-version', dest='pkgversion',
-                      help='specify the version number for the package')
+                      help=_('specify the version number for the package'))
     parser.add_option('-u', '--interface', '--ui', action='callback',
                       callback=verify_option, type='string', dest='interface',
                       callback_args=('Valid user interfaces',
                                      list(AVAILABLE_UIS.keys())),
-                      help='choose which user interface to use')
+                      help=_('choose which user interface to use'))
     parser.add_option('-Q', '--query-only', action='store_true',
-                      dest='queryonly', help='only query the BTS')
+                      dest='queryonly', help=_('only query the BTS'))
     parser.add_option('-t', '--type', action='callback', dest='type',
                       callback=verify_option, type='string',
                       callback_args=('Valid types of report',
                                      ('gnats', 'debbugs')),
-                      help='choose the type of report to file')
+                      help=_('choose the type of report to file'))
     parser.add_option('-B', '--bts', action='callback', dest='bts',
                       callback=verify_option, type='string',
                       callback_args=('Valid bug tracking systems',
                                      list(debbugs.SYSTEMS.keys())),
-                      help='choose BTS to file the report with')
+                      help=_('choose BTS to file the report with'))
     parser.add_option('-S', '--severity', action='callback',
                       callback=verify_option, type='string', dest='severity',
                       callback_args=('Valid severities', debbugs.SEVLIST),
-                      help='identify the severity of the report')
+                      help=_('identify the severity of the report'))
     parser.add_option('--template', action='store_true',
-                      help='output a template report only')
+                      help=_('output a template report only'))
     parser.add_option('--configure', action='store_true',
-                      help='reconfigure reportbug for this user')
+                      help=_('reconfigure reportbug for this user'))
     parser.add_option('--check-available', action='store_true',
-                      help='check for new releases on various sites')
+                      help=_('check for new releases on various sites'))
     parser.add_option('--no-check-available', action='store_false',
-                      dest='check_available', help='do not check for new '
-                                                   'releases')
-    parser.add_option('--mode', action='callback', help='choose the operating '
-                                                        'mode for reportbug', callback=verify_option,
+                      dest='check_available',
+                      help=_('do not check for new releases'))
+    parser.add_option('--mode', action='callback',
+                      help=_('choose the operating mode for reportbug'),
+                      callback=verify_option,
                       type='string', dest='mode',
                       callback_args=('Permitted operating modes',
                                      list(utils.MODES.keys())))
-    parser.add_option('-v', '--verify', action='store_true', help='verify '
-                                                                  'integrity of installed package using debsums')
+    parser.add_option('-v', '--verify', action='store_true',
+                      help=_('verify integrity of installed package using debsums'))
     parser.add_option('--no-verify', action='store_false', dest='verify',
-                      help='do not verify package installation')
+                      help=_('do not verify package installation'))
     parser.add_option('-k', '--kudos', action='store_true', default=False,
-                      help='send appreciative email to the maintainer, rather '
-                           'than filing a bug report')
+                      help=_('send appreciative email to the maintainer, '
+                             'rather than filing a bug report'))
     parser.add_option('--body', dest="body", type="string",
-                      help="specify the body for the report as a string")
+                      help=_("specify the body for the report as a string"))
     parser.add_option('--body-file', '--bodyfile', dest="bodyfile",
                       type="string",
-                      help="use the specified file as the body of the report")
+                      help=_("use the specified file as the body of the report"))
     parser.add_option('-I', '--no-check-installed', action='store_false',
                       default=True, dest='querydpkg',
-                      help='don\'t check whether the package is installed')
+                      help=_('don\'t check whether the package is installed'))
     parser.add_option('--check-installed', action='store_true',
-                      dest='querydpkg', help='check whether the specified '
-                                             'package is installed when filing a report (default)')
+                      dest='querydpkg',
+                      help=_('check whether the specified package is installed '
+                             'when filing a report (default)'))
     parser.add_option('--exit-prompt', action='store_true', dest='exitprompt',
-                      help='prompt before exiting', default=False)
+                      help=_('prompt before exiting'), default=False)
     parser.add_option('--paranoid', action='store_true', dest='paranoid',
-                      help='show contents of message before sending')
+                      help=_('show contents of message before sending'))
     parser.add_option('--no-paranoid', action='store_false', dest='paranoid',
-                      help='don\'t show contents of message before sending '
-                           '(default)')
+                      help=_('don\'t show contents of message before sending '
+                             '(default)'))
     parser.add_option('--no-bug-script', dest="bugscript", default=True,
                       action='store_false',
-                      help='don\'t execute the bug script (if present)')
+                      help=_('don\'t execute the bug script (if present)'))
     parser.add_option('--draftpath', dest="draftpath",
-                      help='Save the draft in this directory')
+                      help=_('Save the draft in this directory'))
     parser.add_option('--timeout', type="int", dest='timeout', default=60,
-                      help='Specify the network timeout, in seconds [default: %default]')
+                      help=_('Specify the network timeout, in seconds '
+                             '[default: %default]'))
     parser.add_option('--no-cc-menu', dest="ccmenu", default=True,
                       action='store_false',
-                      help='don\'t show additional CC menu')
+                      help=_('don\'t show additional CC menu'))
     parser.add_option('--no-tags-menu', dest="tagsmenu", default=True,
                       action='store_false',
-                      help='don\'t show tags menu')
+                      help=_('don\'t show tags menu'))
     parser.add_option('--mbox-reader-cmd', dest='mbox_reader_cmd',
-                      help="Specify the program to open the reports mbox.")
+                      help=_("Specify the program to open the reports mbox."))
     parser.add_option('--max-attachment-size', type="int", dest='max_attachment_size',
-                      help="Specify the maximum size in byte for an attachment [default: 10485760].")
-    parser.add_option('--latest-first', action='store_true', dest='latest_first', default=False,
-                      help='Order bugs to show the latest first')
+                      help=_('Specify the maximum size in byte for an '
+                             'attachment [default: 10485760].'))
+    parser.add_option('--latest-first', action='store_true',
+                      dest='latest_first',
+                      default=False,
+                      help=_('Order bugs to show the latest first'))
     parser.add_option('--envelope-from', dest='envelopefrom',
-                      help='Specify the Envelope From (Return-path) address used to send the bug report')
+                      help=_('Specify the Envelope From (Return-path) '
+                             'address used to send the bug report'))
 
     (options, args) = parser.parse_args()
 
@@ -1021,7 +1087,7 @@ def main():
 
     if options.email:
         if not utils.check_email_addr(options.email):
-            ewrite('Your email address is not valid; exiting.\n')
+            ewrite(_('Your email address is not valid; exiting.\n'))
             sys.exit(1)
 
     if options.attachments:
@@ -1034,33 +1100,36 @@ def main():
         any_missing = False
         for attachment in options.attachments:
             if not os.path.exists(os.path.expanduser(attachment)):
-                print('The attachment file %s does not exist.' % attachment)
+                print(_('The attachment file %s does not exist.') % attachment)
                 any_missing = True
             elif check_attachment_size(attachment, options.max_attachment_size):
-                print('The attachment file %s size is bigger than the maximum of %d bytes: reduce ' \
-                      'its size else the report cannot be sent' % (attachment, options.max_attachment_size))
+                print(_(
+                        'The attachment file %s size is bigger than the '
+                        'maximum of %d bytes: reduce its size else the '
+                        'report cannot be sent') % (attachment, options.max_attachment_size))
                 any_missing = True
         if any_missing:
-            print("The above files can't be attached; exiting")
+            print(_("The above files can't be attached; exiting"))
             sys.exit(1)
 
     if options.keyid and not options.sign:
-        ewrite('Option -K/--keyid requires --gpg or --pgp sign option set, which currently is not; exiting.\n')
+        ewrite(_('Option -K/--keyid requires --gpg or --pgp sign option set, '
+                 'which currently is not; exiting.\n'))
         sys.exit(1)
 
     if options.draftpath:
         options.draftpath = os.path.expanduser(options.draftpath)
         if not os.path.exists(options.draftpath):
-            print("The directory % does not exist; exiting." % options.draftpath)
+            print(_("The directory %s does not exist; exiting.") % options.draftpath)
             sys.exit(1)
 
     if options.mua and not options.template:
         if not utils.mua_is_supported(options.mua):
-            ewrite("Specified mail user agent is not supported; exiting.\n")
+            ewrite(_("Specified mail user agent is not supported; exiting.\n"))
             sys.exit(1)
 
         if not utils.mua_exists(options.mua):
-            ewrite("Selected mail user agent cannot be found; exiting.\n")
+            ewrite(_("Selected mail user agent cannot be found; exiting.\n"))
             sys.exit(1)
 
         options.mua = utils.mua_name(options.mua)
@@ -1076,18 +1145,20 @@ def main():
             lib_package = __import__('reportbug.ui', fromlist=[iface])
             newui = getattr(lib_package, iface)
         except UINotImportable as msg:
-            ui.long_message('*** Unable to import %s interface: %s '
-                            'Falling back to text interface.\n',
-                            interface, msg)
+            ui.long_message(
+                    _('*** Unable to import %s interface: %s '
+                      'Falling back to text interface.\n'),
+                    interface, msg)
             ewrite('\n')
 
         if newui.initialize():
             ui = newui
             submit.ui = ui
         else:
-            ui.long_message('*** Unable to initialize %s interface. '
-                            'Falling back to text interface.\n',
-                            interface)
+            ui.long_message(
+                    _('*** Unable to initialize %s interface. '
+                      'Falling back to text interface.\n'),
+                    interface)
 
         # Add INTERFACE as an environment variable to access it from the
         # script gathering the special information for reportbug, when
@@ -1163,13 +1234,17 @@ class UI(object):
         elif self.options.bodyfile:
             try:
                 if check_attachment_size(self.options.bodyfile, self.options.max_attachment_size):
-                    print('Body file %s size bigger than the maximum of %d bytes: ' \
-                          'reduce its size else the report cannot be sent' % (
+                    print(_(
+                            'Body file %s size bigger than the maximum of '
+                            '%d bytes: reduce its size else the report cannot '
+                            'be sent') % (
                               self.options.bodyfile, self.options.max_attachment_size))
                     raise Exception
                 body = open(self.options.bodyfile).read()
             except:
-                efail('Unable to read body from file %s.\n', self.options.bodyfile)
+                efail(
+                        _('Unable to read body from file %s.\n'),
+                        self.options.bodyfile)
 
         if body and not body.endswith('\n'):
             body += '\n'
@@ -1211,12 +1286,15 @@ class UI(object):
 
         if smtphost and smtphost.lower() in ('master.debian.org', 'bugs.debian.org'):
             ui.long_message(
-                '*** Warning: %s is no longer an appropriate smtphost setting for reportbug: it has been superseded by reportbug.debian.org and this one is forced as smtphost; please update your .reportbugrc file.\n',
-                smtphost.lower())
+                    _('*** Warning: %s is no longer an appropriate smtphost '
+                      'setting for reportbug: it has been superseded by '
+                      'reportbug.debian.org and this one is forced as '
+                      'smtphost; please update your .reportbugrc file.\n'),
+                    smtphost.lower())
             smtphost = 'reportbug.debian.org'
 
         if attachments and mua:
-            ewrite('Attachments are incompatible with using an MUA.  They will be ignored.\n')
+            ewrite(_('Attachments are incompatible with using an MUA.  They will be ignored.\n'))
             attachments = []
 
         if utils.first_run():
@@ -1225,7 +1303,9 @@ class UI(object):
                 main()
                 sys.exit(0)
             else:
-                ewrite('Warning: no reportbug configuration found.  Proceeding in %s mode.\n' % self.options.mode)
+                ewrite(
+                        _('Warning: no reportbug configuration found.  '
+                          'Proceeding in %s mode.\n') % self.options.mode)
 
         mode = utils.MODELIST.index(self.options.mode)
 
@@ -1235,32 +1315,35 @@ class UI(object):
         if (self.options.mua or self.options.printonly) and sign:
             sign = ''
             if self.options.mua:
-                ewrite('The signature option is ignored when using an MUA.\n')
+                ewrite(_('The signature option is ignored when using an MUA.\n'))
             elif self.options.printonly:
-                ewrite('The signature option is ignored when producing a template.\n')
+                ewrite(_('The signature option is ignored when producing a template.\n'))
 
         uid = os.getuid()
         if uid < MIN_USER_ID:
             if notatty and not uid:
-                ewrite("reportbug will not run as root non-interactively.\n")
+                ewrite(_("reportbug will not run as root non-interactively.\n"))
                 sys.exit(1)
 
             if not uid or self.options.check_uid:
                 if not uid:
-                    message = "Running 'reportbug' as root is probably insecure!"
+                    message = _("Running 'reportbug' as root is probably insecure!")
                 else:
-                    message = "Running 'reportbug' as an administrative user " \
-                              "is probably not a good idea!"
-                message += '  Continue'
+                    message = _("Running 'reportbug' as an administrative user "
+                                "is probably not a good idea!")
+                message += _('  Continue')
 
-                if not ui.yes_no(message, 'Continue with reportbug.', 'Exit.',
-                                 False):
-                    ewrite("reportbug stopped.\n")
+                if not ui.yes_no(
+                        message,
+                        _('Continue with reportbug.'),
+                        _('Exit.'),
+                        False):
+                    ewrite(_("reportbug stopped.\n"))
                     sys.exit(1)
 
         if (utils.first_run() and not self.args and not self.options.searchfor):
             offer_configuration(self.options)
-            ewrite('To report a bug, please rerun reportbug.\n')
+            ewrite(_('To report a bug, please rerun reportbug.\n'))
             sys.exit(0)
 
         foundfile = None
@@ -1275,9 +1358,9 @@ class UI(object):
             # is not available on the local system (try a dummy one, like foo_12-3)
             pkgversion = self.options.pkgversion
         elif len(self.args) > 1:
-            ewrite("Please report one bug at a time.\n")
-            ewrite("[Did you forget to put all switches before the "
-                   "package name?]\n")
+            ewrite(_("Please report one bug at a time.\n"))
+            ewrite(_("[Did you forget to put all switches before the "
+                     "package name?]\n"))
             sys.exit(1)
         elif self.options.searchfor:
             (foundfile, package) = find_package_for(self.options.searchfor, notatty,
@@ -1296,34 +1379,37 @@ class UI(object):
 
         if package in ('kernel', 'linux-image'):
             ui.long_message(
-                "Automatically selecting the package for the running kernel")
+                _("Automatically selecting the package for the running kernel"))
             package = utils.get_running_kernel_pkg()
 
         if not package:
-            efail("No package specified or we were unable to find it in the apt"
-                  " cache; stopping.\n")
+            efail(_(
+                    "No package specified or we were unable to find it in "
+                    "the apt cache; stopping.\n"))
 
         tfprefix = tempfile_prefix(package)
         if self.options.interface == 'text':
-            ewrite('*** Welcome to reportbug.  Use ? for help at prompts. ***\n')
+            ewrite(_('*** Welcome to reportbug.  Use ? for help at prompts. ***\n'))
         # we show this for the 2 "textual" UIs
         if self.options.interface in ('text', 'urwid'):
-            ewrite('Note: bug reports are publicly archived (including the email address of the submitter).\n')
+            ewrite(_(
+                    'Note: bug reports are publicly archived (including the '
+                    'email address of the submitter).\n'))
 
         try:
             blah = 'hello'
         except LookupError:
-            ui.display_failure(
+            ui.display_failure(_(
                 'Unable to use specified character set "%s"; you probably need '
                 'either cjkcodecs (for users of Asian locales) or iconvcodec '
-                'installed.\nFalling back to ASCII encoding.\n', charset)
+                'installed.\nFalling back to ASCII encoding.\n'), charset)
             charset = 'us-ascii'
         else:
-            ewrite("Detected character set: %s\n"
-                   "Please change your locale if this is incorrect.\n\n", charset)
+            ewrite(_("Detected character set: %s\n Please change you locale "
+                     "if this is incorrect.\n\n") % charset)
 
         fromaddr = utils.get_user_id(self.options.email, self.options.realname, charset)
-        ewrite("Using '%s' as your from address.\n",
+        ewrite(_("Using '%s' as your from address.\n"),
                 str(email.header.make_header(email.header.decode_header(fromaddr))))
         if self.options.debugmode:
             sendto = fromaddr
@@ -1334,15 +1420,17 @@ class UI(object):
             edname = utils.realpath('/usr/bin/editor')
 
         if not notatty and 'vi' in baseedname and mode < MODE_STANDARD and 'EDITOR' not in os.environ:
-            if not ui.yes_no('You appear to be using the "vi" editor, which is '
-                             'not suited for new users.  You probably want to '
-                             'change this setting by using "update-alternatives '
-                             '--config editor" as root.  (You can bypass this '
-                             'message in the future by using reportbug in '
-                             '"standard" mode or higher.) '
-                             'Do you want to continue?',
-                             'Continue filing this report.',
-                             'Stop reportbug to change editors.', False):
+            if not ui.yes_no(
+                    _('You appear to be using the "vi" editor, which is '
+                      'not suited for new users.  You probably want to '
+                      'change this setting by using "update-alternatives '
+                      '--config editor" as root.  (You can bypass this '
+                      'message in the future by using reportbug in '
+                      '"standard" mode or higher.) '
+                      'Do you want to continue?'),
+                     _('Continue filing this report.'),
+                     _('Stop reportbug to change editors.'),
+                     False):
                 ewrite('Exiting per user request.\n')
                 sys.exit(1)
 
@@ -1356,7 +1444,7 @@ class UI(object):
                         fp.read())
                     fp.close()
                 else:
-                    ewrite("Can't find %s to include!\n", f)
+                    ewrite(_("Can't find %s to include!\n"), f)
                     sys.exit(1)
             incfiles += '\n'
 
@@ -1395,7 +1483,7 @@ class UI(object):
                     else:
                         package = exinfo.package or exinfo.source
                 else:
-                    efail("The report bug number provided seems to not exist.\n")
+                    efail(_("The report bug number provided seems to not exist.\n"))
         except NoBugs:
             efail('No such bug report.\n')
         except NoReport:
@@ -1420,8 +1508,8 @@ class UI(object):
                         depends = newdepends
                         if len(depends) == 1:
                             if mode < MODE_ADVANCED:
-                                ewrite('Dependency package "%s" corresponds to '
-                                       'actual package "%s".\n', package, depends[0])
+                                ewrite(_('Dependency package "%s" corresponds to '
+                                       'actual package "%s".\n'), package, depends[0])
                                 package = depends[0]
                         else:
                             opts = [(x,
@@ -1431,12 +1519,13 @@ class UI(object):
                                 opts += [(package,
                                           status[11] + ' (dependency package)')]
 
-                            package = ui.menu('%s is a dependency package.  '
-                                              'Which of the following '
-                                              'packages is the bug in?' % package,
-                                              opts,
-                                              'Select one of these packages: ')
-                        ewrite("Getting status for %s...\n", package)
+                            package = ui.menu(
+                                    _('%s is a dependency package.  '
+                                      'Which of the following '
+                                      'packages is the bug in?') % package,
+                                    opts,
+                                    _('Select one of these packages: '))
+                        ewrite(_("Getting status for %s...\n"), package)
                         status = utils.get_package_status(package)
                         pkgavail, installed = status[1], status[6]
 
@@ -1463,38 +1552,41 @@ class UI(object):
 
                         if len(packages) > 1:
                             package = ui.menu(
-                                'Which of the following packages is the bug in?',
-                                packages, empty_ok=True,
-                                prompt='Select one of these packages: ')
+                                    _('Which of the following packages '
+                                      'is the bug in?'),
+                                    packages,
+                                    empty_ok=True,
+                                    prompt=_('Select one of these packages: '))
                         else:
                             package = packages[0][0]
 
                     if not package:
-                        efail("No package specified; stopping.\n")
+                        efail(_("No package specified; stopping.\n"))
 
                     if package != src:
-                        ewrite("Getting status for %s...\n", package)
+                        ewrite(_("Getting status for %s...\n"), package)
                         status = utils.get_package_status(package)
                         pkgavail, installed = status[1], status[6]
                     elif len(packages) > 1:
                         issource = True
                 else:
-                    ewrite('No matching source or binary packages.\n')
+                    ewrite(_('No matching source or binary packages.\n'))
 
             if (not installed and not isvirtual and not issource) and not notatty:
                 packages = utils.packages_providing(package)
                 tmp = pack = None
                 if not packages:
-                    if ui.yes_no('A package named "%s" does not appear to be installed; do '
-                                 'you want to search for a similar-looking filename in '
-                                 'an installed package' % package,
-                                 'Look for a file with a similar filename.',
-                                 'Continue filing with this package name.', True):
+                    if ui.yes_no(
+                            _('A package named "%s" does not appear to be installed; do '
+                              'you want to search for a similar-looking filename in '
+                              'an installed package') % package,
+                            _('Look for a file with a similar filename.'),
+                            _('Continue filing with this package name.'), True):
                         pkgavail = False
                     else:
                         pack = package
                         packages = [(package, '')]
-                        ewrite("Getting available info for %s...\n", package)
+                        ewrite(_("Getting available info for %s...\n"), package)
                         status = utils.get_package_status(package, avail=True)
                         check_available = False
                         usedavail = True
@@ -1503,42 +1595,48 @@ class UI(object):
                     (tmp, pack) = find_package_for(package, notatty)
                     if pack:
                         status = None
-                        if not ui.yes_no("A package named '%s' does not appear to be installed "
-                                         "on your system; however, '%s' contains a file named "
-                                         "'%s'.  Do you want to file your report on the "
-                                         "package reportbug found" % (package, pack, tmp),
-                                         'Yes, use the package specified.',
-                                         'No, give up the search.'):
-                            efail("Package not installed; stopping.\n")
+                        if not ui.yes_no(
+                                _("A package named '%s' does not appear to be installed "
+                                  "on your system; however, '%s' contains a file named "
+                                  "'%s'.  Do you want to file your report on the "
+                                  "package reportbug found") % (package, pack, tmp),
+                                _('Yes, use the package specified.'),
+                                _('No, give up the search.')):
+                            efail(_("Package not installed; stopping.\n"))
 
                 if not status and pack:
                     foundfile, package = tmp, pack
-                    ewrite("Getting status for %s...\n", package)
+                    ewrite(_("Getting status for %s...\n"), package)
                     status = utils.get_package_status(package)
                 elif not packages:
                     if not ui.yes_no(
-                            'This package does not appear to be installed; continue '
-                            'with this report', 'Ignore this problem and continue.',
-                            'Exit without filing a report.', False):
-                        efail("Package not installed; stopping.\n")
+                            _('This package does not appear to be installed; continue '
+                              'with this report'),
+                            _('Ignore this problem and continue.'),
+                            _('Exit without filing a report.'),
+                            False):
+                        efail(_("Package not installed; stopping.\n"))
                 elif (len(packages) > 1) or (packages[0][0] != package):
                     this_package = [(package, 'Uninstalled/non-existent package')]
                     packages.sort()
-                    package = ui.menu('Which of the following installed packages '
-                                      'is the bug in?', packages + this_package,
-                                      'Select one of these packages: ',
-                                      empty_ok=True)
+                    package = ui.menu(
+                            _('Which of the following installed packages '
+                              'is the bug in?'),
+                            packages + this_package,
+                            _('Select one of these packages: '),
+                            empty_ok=True)
                     if not package:
-                        efail("No package specified; stopping.\n")
+                        efail(_("No package specified; stopping.\n"))
                     else:
-                        ewrite("Getting status for %s...\n", package)
+                        ewrite(_("Getting status for %s...\n"), package)
                         status = utils.get_package_status(package)
             elif not pkgavail and not notatty and not isvirtual and not issource:
                 if not ui.yes_no(
-                        'This package does not appear to exist; continue',
-                        'Ignore this problem and continue.',
-                        'Exit without filing a report.', False):
-                    efail("Package does not exist; stopping.\n")
+                        _('This package does not appear to exist; continue'),
+                        _('Ignore this problem and continue.'),
+                        _('Exit without filing a report.'),
+                        False):
+                    efail(_("Package does not exist; stopping.\n"))
                     sys.exit(1)
 
             # we can use status only if it's not a source pkg
@@ -1594,44 +1692,52 @@ class UI(object):
             debsumsoutput = output
 
             if rc and not notatty:
-                if not ui.yes_no('There may be a problem with your installation of ' + package +
-                                 ';\nthe following problems were detected by debsums:\n' +
-                                 output + '\nDo you still want to file a report',
-                                 'Ignore this problem and continue.  This may be '
-                                 'appropriate if you have fixed the package manually already.  '
-                                 'This problem may also result from the use of localepurge.',
-                                 'Exit without filing a report.', False, nowrap=True):
-                    efail("Package integrity check failed; stopping.\n")
+                if not ui.yes_no(
+                        _('There may be a problem with your installation of {0}'
+                          ';\nthe following problems were detected by debsums:\n'
+                          '{1}\nDo you still want to file a report').format(package, output),
+                        _('Ignore this problem and continue.  This may be '
+                          'appropriate if you have fixed the package manually already.  '
+                          'This problem may also result from the use of localepurge.'),
+                        _('Exit without filing a report.'),
+                        False,
+                        nowrap=True):
+                    efail(_("Package integrity check failed; stopping.\n"))
 
         if not pkgversion or usedavail or (not pkgavail and
                                            not self.options.pkgversion and
                                            not self.options.source):
             if not bugnumber and not (isvirtual or notatty):
-                pkgversion = ui.get_string('Please enter the version of the '
-                                           'package this report applies to '
-                                           '(blank OK)', empty_ok=True, force_prompt=True)
+                pkgversion = ui.get_string(
+                        _('Please enter the version of the '
+                          'package this report applies to '
+                          '(blank OK)'),
+                        empty_ok=True, force_prompt=True)
         elif (check_available and not (self.options.kudos or notatty or self.options.offline)
               and state == 'installed' and bts == 'debian'):
             arch = utils.get_arch()
             check_more = (mode > MODE_STANDARD)
             if check_more:
-                ewrite('Checking for newer versions at madison,' +
-                       ' incoming.debian.org and http://ftp-master.debian.org/new.html\n')
+                ewrite(_('Checking for newer versions at madison, '
+                         'incoming.debian.org and '
+                         'http://ftp-master.debian.org/new.html\n'))
             else:
-                ewrite('Checking for newer versions at madison...\n')
+                ewrite(_('Checking for newer versions at madison...\n'))
             (avail, toonew) = checkversions.check_available(
                 package, pkgversion, timeout=self.options.timeout,
                 check_incoming=check_more, check_newqueue=check_more,
                 http_proxy=self.options.http_proxy, arch=arch)
             if toonew:
-                if not ui.yes_no('\nYour version of %s (%s) is newer than that in Debian!\n'
-                                 'Do you still want to file a report' % (package, pkgversion),
-                                 'Ignore this problem and continue.  This may be '
-                                 'appropriate if you know this bug is present in older '
-                                 'releases of the package, or you\'re running a mixed '
-                                 'stable/testing installation.',
-                                 'Exit without filing a report.', False):
-                    efail("Newer released version; stopping.\n")
+                if not ui.yes_no(
+                        _('\nYour version of %s (%s) is newer than that in Debian!\n'
+                          'Do you still want to file a report') % (package, pkgversion),
+                        _('Ignore this problem and continue.  This may be '
+                          'appropriate if you know this bug is present in older '
+                          'releases of the package, or you\'re running a mixed '
+                          'stable/testing installation.'),
+                        _('Exit without filing a report.'),
+                        False):
+                    efail(_("Newer released version; stopping.\n"))
 
             if avail:
                 availtext = ''
@@ -1640,41 +1746,44 @@ class UI(object):
                 for rel in availlist:
                     availtext += '  %s: %s\n' % (rel, avail[rel])
 
-                if not ui.yes_no(('\nYour version (%s) of %s appears to be out of date.\nThe '
-                                  'following newer release(s) are available in the Debian '
-                                  'archive:\n' % (pkgversion, package)) + availtext +
-                                 'Do you still want to file a report',
-                                 'Ignore this problem and continue.  This may be '
-                                 'appropriate if you know this bug is still present in more '
-                                 'recent releases of the package.',
-                                 'Exit without filing a report.', False, nowrap=True):
-                    efail("Newer released version; stopping.\n")
+                if not ui.yes_no(
+                        '\n' +
+                        _('Your version ({0}) of {1} appears to be out of date.\n'
+                          'The following newer release(s) are available in the '
+                          'Debian archive:\n{2}Do you still want to file '
+                          'a report').format(pkgversion, package, availtext),
+                        _('Ignore this problem and continue.  This may be '
+                          'appropriate if you know this bug is still present in more '
+                          'recent releases of the package.'),
+                        _('Exit without filing a report.'),
+                        False, nowrap=True):
+                    efail(_("Newer released version; stopping.\n"))
 
         bts = DEFAULT_BTS
         if self.options.bts:
             bts = self.options.bts
-            ewrite("Will send report to %s (per request).\n",
+            ewrite(_("Will send report to %s (per request).\n"),
                    debbugs.SYSTEMS[bts].get('name', bts))
         elif origin:
             if origin.lower() == bts:
-                ewrite("Package originates from %s.\n", vendor or origin)
+                ewrite(_("Package originates from %s.\n"), vendor or origin)
                 reportinfo = None
             elif origin.lower() in list(debbugs.SYSTEMS.keys()):
-                ewrite("Package originates from %s; overriding your system "
-                       "selection.\n", vendor or origin)
+                ewrite(_("Package originates from %s; overriding your system "
+                       "selection.\n"), vendor or origin)
                 bts = origin.lower()
                 sysinfo = debbugs.SYSTEMS[bts]
             elif reportinfo:
-                ewrite("Unknown origin %s; will send to %s.\n", origin,
+                ewrite(_("Unknown origin %s; will send to %s.\n"),origin,
                        reportinfo[1])
                 rtype, submitto = reportinfo
             elif submitto:
-                ewrite("Unknown origin %s; will send to %s.\n", origin, submitto)
+                ewrite(_("Unknown origin %s; will send to %s.\n"), origin, submitto)
             else:
-                ewrite("Unknown origin %s; will send to %s.\n", origin, bts)
+                ewrite(_("Unknown origin %s; will send to %s.\n"), origin, bts)
         elif reportinfo:
             rtype, submitto = reportinfo
-            ewrite("Will use %s protocol talking to %s.\n", rtype, submitto)
+            ewrite(_("Will use %s protocol talking to %s.\n"), rtype, submitto)
             dontquery = True
         else:
             lsbr = subprocess.getoutput('lsb_release -si 2>/dev/null')
@@ -1682,7 +1791,7 @@ class UI(object):
                 distro = lsbr.strip().lower()
                 if distro in debbugs.SYSTEMS:
                     bts = distro
-                    ewrite("Will send report to %s (per lsb_release).\n",
+                    ewrite(_("Will send report to %s (per lsb_release).\n"),
                            debbugs.SYSTEMS[bts].get('name', bts))
 
         if rtype == 'mailto':
@@ -1724,23 +1833,23 @@ class UI(object):
             except NoNetwork:
                 sys.exit(1)
             except NoPackage:
-                if not self.options.queryonly and maintainer and ui.yes_no(
+                if not self.options.queryonly and maintainer and ui.yes_no(_(
                         'There is no record of this package in the bug tracking '
-                        'system.\nSend report directly to maintainer',
-                        'Send the report to the maintainer (%s).' % maintainer,
-                        'Send the report to the BTS anyway.'):
+                        'system.\nSend report directly to maintainer'),
+                        _('Send the report to the maintainer (%s).') % maintainer,
+                        _('Send the report to the BTS anyway.')):
                     rtype = 'debbugs'
                     sendto = maintainer
             except NoBugs:
-                ewrite('No bug reports found.\n')
+                ewrite(_('No bug reports found.\n'))
             except NoReport:
                 if self.options.queryonly:
-                    ewrite('Exiting at user request.\n')
+                    ewrite(_('Exiting at user request.\n'))
                 else:
-                    ewrite('Nothing new to report; exiting.\n')
+                    ewrite(_('Nothing new to report; exiting.\n'))
                 return
             except QuertBTSError:
-                ewrite('Error accessing the BTS, no bugs information available.\n')
+                ewrite(_('Error accessing the BTS, no bugs information available.\n'))
 
             if self.options.queryonly and not exinfo:
                 return
@@ -1752,10 +1861,10 @@ class UI(object):
             bccaddr = os.environ.get('MAILBCC', fromaddr)
 
         if maintainer:
-            mstr = "Maintainer for %s is '%s'.\n" % (package, maintainer)
+            mstr = _("Maintainer for %s is '%s'.\n") % (package, maintainer)
             ewrite(mstr)
             if 'qa.debian.org' in maintainer:
-                ui.long_message('''\
+                ui.long_message(_('''\
 This package seems to be currently "orphaned"; it also seems you're a
 bit interested in this package, since you're reporting a bug against
 it, so you might consider being involved in the package maintenance in Debian and/or adopting it.  Please be aware that your
@@ -1763,7 +1872,7 @@ report may not be resolved for a while, because the package seems to lack an
 active maintainer, but please GO ON and REPORT the bug, if there is
 one.
 
-For more details, please see: http://www.debian.org/devel/wnpp/''')
+For more details, please see: http://www.debian.org/devel/wnpp/'''))
 
         if self.options.kudos and not self.options.debugmode:
             sendto = '%s@packages.debian.org' % package
@@ -1771,7 +1880,7 @@ For more details, please see: http://www.debian.org/devel/wnpp/''')
         depinfo = ""
         # Grab dependency list, removing version conditions.
         if (depends or recommends or suggests) and not self.options.kudos:
-            ewrite("Looking up dependencies of %s...\n", package)
+            ewrite(_("Looking up dependencies of %s...\n"), package)
             depinfo = (utils.get_dependency_info(package, depends) +
                        utils.get_dependency_info(package, recommends, "recommends") +
                        utils.get_dependency_info(package, suggests, "suggests"))
@@ -1780,32 +1889,32 @@ For more details, please see: http://www.debian.org/devel/wnpp/''')
             # retrieve information for the packages listed in 'report-with' bug
             # control file field
             for extrapackage in reportwith:
-                ewrite("Getting status for related package %s...\n", extrapackage)
+                ewrite(_("Getting status for related package %s...\n"), extrapackage)
                 extrastatus = utils.get_package_status(extrapackage)
                 # depends
                 if extrastatus[2]:
                     extradepends = [x for x in extrastatus[2] if package not in x]
-                    ewrite("Looking up 'depends' of related package %s...\n", extrapackage)
+                    ewrite(_("Looking up 'depends' of related package %s...\n"), extrapackage)
                     depinfo += utils.get_dependency_info(extrapackage, extradepends)
                 # recommends
                 if extrastatus[3]:
                     extrarecommends = [x for x in extrastatus[3] if package not in x]
-                    ewrite("Looking up 'recommends' of related package %s...\n", extrapackage)
+                    ewrite(_("Looking up 'recommends' of related package %s...\n"), extrapackage)
                     depinfo += utils.get_dependency_info(extrapackage, extrarecommends, "recommends")
                 # suggests
                 if extrastatus[15]:
                     extrasuggests = [x for x in extrastatus[15] if package not in x]
-                    ewrite("Looking up 'suggests' of related package %s...\n", extrapackage)
+                    ewrite(_("Looking up 'suggests' of related package %s...\n"), extrapackage)
                     depinfo += utils.get_dependency_info(extrapackage, extrasuggests, "suggests")
 
         if supplemental and not self.options.kudos:
-            ewrite("Looking up status of additional packages...\n")
+            ewrite(_("Looking up status of additional packages...\n"))
             depinfo += utils.get_dependency_info(
                 package, [[x] for x in supplemental], rel='is related to')
 
         confinfo = []
         if conffiles and not self.options.kudos:
-            ewrite("Getting changed configuration files...\n")
+            ewrite(_("Getting changed configuration files...\n"))
             confinfo, changed = utils.get_changed_config_files(
                 conffiles, self.options.nocompress)
 
@@ -1815,12 +1924,12 @@ For more details, please see: http://www.debian.org/devel/wnpp/''')
             elif changed and not notatty:
                 while 1:
                     x = ui.select_options(
-                        "*** WARNING: The following configuration files have been "
-                        "modified:\n" + "\n".join(changed) +
-                        "\nSend modified configuration files", 'Ynd',
-                        {'y': 'Send your modified configuration files.',
-                         'n': "Don't send modified configuration files.",
-                         'd': 'Display modified configuration files (exit with "q").'})
+                        _("*** WARNING: The following configuration files have been "
+                        "modified:\n") + "\n".join(changed) +
+                        _("\nSend modified configuration files"), 'Ynd',
+                        {'y': _('Send your modified configuration files.'),
+                         'n': _("Don't send modified configuration files."),
+                         'd': _('Display modified configuration files (exit with "q").')})
                     if x == 'n':
                         for f in changed:
                             confinfo[f] = 'changed [not included]'
@@ -1850,10 +1959,10 @@ For more details, please see: http://www.debian.org/devel/wnpp/''')
             if status:
                 conftext += '\n-- debconf-show failed\n'
             elif output:
-                if (notatty or ui.yes_no("*** The following debconf settings were detected:\n" +
-                                         output + "\nInclude these settings in your report",
-                                         'Send your debconf settings.',
-                                         "Don't send your debconf settings.", nowrap=True)):
+                if (notatty or ui.yes_no(_("*** The following debconf settings were detected:\n") +
+                                         output + _("\nInclude these settings in your report"),
+                                         _('Send your debconf settings.'),
+                                         _("Don't send your debconf settings."), nowrap=True)):
                     conftext += '\n-- debconf information:\n%s\n' % output
                 else:
                     conftext += '\n-- debconf information excluded\n'
@@ -1874,57 +1983,59 @@ For more details, please see: http://www.debian.org/devel/wnpp/''')
             subject_ok = False
             while not subject_ok:
                 subject = ui.get_string(
-                    'Please provide a subject for your response.', default="Re: %s" % exinfo.subject, force_prompt=True)
+                        _('Please provide a subject for your response.'),
+                        default="Re: %s" % exinfo.subject, force_prompt=True)
                 if subject:
                     subject_ok = True
                 else:
-                    ewrite("Providing a subject is mandatory.\n")
+                    ewrite(_("Providing a subject is mandatory.\n"))
 
             # Check to make sure the bug still exists to avoid auto-reopens
             if subject and pkgversion:
-                if not ui.yes_no('Does this bug still exist in version %s '
-                                 'of this package?' % pkgversion,
-                                 'Yes, it does.',
-                                 'No, it doesn\'t (or I don\'t know).',
+                if not ui.yes_no(_('Does this bug still exist in version %s '
+                                 'of this package?') % pkgversion,
+                                 _('Yes, it does.'),
+                                 _('No, it doesn\'t (or I don\'t know).'),
                                  default=False):
                     pkgversion = None
         elif not subject and not notatty:
             prompted = True
             subject_ok = False
             while not subject_ok:
-                subject = ui.get_string(
+                subject = ui.get_string(_(
                     'Briefly describe the problem (max. 100 characters '
                     'allowed). This will be the bug email subject, so keep the '
                     'summary as concise as possible, for example: "fails to '
                     'send email" or "does not start with -q option specified" '
-                    '(enter Ctrl+c to exit reportbug without reporting a bug).',
+                    '(enter Ctrl+c to exit reportbug without reporting a bug).'),
                     force_prompt=True)
 
                 if subject:
                     subject_ok = True
                 else:
-                    ewrite("Providing a subject is mandatory.\n")
+                    ewrite(_("Providing a subject is mandatory.\n"))
 
         if len(subject) > 100 and prompted and mode < MODE_EXPERT:
-            subject = ui.get_string(
+            subject = ui.get_string(_(
                 'Your description is a bit long; please enter a shorter subject. '
-                '(An empty response will retain the existing subject.)',
+                '(An empty response will retain the existing subject.)'),
                 empty_ok=True, force_prompt=True) or subject
         if package != 'wnpp' and mode < MODE_EXPERT:
             if foundfile:
                 subject = foundfile + ": " + subject
-                ewrite("Rewriting subject to '%s'\n", subject)
+                ewrite(_("Rewriting subject to '%s'\n"), subject)
             elif not re.match(r"\S+:\s", subject) and not subject.startswith(package):
                 subject = package + ": " + subject
-                ewrite("Rewriting subject to '%s'\n", subject)
+                ewrite(_("Rewriting subject to '%s'\n"), subject)
 
         listcc = self.options.listcc
         if not listcc:
             listcc = []
 
         if not listcc and mode > MODE_STANDARD and rtype == 'debbugs' and not self.options.testmode and not self.options.template and self.options.ccmenu:
-            listcc += ui.get_multiline(
-                'Enter any additional addresses this report should be sent to; press ENTER after each address.')
+            listcc += ui.get_multiline(_(
+                    'Enter any additional addresses this report should be '
+                    'sent to; press ENTER after each address.'))
 
         if severity and rtype:
             severity = debbugs.convert_severity(severity, rtype)
@@ -1938,24 +2049,29 @@ For more details, please see: http://www.debian.org/devel/wnpp/''')
                 else:
                     severities = debbugs.SEVERITIES
                     if mode < MODE_STANDARD:
-                        ewrite("Removing release critical severities, since running in \'%s\' mode.\n" % utils.MODELIST[mode])
+                        ewrite(_("Removing release critical severities, "
+                                 "since running in \'%s\' mode.\n") % utils.MODELIST[mode])
                         for sev in ['critical', 'grave', 'serious', 'does-not-build']:
                             del severities[sev]
                     default = 'normal'
                 while not severity or severity not in debbugs.SEVLIST:
-                    severity = ui.menu("How would you rate the severity of this "
-                                       "problem or report?", severities,
-                                       'Please select a severity level: ',
-                                       default=default, order=debbugs.SEVLIST)
+                    severity = ui.menu(
+                            _("How would you rate the severity of this "
+                              "problem or report?"),
+                            severities,
+                            _('Please select a severity level: '),
+                            default=default, order=debbugs.SEVLIST)
                     # urwid has a cancel and a quit button that return < 0
                     if isinstance(severity, int) and severity < 0:
                         sys.exit()
 
             if rtype == 'gnats':
                 # Class of report
-                klass = ui.menu("What sort of problem are you reporting?",
-                                debbugs.CLASSES, 'Please select a class: ',
-                                default='sw-bug', order=debbugs.CLASSLIST)
+                klass = ui.menu(
+                        _("What sort of problem are you reporting?"),
+                        debbugs.CLASSES,
+                        _('Please select a class: '),
+                        default='sw-bug', order=debbugs.CLASSLIST)
 
         severity = severity or 'normal'
 
@@ -1963,17 +2079,18 @@ For more details, please see: http://www.debian.org/devel/wnpp/''')
         if rtype == 'debbugs' and package != 'wnpp' and mode < MODE_EXPERT:
             if severity in ('critical', 'grave'):
                 justification = ui.menu(
-                    'You are reporting a ' + severity + ' bug; which of the '
-                                                        'following criteria does it meet?',
-                    debbugs.JUSTIFICATIONS[severity],
-                    'Please select the impact of the bug: ', default='unknown')
+                        _('You are reporting a {0} bug; which of the '
+                          'following criteria does it meet?').format(severity),
+                        debbugs.JUSTIFICATIONS[severity],
+                        _('Please select the impact of the bug: '),
+                        default='unknown')
             elif severity == 'serious':
-                justification = ui.get_string(
+                justification = ui.get_string(_(
                     'You are reporting a serious bug; which section of the '
                     'Debian Policy Manual contains the "must" or "required" '
                     'directive that it violates (E.g., "1.2.3")? '
                     'Just type "unknown" if you are not sure (that would '
-                    'downgrade severity to normal).', force_prompt=True)
+                    'downgrade severity to normal).'), force_prompt=True)
                 if re.match('[0-9]+\.[0-9.]+', justification):
                     justification = 'Policy ' + justification
                 elif not justification:
@@ -1982,13 +2099,13 @@ For more details, please see: http://www.debian.org/devel/wnpp/''')
             if justification == 'unknown':
                 justification = ''
                 severity = 'normal'
-                ewrite('Severity downgraded to "normal".\n')
+                ewrite(_('Severity downgraded to "normal".\n'))
 
         if severity == 'does-not-build':
             if pkgversion and not src_name:
                 src_name = package
             if src_name and check_available and not notatty:
-                ewrite('Checking buildd.debian.org for past builds of %s...\n',
+                ewrite(_('Checking buildd.debian.org for past builds of %s...\n'),
                        src_name)
                 built = checkbuildd.check_built(src_name,
                                                 http_proxy=self.options.http_proxy,
@@ -2004,12 +2121,12 @@ For more details, please see: http://www.debian.org/devel/wnpp/''')
                 justification = 'fails to build from source'
                 if not notatty:
                     # special-case only if it was built in the past
-                    if ui.yes_no(
+                    if ui.yes_no(_(
                             'Has this package successfully been built for this '
                             'architecture in the past (you can look this up at '
-                            'buildd.debian.org)',
-                            'Yes, this is a recently-introduced problem.',
-                            'No, it has always been this way.'):
+                            'buildd.debian.org)'),
+                            _('Yes, this is a recently-introduced problem.'),
+                            _('No, it has always been this way.')):
                         justification += ' (but built successfully in the past)'
 
         HOMEDIR = os.environ.get('HOME', '/')
@@ -2021,8 +2138,9 @@ For more details, please see: http://www.debian.org/devel/wnpp/''')
             tags = debbugs.get_tags(severity, mode)
 
             taglist = ui.select_multiple(
-                'Do any of the following apply to this report?', tags,
-                'Please select tags: ')
+                    _('Do any of the following apply to this report?'),
+                    tags,
+                    _('Please select tags: '))
             if taglist is None:
                 # We've pressed cancel or quit in urwid
                 sys.exit()
@@ -2031,7 +2149,7 @@ For more details, please see: http://www.debian.org/devel/wnpp/''')
 
         if justification and 'security' not in taglist and 'security' in \
                 justification:
-            ewrite('Adding security tag to this report.\n')
+            ewrite(_('Adding security tag to this report.\n'))
             taglist += ['security']
 
         if taglist:
@@ -2041,15 +2159,22 @@ For more details, please see: http://www.debian.org/devel/wnpp/''')
 
         if 'security' in taglist:
             if self.options.secteam or (self.options.secteam is None and ui.yes_no(
-                    'Are you reporting an undisclosed vulnerability? If so, in order to responsibly disclose the issue, it should not be sent to the public BTS right now, but instead to the private Security Team mailing list.',
-                    'Yes, it is an undisclosed vulnerability, send this report to the private Security Team mailing list and not to the BTS.',
-                    'No, it is already a publicly disclosed vulnerability, send this report to the BTS.', False)):
+                    _('Are you reporting an undisclosed vulnerability? '
+                      'If so, in order to responsibly disclose the issue, '
+                      'it should not be sent to the public BTS right now, '
+                      'but instead to the private Security Team mailing list.'),
+                    _('Yes, it is an undisclosed vulnerability, send this '
+                      'report to the private Security Team mailing list '
+                      'and not to the BTS.'),
+                    _('No, it is already a publicly disclosed vulnerability, '
+                      'send this report to the BTS.'),
+                    False)):
                 sendto = 'team@security.debian.org'
 
         # Execute bug script
         if self.options.bugscript and bugexec and not self.options.kudos:
             # add a warning, since it can take a while, 587952
-            ewrite("Gathering additional data, this may take a while...\n")
+            ewrite(_("Gathering additional data, this may take a while...\n"))
             handler = '/usr/share/reportbug/handle_bugscript'
 
             # we get the return code of the script, headers and pseudo- set
@@ -2058,10 +2183,12 @@ For more details, please see: http://www.debian.org/devel/wnpp/''')
                 utils.exec_and_parse_bugscript(handler, bugexec)
 
             if rc and not notatty:
-                if not ui.yes_no('The package bug script %s exited with an error status (return '
-                                 'code = %s). Do you still want to file a report?' % (bugexec, rc),
-                                 'Ignore this problem and continue.',
-                                 'Exit without filing a report.', False, nowrap=True):
+                if not ui.yes_no(
+                        _('The package bug script %s exited with an error status (return '
+                          'code = %s). Do you still want to file a report?') % (bugexec, rc),
+                        _('Ignore this problem and continue.'),
+                        _('Exit without filing a report.'),
+                        False, nowrap=True):
                     efail("Package bug script failed; stopping.\n")
 
             # add bugscript headers only if present
@@ -2083,7 +2210,8 @@ For more details, please see: http://www.debian.org/devel/wnpp/''')
                 incfiles = addinfo
 
         if bts == 'debian' and 'security' in taglist and sendto != 'team@security.debian.org':
-            ewrite('Will send a CC of this report to the Debian Security and Testing Security Team.\n')
+            ewrite(_('Will send a CC of this report to the '
+                     'Debian Security and Testing Security Team.\n'))
             listcc += ['Debian Security Team <team@security.debian.org>']
             listcc += ['Debian Testing Security Team <secure-testing-team@lists.alioth.debian.org>']
 
@@ -2165,9 +2293,10 @@ For more details, please see: http://www.debian.org/devel/wnpp/''')
             if not mua and patch and not attachments and not notatty:
                 while True:
                     patchfile = ui.get_filename(
-                        'What is the filename of the patch (if none, or you have '
-                        'already included it, just press ENTER)?',
-                        force_prompt=True)
+                            _('What is the filename of the patch '
+                              '(if none, or you have already included it, '
+                              'just press ENTER)?'),
+                            force_prompt=True)
                     if patchfile:
                         attachfile = os.path.expanduser(patchfile)
                         # loop over the glob of 'attachfile', we support glob now
@@ -2175,7 +2304,7 @@ For more details, please see: http://www.debian.org/devel/wnpp/''')
                             if os.path.exists(attachfile):
                                 attachments.append(attachfile)
                             else:
-                                ewrite('%s not found!', attachfile)
+                                ewrite(_('%s not found!'), attachfile)
                     else:
                         break
         if CCS:
@@ -2187,11 +2316,11 @@ For more details, please see: http://www.debian.org/devel/wnpp/''')
         body, headers, pseudoheaders = utils.cleanup_msg(message, headers, pseudos, rtype)
 
         if sign:
-            ewrite('Passing message to %s for signature...\n', sign)
+            ewrite(_('Passing message to %s for signature...\n'), sign)
             oldbody = body
             body = submit.sign_message(body, fromaddr, package, pgp_addr, sign, self.options.draftpath)
             if not body:
-                ewrite('Signature failed; sending message unsigned.\n')
+                ewrite(_('Signature failed; sending message unsigned.\n'))
                 body = oldbody
 
         if pseudoheaders:
@@ -2225,7 +2354,7 @@ For more details, please see: http://www.debian.org/devel/wnpp/''')
                 self.options.envelopefrom)
 
         if self.options.exitprompt:
-            ui.get_string('Please press ENTER to exit reportbug: ')
+            ui.get_string(_('Please press ENTER to exit reportbug: '))
         return
 
 
@@ -2233,6 +2362,6 @@ if __name__ == '__main__':
     try:
         main()
     except KeyboardInterrupt:
-        ewrite("\nreportbug: exiting due to user interrupt.\n")
+        ewrite(_("\nreportbug: exiting due to user interrupt.\n"))
     except debbugs.Error as x:
-        ewrite('error accessing BTS: %s\n' % x)
+        ewrite(_('error accessing BTS: %s\n') % x)

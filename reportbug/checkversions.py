@@ -30,6 +30,7 @@ import time
 import gzip
 
 from . import utils
+from . import _
 from .urlutils import open_url
 from reportbug.exceptions import (
     NoNetwork,
@@ -94,7 +95,7 @@ def get_versions_available(package, timeout, dists=None, http_proxy=None, arch='
     except NoNetwork:
         return {}
     except urllib.error.HTTPError as x:
-        print("Warning:", x, file=sys.stderr)
+        print(_("Warning:"), x, file=sys.stderr)
         return {}
     if not page:
         return {}
@@ -146,7 +147,7 @@ def get_incoming_version(package, timeout, http_proxy=None, arch='i386'):
     except NoNetwork:
         return None
     except urllib.error.HTTPError as x:
-        print("Warning:", x, file=sys.stderr)
+        print(_("Warning:"), x, file=sys.stderr)
         return None
     if not page:
         return None
