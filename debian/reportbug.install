@@ -1,1 +1,3 @@
 share/debian-swirl.svg /usr/share/icons/hicolor/scalable/places/
+debian/reportbug.desktop /usr/share/applications/
+conf/reportbug.conf etc/
