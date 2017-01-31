@@ -1,5 +1,6 @@
 *~
 *.pyc
+*.mo
 *debhelper*
 build
 *stamp*

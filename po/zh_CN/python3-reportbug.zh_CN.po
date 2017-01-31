@@ -1,0 +1,1677 @@
+# Simplified Chinese Translation for python3-reportbug.
+# python3-reportbug 的简体中文翻译。
+# Copyright (C) 2017 reportbug's COPYRIGHT HOLDER
+# This file is distributed under the same license as the reportbug package.
+#
+# Boyuan Yang <073plan@gmail.com>, 2017.
+msgid ""
+msgstr ""
+"Project-Id-Version: reportbug 7.1.5\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-02-13 17:44+0800\n"
+"PO-Revision-Date: 2017-02-13 17:45+0800\n"
+"Last-Translator: Boyuan Yang <073plan@gmail.com>\n"
+"Language-Team: Chinese (Simplified) <debian-l10n-chinese@lists.debian.org>\n"
+"Language: zh_CN\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Poedit 1.8.11\n"
+
+#: reportbug/bugreport.py:57
+msgid ""
+"Invalid value for followup, it must be a debianbts.Bugreport instance or an "
+"integer"
+msgstr "followup 的值无效，它必须是一个 debianbts.Bugreport 实例或者一个整数"
+
+#: reportbug/bugreport.py:71
+#, python-format
+msgid "invalid report type %s, defaulting to debbugs"
+msgstr "无效的报告类型 %s，默认设置为 debbugs"
+
+#: reportbug/checkversions.py:98 reportbug/checkversions.py:150
+msgid "Warning:"
+msgstr "警告："
+
+#: reportbug/debbugs.py:66
+msgid ""
+"makes unrelated software on the system (or the\n"
+"    whole system) break, or causes serious data loss, or introduces a\n"
+"    security hole on systems where you install the package."
+msgstr ""
+"使得系统上不相关的软件（或者整个系统）被破坏，或者造成严重的数据丢失，或者在"
+"安装了该软件包的系统上引入安全漏洞。"
+
+#: reportbug/debbugs.py:69
+msgid ""
+"makes the package in question unusable by most or all users,\n"
+"    or causes data loss, or introduces a security hole allowing access\n"
+"    to the accounts of users who use the package."
+msgstr ""
+"使得有问题的软件包对大多数或者所有用户不可用，或者造成数据丢失，或者对使用该"
+"软件包的用户来说引入了可以访问其账户信息的安全漏洞。"
+
+#: reportbug/debbugs.py:72
+msgid ""
+"is a severe violation of Debian policy (that is,\n"
+"    the problem is a violation of a 'must' or 'required' directive);\n"
+"    may or may not affect the usability of the package.  Note that non-"
+"severe\n"
+"    policy violations may be 'normal,' 'minor,' or 'wishlist' bugs.\n"
+"    (Package maintainers may also designate other bugs as 'serious' and "
+"thus\n"
+"    release-critical; however, end users should not do so.). For the "
+"canonical\n"
+"    list of issues worthing a serious severity you can refer to this "
+"webpage:\n"
+"    http://release.debian.org/testing/rc_policy.txt ."
+msgstr ""
+"是严重违反 Debian 政策的行为（即，这个问题是对一个“must”或者“required”指示的"
+"违背）；可能影响了软件包的可用性，也可能没有影响。请注意不严重的对政策的违反"
+"可能成为一个“normal”、“minor”或者“wishlist”等级的缺陷。（软件包维护这也可能将"
+"其它缺陷指定为“serious”并使得其成为对发行而言致命的缺陷；然而，最终用户不应该"
+"如此操作。）如需获得一个包含值得标记为“serious”严重性问题的正规列表，您可以参"
+"考如下网页：http://release.debian.org/testing/rc_policy.txt ."
+
+#: reportbug/debbugs.py:80
+msgid ""
+"a bug which has a major effect on the usability\n"
+"    of a package, without rendering it completely unusable to\n"
+"    everyone."
+msgstr ""
+"一个对软件包的可用性有重要影响的缺陷，如果不处理的话它会对所有人变得无法使"
+"用。"
+
+#: reportbug/debbugs.py:83
+msgid ""
+"a bug that stops the package from being built\n"
+"    from source.  (This is a 'virtual severity'.)"
+msgstr ""
+"一个使得软件包无法从源代码进行构建的缺陷（这是一个“虚拟的严重性（virtual "
+"severity）”。）"
+
+#: reportbug/debbugs.py:85
+msgid ""
+"a bug that does not undermine the usability of the\n"
+"    whole package; for example, a problem with a particular option or\n"
+"    menu item."
+msgstr ""
+"一个不会影响软件包整体可用性的缺陷；例如，一个与特定选项或菜单项目相关的问"
+"题。"
+
+#: reportbug/debbugs.py:88
+msgid ""
+"things like spelling mistakes and other minor\n"
+"    cosmetic errors that do not affect the core functionality of the\n"
+"    package."
+msgstr "如拼写错误或者其它各类简单问题一样的缺陷，不会影响软件包的核心功能。"
+
+#: reportbug/debbugs.py:91
+msgid "suggestions and requests for new features."
+msgstr "建议或对新功能的请求。"
+
+#: reportbug/debbugs.py:97
+msgid ""
+"breaks unrelated software on the system\n"
+"    (packages that have a dependency relationship are not unrelated)"
+msgstr ""
+"破坏系统上不相关的软件\n"
+"（如果软件包之间有依赖关系，则它们之间不是不相关的）"
+
+#: reportbug/debbugs.py:99
+msgid ""
+"renders the entire system unusable (e.g.,\n"
+"    unbootable, unable to reach a multiuser runlevel, etc.)"
+msgstr "使得整个系统不可用（例如，无法启动、无法达到多用户运行等级等等）"
+
+#: reportbug/debbugs.py:101
+msgid ""
+"causes loss of important, irreplaceable\n"
+"    data"
+msgstr "造成重要、无法替代的数据的丢失"
+
+#: reportbug/debbugs.py:103
+msgid ""
+"introduces a security hole allowing access to\n"
+"    root (or another privileged system account), or data normally\n"
+"    accessible only by such accounts"
+msgstr ""
+"引入一个安全漏洞，可以允许未经授权得到 root 用户（或其它特权系统账户），或者"
+"其它仅可由这些账户访问的数据"
+
+#: reportbug/debbugs.py:106 reportbug/debbugs.py:117
+msgid "not sure, or none of the above"
+msgstr "不确定，或者不属于以上任何一项"
+
+#: reportbug/debbugs.py:109
+msgid ""
+"renders the package unusable, or mostly\n"
+"    so, on all or nearly all possible systems on which it could be "
+"installed\n"
+"    (i.e., not a hardware-specific bug); or renders package uninstallable\n"
+"    or unremovable without special effort"
+msgstr ""
+"使得软件包在所有或者几乎所有可以安装该软件包的系统上不可用，或者基本不可用"
+"（例如，不是一个针对特定硬件存在的缺陷）；或者使得软件包无法卸载或者需要特别"
+"的步骤才可以卸载"
+
+#: reportbug/debbugs.py:113
+msgid ""
+"causes the loss of data on the system\n"
+"    that is unimportant, or restorable without resorting to backup media"
+msgstr ""
+"造成系统上的数据丢失，但这些数据不是重要数据，或者可以在不借助备份媒介的情况"
+"下进行回复"
+
+#: reportbug/debbugs.py:115
+msgid ""
+"introduces a security hole allowing access to\n"
+"    user accounts or data not normally accessible"
+msgstr ""
+"引入一个安全漏洞，使得通常情况下无法访问的普通用户账户或数据变得可以访问"
+
+#: reportbug/debbugs.py:136
+msgid ""
+"The product, component or concept is completely non-operational or some "
+"essential functionality is missing.  No workaround is known."
+msgstr ""
+"该产品、组件或者概念完全无法工作或者某些必需的功能缺失。没有已知的临时解决办"
+"法。"
+
+#: reportbug/debbugs.py:139
+msgid ""
+"The product, component or concept is not working properly or significant "
+"functionality is missing.  Problems that would otherwise be considered "
+"critical are rated serious when a workaround is known."
+msgstr ""
+"该产品、组件或者概念工作不正常或者有重要的功能缺失。当有已知的解决办法时，本"
+"应分类为“critical”的问题将被评为“serious”。"
+
+#: reportbug/debbugs.py:143
+msgid ""
+"The product, component or concept is working in general, but lacks features, "
+"has irritating behavior, does something wrong, or doesnt match its "
+"documentation."
+msgstr ""
+"该产品、组件或概念大部分情况下都能工作，但是缺失了某些功能，有令人厌烦的行"
+"为，某些操作有错，或者与其文档不符。"
+
+#: reportbug/debbugs.py:169
+msgid "The bug tracking system, @bugs.debian.org"
+msgstr "缺陷跟踪系统，@bugs.debian.org"
+
+#: reportbug/debbugs.py:170
+msgid "Problems and requests related to the Debian Buildds"
+msgstr "与 Debian 自动构建系统（Debian Buildds）相关的问题和请求"
+
+#: reportbug/debbugs.py:171
+msgid "Problems related to building packages for Emdebian"
+msgstr "与为 Emdebian 构建软件包相关的问题"
+
+#: reportbug/debbugs.py:172
+msgid "CD Image issues"
+msgstr "CD 光盘镜像相关事项"
+
+#: reportbug/debbugs.py:173
+msgid "Installation system"
+msgstr "安装系统"
+
+#: reportbug/debbugs.py:174
+msgid "Issues involving Debian images for public/private clouds"
+msgstr "与在公共云/私有云上的 Debian 镜像相关的事项"
+
+#: reportbug/debbugs.py:175
+msgid ""
+"Issues regarding the d-i.debian.org service and general Debian Installer "
+"tasks"
+msgstr "与 d-i.debian.org 服务或者一般的 Debian 安装器任务相关的事项"
+
+#: reportbug/debbugs.py:176
+msgid "Problems and requests related to Debian Maintainers"
+msgstr "与 Debian 维护者（Debian Maintainer）相关的问题和请求"
+
+#: reportbug/debbugs.py:177
+msgid "Requests regarding Internationalization (i18n) of the distribution"
+msgstr "与发行版国际化（i18n）相关的请求"
+
+#: reportbug/debbugs.py:178
+msgid "General problems with Debian Live systems"
+msgstr "Debian Live 系统相关的一般问题"
+
+#: reportbug/debbugs.py:179
+msgid "Problems with the FTP site and Package removal requests"
+msgstr "FTP 站点和软件包移除请求相关的问题"
+
+#: reportbug/debbugs.py:180
+msgid "General problems (e.g. \"many manpages are mode 755\")"
+msgstr "一般性问题（例如，\"many manpages are mode 755\"）"
+
+#: reportbug/debbugs.py:181
+msgid "Reports of installation problems with stable & testing"
+msgstr "报告与稳定版和测试版相关的安装问题"
+
+#: reportbug/debbugs.py:182
+msgid "Issues with the jenkins.debian.org service"
+msgstr "与 jenkins.debian.org 服务相关的事项"
+
+#: reportbug/debbugs.py:183
+msgid "The mailing lists, debian-*@lists.debian.org"
+msgstr "邮件列表，debian-*@lists.debian.org"
+
+#: reportbug/debbugs.py:184
+msgid "Problems with the official mirrors"
+msgstr "与官方镜像有关的问题"
+
+#: reportbug/debbugs.py:185
+msgid "New Member process and nm.debian.org webpages"
+msgstr "新成员流程以及 nm.debian.org 网页"
+
+#: reportbug/debbugs.py:186
+msgid "The Debian Package Entropy Tracker"
+msgstr "Debian 软件包熵值跟踪器（Package Entropy Tracker）"
+
+#: reportbug/debbugs.py:187
+msgid "Issues with the piuparts.debian.org service"
+msgstr "与 piuparts.debian.org 服务相关的事项"
+
+#: reportbug/debbugs.py:188
+msgid "Press release issues"
+msgstr "新闻报道相关的事项"
+
+#: reportbug/debbugs.py:189
+msgid "Problems related to project administration"
+msgstr "与项目管理相关的问题"
+
+#: reportbug/debbugs.py:190
+msgid "The Quality Assurance group"
+msgstr "Debian 质保团队（Quality Assurance Group）"
+
+#: reportbug/debbugs.py:191
+msgid "Requests regarding Debian releases and release team tools"
+msgstr "与 Debian 发行版本和发行团队工具相关的请求"
+
+#: reportbug/debbugs.py:192
+msgid "Problems with the Release Notes"
+msgstr "发行注记存在的问题"
+
+#: reportbug/debbugs.py:193
+msgid ""
+"Issues in the operation of the Debian RTC services which are not package-"
+"specific bugs"
+msgstr "与 Debian RTC 服务的操作相关的事项，不是某一个软件包的问题"
+
+#: reportbug/debbugs.py:194
+msgid "The Debian Security Bug Tracker"
+msgstr "Debian 安全漏洞跟踪系统"
+
+#: reportbug/debbugs.py:195
+msgid "The Debian Security Team"
+msgstr "Debian 安全团队"
+
+#: reportbug/debbugs.py:196
+msgid "Issues with the snapshot.debian.org service "
+msgstr "snapshot.debian.org 服务存在的问题"
+
+#: reportbug/debbugs.py:197
+msgid "Spam (reassign spam to here so we can complain about it)"
+msgstr "垃圾信息（请将垃圾信息指向此处以方便我们进行处理）"
+
+#: reportbug/debbugs.py:198
+msgid "Requests for package review and sponsorship"
+msgstr "软件包复查与协助（sponsorship）请求"
+
+#: reportbug/debbugs.py:199
+msgid "Problems and requests related to the Debian Single Sign On system"
+msgstr "与 Debian 单点登录系统相关的问题和请求"
+
+#: reportbug/debbugs.py:200
+msgid "Problems and requests related to the DebConf Summit instance"
+msgstr "与 DebConf 峰会相关的问题和请求"
+
+#: reportbug/debbugs.py:201
+msgid "The Debian Technical Committee (see the Constitution)"
+msgstr "Debian 技术委员会（详见 Debian 宪章）"
+
+#: reportbug/debbugs.py:202
+msgid ""
+"Issues with the Debian Package Tracker and coordination of its maintenance"
+msgstr "与 Debian 软件包追踪工具（Package Tracker）及其维护协调相关的事项"
+
+#: reportbug/debbugs.py:203
+msgid "Reports of upgrade problems for stable & testing"
+msgstr "报告稳定版和测试版中存在的升级相关问题"
+
+#: reportbug/debbugs.py:204
+msgid "Problems with the Debian wiki"
+msgstr "Debian Wiki 存在的问题"
+
+#: reportbug/debbugs.py:205
+msgid "Work-Needing and Prospective Packages list"
+msgstr "需要投入精力和未来软件包的列表（wnpp）"
+
+#: reportbug/debbugs.py:206
+msgid "Problems with the WWW site"
+msgstr "WWW 站点存在的问题"
+
+#: reportbug/debbugs.py:210
+msgid "Any non-package-specific bug"
+msgstr "任何不属于特定软件包的缺陷"
+
+#: reportbug/debbugs.py:221 reportbug/debbugs.py:414 reportbug/debbugs.py:632
+msgid ""
+"What sort of request is this?  (If none of these things mean anything to "
+"you, or you are trying to report a bug in an existing package, please press "
+"Enter to exit reportbug.)"
+msgstr ""
+"这个请求属于哪一类？（如果这些内容对您没有意义，或者您正在试图对一个已有软件"
+"包报告缺陷，请按下回车键（Enter）以退出 reportbug。）"
+
+#: reportbug/debbugs.py:225
+msgid "Package removal - Request Of Maintainer."
+msgstr "软件包移除——维护者请求（RoM）。"
+
+#: reportbug/debbugs.py:226
+msgid "Package removal - Requested by the QA team."
+msgstr "软件包移除——质保团队请求（RoQA）。"
+
+#: reportbug/debbugs.py:227
+msgid "Package removal - Request of Porter."
+msgstr "软件包移除——移植者请求（RoP）。"
+
+#: reportbug/debbugs.py:228
+msgid "Package removal - Not Built [by] Source."
+msgstr "软件包移除——不是从源代码构建（NBS）。"
+
+#: reportbug/debbugs.py:229
+msgid "Package removal - Never Part Of A Stable Release."
+msgstr "软件包移除——从不是稳定发行版本的一部分（NPOASR）。"
+
+#: reportbug/debbugs.py:230
+msgid "Package removal - Newer Version In Unstable."
+msgstr "软件包移除——不稳定版中有更新版本（NVIU）。"
+
+#: reportbug/debbugs.py:231
+msgid "Package removal - Architecture Not Allowed In Source."
+msgstr "软件包移除——架构不被源代码允许（ANAIS）。"
+
+#: reportbug/debbugs.py:232
+msgid "Package removal - Internal Compiler Error."
+msgstr "软件包移除——内部编译器错误（ICE）。"
+
+#: reportbug/debbugs.py:233
+msgid "Change override request."
+msgstr "修改 override 请求。"
+
+#: reportbug/debbugs.py:234
+msgid "Not a package removal request, report other problems."
+msgstr "不是一个软件包移除请求，报告其它的问题。"
+
+#: reportbug/debbugs.py:235 reportbug/debbugs.py:426 reportbug/debbugs.py:641
+msgid "Choose the request type: "
+msgstr "选择一个请求类别："
+
+#: reportbug/debbugs.py:237
+msgid ""
+"To report a bug in a package, use the name of the package, not ftp.debian."
+"org.\n"
+msgstr ""
+"要报告一个软件包中存在的缺陷，请使用软件包的名称，而非 ftp.debian.org。\n"
+
+#: reportbug/debbugs.py:244 reportbug/debbugs.py:442
+msgid "Please enter the name of the package: "
+msgstr "请输入软件包的名称："
+
+#: reportbug/debbugs.py:247
+msgid "You seem to want to report a generic bug, not request a removal\n"
+msgstr "您似乎想要报告一个一般的缺陷，而非移除请求\n"
+
+#: reportbug/debbugs.py:250 reportbug/debbugs.py:448 reportbug/debbugs.py:659
+msgid "Checking status database...\n"
+msgstr "正在检查状态数据库……\n"
+
+#: reportbug/debbugs.py:262 reportbug/debbugs.py:460 reportbug/debbugs.py:704
+msgid "This package doesn't appear to exist; continue?"
+msgstr "这个软件包似乎不存在；继续吗？"
+
+#: reportbug/debbugs.py:263 reportbug/debbugs.py:461 reportbug/debbugs.py:705
+msgid "Ignore this problem and continue."
+msgstr "忽略该问题并继续。"
+
+#: reportbug/debbugs.py:264 reportbug/debbugs.py:462 reportbug/debbugs.py:673
+#: reportbug/debbugs.py:706
+msgid "Exit without filing a report."
+msgstr "退出且未填写报告内容。"
+
+#: reportbug/debbugs.py:276
+msgid "Select the new section"
+msgstr "选择新分区"
+
+#: reportbug/debbugs.py:293
+msgid "Choose the section: "
+msgstr "选择分区："
+
+#: reportbug/debbugs.py:297
+msgid "Select the new priority"
+msgstr "选择新优先级"
+
+#: reportbug/debbugs.py:303
+msgid "Choose the priority: "
+msgstr "选择优先级："
+
+#: reportbug/debbugs.py:309
+msgid ""
+"You didn't change section nor priority: is this because it's ftp.debian.org "
+"override file that needs updating?"
+msgstr ""
+"您既没有更改分区也没有更改优先级；这是 ftp.debian.org 的 override 文件需要更"
+"新的缘故吗？"
+
+#: reportbug/debbugs.py:311
+msgid "ftp.debian.org override file needs updating"
+msgstr "ftp.debian.org override 文件需要进行更新"
+
+#: reportbug/debbugs.py:312
+msgid "No, it's not the override file"
+msgstr "不，这不是 override 文件"
+
+#: reportbug/debbugs.py:315
+msgid "There's nothing we can do for you, then; exiting..."
+msgstr "既然这样，我们没什么可以帮助您的了，正在退出……"
+
+#: reportbug/debbugs.py:319
+msgid "Is this request for an archive section other than \"main\"?"
+msgstr "这个请求是针对软件包仓库中非“main”分区的吗？"
+
+#: reportbug/debbugs.py:323
+msgid "Choose the archive section: "
+msgstr "选择仓库分区："
+
+#: reportbug/debbugs.py:331
+msgid "(Describe here the reason for this change)"
+msgstr "（在这里描述该修改的原因）"
+
+#: reportbug/debbugs.py:334
+msgid ""
+"Is the removal to be done in a suite other than \"unstable\"?  Don't select "
+"anything for \"unstable\""
+msgstr ""
+"这个移除请求是针对非“unstable”套件的软件的吗？若是针对“unstable”，则不要选择"
+"任何一项"
+
+#: reportbug/debbugs.py:336
+msgid "Old stable."
+msgstr "旧稳定版。"
+
+#: reportbug/debbugs.py:337
+msgid "Old stable proposed updates."
+msgstr "旧稳定版提议的更新（Old stable proposed updates）。"
+
+#: reportbug/debbugs.py:338
+msgid "Stable."
+msgstr "稳定版。"
+
+#: reportbug/debbugs.py:339
+msgid "Stable proposed updates."
+msgstr "稳定版提议的更新（Stable proposed updates）。"
+
+#: reportbug/debbugs.py:340
+msgid "Testing only (NOT unstable)"
+msgstr "仅测试版（不是稳定版）"
+
+#: reportbug/debbugs.py:341
+msgid "Testing proposed updates"
+msgstr "测试版提议的更新（Testing proposed updates）"
+
+#: reportbug/debbugs.py:342
+msgid "Experimental."
+msgstr "试制版（Experimental）。"
+
+#: reportbug/debbugs.py:343 reportbug/debbugs.py:515
+msgid "Choose the suite: "
+msgstr "选择软件套件："
+
+#: reportbug/debbugs.py:349
+msgid "Your report will be carbon-copied to debian-release.\n"
+msgstr "您的报告将被抄送至 debian-release。\n"
+
+#: reportbug/debbugs.py:357
+msgid "Is this removal request for specific architectures?"
+msgstr "这个移除请求是针对特定架构的吗？"
+
+#: reportbug/debbugs.py:358
+msgid "This is a partial (specific architectures) removal."
+msgstr "这是一个部分的（针对特定架构的）移除请求。"
+
+#: reportbug/debbugs.py:359
+msgid "This removal is for all architectures."
+msgstr "该移除请求是针对所有架构的。"
+
+#: reportbug/debbugs.py:361 reportbug/debbugs.py:499
+msgid "Please enter the arch list separated by a space: "
+msgstr "请输入架构列表，使用空格分隔每项："
+
+#: reportbug/debbugs.py:364
+msgid "Partial removal requests must have a list of architectures.\n"
+msgstr "部分移除请求必须提供一份相关架构的列表。\n"
+
+#: reportbug/debbugs.py:368
+msgid ""
+"Partial removal for testing; forcing suite to 'unstable', since it's the "
+"proper way to do that."
+msgstr ""
+"测试版的部分移除请求；已将套件强行定为“unstable”，因为这才是正确的解决方法。"
+
+#: reportbug/debbugs.py:372
+msgid ""
+"(please explain the reason for the removal here)\n"
+"\n"
+"Note: this was a request for a partial removal from testing, converted in "
+"one for unstable"
+msgstr ""
+"（请在这里解释移除请求的原因）\n"
+"\n"
+"注意：该请求本来是对测试版中软件的部分移除请求，已经转换为针对不稳定版的请求"
+
+#: reportbug/debbugs.py:389
+msgid "Please use release.debian.org pseudo-package and report a bug there."
+msgstr "请使用 release.debian.org 虚软件包，在那里报告缺陷。"
+
+#: reportbug/debbugs.py:418
+msgid "binNMU requests"
+msgstr "binNMU 请求"
+
+#: reportbug/debbugs.py:419
+msgid "testing migration script bugs"
+msgstr "测试版迁移脚本相关的缺陷"
+
+#: reportbug/debbugs.py:420
+msgid "transition tracking"
+msgstr "迁移跟踪（transition tracking）"
+
+#: reportbug/debbugs.py:421
+msgid "unblock requests"
+msgstr "unblock 请求"
+
+#: reportbug/debbugs.py:422 reportbug/debbugs.py:423
+#, python-format
+msgid "%s proposed updates requests"
+msgstr "%s 提议更新（proposed updates）的请求"
+
+#: reportbug/debbugs.py:424
+msgid "Stable/Testing removal requests"
+msgstr "稳定版/测试版软件包移除请求"
+
+#: reportbug/debbugs.py:425
+msgid "None of the other options"
+msgstr "其它选项"
+
+#: reportbug/debbugs.py:428
+msgid ""
+"To report a bug in a package, use the name of the package, not release."
+"debian.org.\n"
+msgstr ""
+"要报告一个软件包中存在的缺陷，请使用软件包的名称，而非 release.debian.org。\n"
+
+#: reportbug/debbugs.py:436
+msgid "Please enter the subject of the bug report: "
+msgstr "请输入缺陷报告的主题："
+
+#: reportbug/debbugs.py:438
+msgid "No subject specified, exiting"
+msgstr "没有指定主题，退出"
+
+#: reportbug/debbugs.py:445
+msgid "You seem to want to report a generic bug.\n"
+msgstr "您似乎想要报告一个一般性的问题。\n"
+
+#: reportbug/debbugs.py:475
+#, python-format
+msgid "Latest version seems to be %s, is this the proper one ?"
+msgstr "最近的版本似乎是 %s，这是正确的吗？"
+
+#: reportbug/debbugs.py:476
+msgid "This is the correct version"
+msgstr "这是正确的版本号"
+
+#: reportbug/debbugs.py:477
+msgid "Enter the proper version"
+msgstr "输入合适的版本号"
+
+#: reportbug/debbugs.py:481
+msgid "Please enter the version of the package: "
+msgstr "请输入软件包的版本："
+
+#: reportbug/debbugs.py:483
+#, python-format
+msgid "A version is required for action %s, not sending bug\n"
+msgstr "操作 %s 需要指定一个版本号，故将不会发送缺陷信息\n"
+
+#: reportbug/debbugs.py:488
+msgid "Is this request for specific architectures?"
+msgstr "这个请求是针对特定的硬件架构的吗？"
+
+#: reportbug/debbugs.py:489
+msgid "This is a partial (specific architectures) request."
+msgstr "这是一个部分的（针对特定架构的）请求。"
+
+#: reportbug/debbugs.py:490
+msgid "This request is for all architectures."
+msgstr "这个请求是针对所有架构的。"
+
+#: reportbug/debbugs.py:493
+msgid ""
+"The proper way to request a partial removal from testing is to file a "
+"partial removal from unstable: this way the package for the specified "
+"architectures will be automatically removed from testing too. Please re-run "
+"reportbug against ftp.debian.org package."
+msgstr ""
+"为测试版请求一个部分移除的正确方式是为不稳定版提交一个部分移除请求；这样，对"
+"应架构的软件包也会从测试版自动移除。请重新运行 reportbug 并向 ftp.debian.org "
+"软件包提交报告。"
+
+#: reportbug/debbugs.py:502
+msgid "No architecture specified, skipping..."
+msgstr "没有指定架构，跳过……"
+
+#: reportbug/debbugs.py:505
+msgid ""
+"For which suite are you requesting this binNMU?  Don't select anything for "
+"\"unstable\""
+msgstr "您想要为哪个套件请求 binNMU？若是针对“unstable”，则不要选择任何一项"
+
+#: reportbug/debbugs.py:527
+msgid "binNMU changelog entry: "
+msgstr "binNMU 修改日志项："
+
+#: reportbug/debbugs.py:532
+msgid ""
+"(please explain about the transition: impacted packages, reason, ...\n"
+" for more info see: https://wiki.debian.org/Teams/ReleaseTeam/Transitions)\n"
+msgstr ""
+"（请解释该变迁（transition）的信息：影响的软件包、原因、……\n"
+"如需了解更多信息，请见：https://wiki.debian.org/Teams/ReleaseTeam/"
+"Transitions）\n"
+
+#: reportbug/debbugs.py:534 reportbug/debbugs.py:535 reportbug/debbugs.py:536
+msgid "<Fill out>"
+msgstr "<请填写>"
+
+#: reportbug/debbugs.py:538
+msgid ""
+"To assist the release team, please fill in the following information. You "
+"will be asked to provide package names of the library package(s) that are "
+"the source of the transition.  If more than one library is changing the "
+"name, please use a space separated list.  Alternatively you can use a regex "
+"by enclosing the regex in slashes (\"/\").  Please ensure that the \"old\" "
+"regex does not match the \"new\" packages.  Example: old=\"/libapt-pkg4.10|"
+"libapt-inst1.2/ libept1\" new=\"/libapt-pkg4.12|libapt-inst1.5|libept1.4.12/"
+"\". For futher reference, please refer to http://ben.debian.net/ ."
+msgstr ""
+"为了协助发行团队，请填写以下信息。您会被询问到引发该变迁的库软件包的软件包名"
+"称。如果不止一个库将会更改名称，请使用空格分隔的列表进行填写。除此之外，您还"
+"可以使用正则表达式，只需使用斜线（”/“）对表达式进行包围即可。请确保”旧的“正则"
+"表达式不会匹配上”新的“软件包。例如：old=\"/libapt-pkg4.10|libapt-inst1.2/ "
+"libept1\" new=\"/libapt-pkg4.12|libapt-inst1.5|libept1.4.12/\"。如需更多参考"
+"信息，请访问 http://ben.debian.net/ ."
+
+#: reportbug/debbugs.py:548
+msgid ""
+"Please enter old binary package name of the library (or a regex matching it):"
+msgstr "请输入旧库的二进制软件包名称（或者能匹配它的正则表达式）："
+
+#: reportbug/debbugs.py:551
+msgid ""
+"Please enter new binary package name of the library (or a regex matching it):"
+msgstr "入旧库的二进制软件包名称（或者能匹配它的正则表达式）："
+
+#: reportbug/debbugs.py:596
+msgid "(please explain the reason for this update here)\n"
+msgstr "（请在这里解释进行该更新的原因）\n"
+
+#: reportbug/debbugs.py:599
+msgid "(explain the reason for the removal here)\n"
+msgstr "（在这里解释需要移除的原因）\n"
+
+#: reportbug/debbugs.py:636
+msgid ""
+"The package has been `Orphaned'. It needs a new maintainer as soon as "
+"possible."
+msgstr "这个软件包已经被“遗弃”。它需要尽早得到一个新的维护者。"
+
+#: reportbug/debbugs.py:637
+msgid ""
+"This is a `Request for Adoption'. Due to lack of time, resources, interest "
+"or something similar, the current maintainer is asking for someone else to "
+"maintain this package. They will maintain it in the meantime, but perhaps "
+"not in the best possible way. In short: the package needs a new maintainer."
+msgstr ""
+"这是一个“软件包收留请求（RFA）”。因为缺乏时间、资源、兴趣或者类似的原因，当前"
+"的维护者请求其他人来维护这个软件包。原维护者仍然会继续维护一段时间，但是只能"
+"尽力而为。简而言之：这个软件包需要一个新的维护这。"
+
+#: reportbug/debbugs.py:638
+msgid ""
+"This is a `Request For Help'. The current maintainer wants to continue to "
+"maintain this package, but they need some help to do this because their time "
+"is limited or the package is quite big and needs several maintainers."
+msgstr ""
+"这是一个“帮助请求（RFP）”。当前的维护者希望继续维护该软件包，但是他们需要帮"
+"忙，因为维护者时间有限或者这个软件包比较大而需要数位维护者的共同参与。"
+
+#: reportbug/debbugs.py:639
+msgid ""
+"This is an `Intent To Package'. Please submit a package description along "
+"with copyright and URL in such a report."
+msgstr ""
+"这是一个“打包意向报告（ITP）”。请提交一个软件包描述，同时在该报告中包含其授权"
+"许可和 URL 信息。"
+
+#: reportbug/debbugs.py:640
+msgid ""
+"This is a `Request For Package'. You have found an interesting piece of "
+"software and would like someone else to maintain it for Debian. Please "
+"submit a package description along with copyright and URL in such a report."
+msgstr ""
+"这是一个“打包请求（RFP）”。您找到了一个有意思的软件并且希望某人为 Debian 维护"
+"该软件的软件包。请提交一个软件包描述，同时在该报告中包含其授权许可和 URL 信"
+"息。"
+
+#: reportbug/debbugs.py:643
+msgid "To report a bug in a package, use the name of the package, not wnpp.\n"
+msgstr "如需报告软件包中的缺陷，请使用软件包的名称，而非 wnpp。\n"
+
+#: reportbug/debbugs.py:651
+msgid "Please enter the proposed package name: "
+msgstr "请输入提议的软件包名称："
+
+#: reportbug/debbugs.py:653
+msgid "Please enter the package name: "
+msgstr "请输入软件包名称："
+
+#: reportbug/debbugs.py:656
+msgid "Invalid package name"
+msgstr "无效的软件包名称"
+
+#: reportbug/debbugs.py:668
+#, python-format
+msgid ""
+"A package called %s already appears to exist (at least on your system); "
+"continue?"
+msgstr "一个名为 %s 的软件包似乎已经存在了（至少在您的系统上如此）；继续吗？"
+
+#: reportbug/debbugs.py:670
+msgid ""
+"Ignore this problem and continue.  If you have already locally created a "
+"package with this name, this warning message may have been produced in error."
+msgstr ""
+"忽略该问题并继续。如果您已经在本地创建了具有该名称的软件包，这个警告信息可能"
+"是一个误判。"
+
+#: reportbug/debbugs.py:683
+msgid ""
+"Please briefly describe this package; this should be an appropriate short "
+"description for the eventual package: "
+msgstr "请简要地描述这个软件包；这些文字应当适合成为最终软件包的短描述信息："
+
+#: reportbug/debbugs.py:690
+msgid "Your report will be carbon-copied to debian-devel, per Debian policy.\n"
+msgstr "根据 Debian 政策，您的报告将被抄送至 debian-devel。\n"
+
+#: reportbug/debbugs.py:722
+msgid ""
+"Your request will be carbon-copied to debian-devel, per Debian policy.\n"
+msgstr "根据 Debian 政策，您的请求将被抄送至 debian-devel。\n"
+
+#: reportbug/debbugs.py:803
+msgid ""
+"The problem is a bug in the software or code.  For example, a crash would be "
+"a sw-bug."
+msgstr "问题是软件或者代码中的一个缺陷。例如，一个崩溃问题即属于该类。"
+
+#: reportbug/debbugs.py:805
+msgid ""
+"The problem is in the documentation.  For example, an error in a man page "
+"would be a doc-bug."
+msgstr "问题存在于文档中。例如，man 手册页中的问题即属于该类。"
+
+#: reportbug/debbugs.py:807
+msgid ""
+"You are requesting a new feature or a change in the behavior of software, or "
+"are making a suggestion.  For example, if you wanted reportbug to be able to "
+"get your local weather forecast, as well as report bugs, that would be a "
+"change-request."
+msgstr ""
+"您正要请求一个新的功能，或者修改软件中的行为，或者提出一个建议。例如，如果您"
+"希望 reportbug 工具可以获取您本地的天气预报并同时可以报告缺陷，这样的请求就是"
+"一个“修改请求”（change-request）。"
+
+#: reportbug/debbugs.py:817 reportbug/debbugs.py:821
+msgid "This problem is a security vulnerability in Debian."
+msgstr "该问题是 Debian 中的一个安全漏洞。"
+
+#: reportbug/debbugs.py:825
+msgid "You are including a patch to fix this problem."
+msgstr "您将在报告中包含一个可以解决问题的补丁。"
+
+#: reportbug/debbugs.py:826
+msgid "This bug applies to the upstream part of the package."
+msgstr "该缺陷适用于软件包的上游部分。"
+
+#: reportbug/debbugs.py:827
+msgid "This bug is relevant to the development of debian-installer."
+msgstr "该缺陷与 debian-installer 的开发相关。"
+
+#: reportbug/debbugs.py:828
+msgid "This bug affects support for Internet Protocol version 6."
+msgstr "该缺陷影响对 Internet Protocol version 6（IPv6）的支持。"
+
+#: reportbug/debbugs.py:829
+msgid "This bug affects support for large files (over 2 gigabytes)."
+msgstr "该缺陷影响对大文件的支持（超过 2G）。"
+
+#: reportbug/debbugs.py:830
+msgid "This bug reports a localization/internationalization issue."
+msgstr "该缺陷是对本地化/国际化问题的报告。"
+
+#: reportbug/debbugs.py:831
+msgid ""
+"This bug has a known solution but the maintainer requests someone else "
+"implement it."
+msgstr "该缺陷有一个已知的解决办法，但是维护者请求其他人进行实现。"
+
+#: reportbug/submit.py:109
+#, python-format
+msgid "gpg/pgp failed; input file in %s\n"
+msgstr "gpg/pgp 失败；输入文件位于 %s\n"
+
+#: reportbug/submit.py:129
+#, python-format
+msgid "Warning: opening '%s' failed: %s.\n"
+msgstr "警告：打开“%s”失败：%s。\n"
+
+#: reportbug/submit.py:212
+msgid "Error: Message creation failed, not sending\n"
+msgstr "错误：信件创建失败，将不会进行发送\n"
+
+#: reportbug/submit.py:271
+msgid "Does your report seem satisfactory"
+msgstr "您的报告是否已经满意"
+
+#: reportbug/submit.py:272
+msgid "Yes, send it."
+msgstr "是的，将其发送。"
+
+#: reportbug/submit.py:273
+msgid "No, don't send it."
+msgstr "不，不要发送。"
+
+#: reportbug/submit.py:291
+#, python-format
+msgid "Unable to rename existing %s as %s~\n"
+msgstr "无法将已有的 %s 重命名为 %s~\n"
+
+#: reportbug/submit.py:298
+#, python-format
+msgid "Writing to %s failed; using instead %s\n"
+msgstr "写入 %s 失败；将使用 %s 进行替代\n"
+
+#: reportbug/submit.py:318
+#, python-format
+msgid "Sending message via %s...\n"
+msgstr "正在经由 %s 发送信件……\n"
+
+#: reportbug/submit.py:325
+#, python-format
+msgid "Saving a backup of the report at %s\n"
+msgstr "在 %s 位置保存了报告的一个副本\n"
+
+#: reportbug/submit.py:337
+#, python-format
+msgid "Connecting to %s via SMTP...\n"
+msgstr "正在使用 SMTP 连接 %s……\n"
+
+#: reportbug/submit.py:357
+#, python-format
+msgid "Enter SMTP password for %s@%s: "
+msgstr "输入 %s@%s 的 SMTP 密码："
+
+#: reportbug/submit.py:365
+msgid "SMTP error: authentication failed.  Try again.\n"
+msgstr "SMTP 错误：验证失败。请重试。\n"
+
+#: reportbug/submit.py:376
+#, python-format
+msgid ""
+"SMTP send failure: %s. Do you want to retry (or else save the report and "
+"exit)?"
+msgstr "SMTP 发送失败：%s。您是否想要再试一次（或者保存该报告并退出）？"
+
+#: reportbug/submit.py:377
+msgid "Yes, please retry."
+msgstr "是的，请重试。"
+
+#: reportbug/submit.py:378
+msgid "No, save and exit."
+msgstr "不，保存并退出。"
+
+#: reportbug/submit.py:388 reportbug/submit.py:398
+#, python-format
+msgid "Wrote bug report to %s\n"
+msgstr "已将缺陷报告写入至 %s\n"
+
+#: reportbug/submit.py:392
+#, python-format
+msgid "Unable to send report to %s: %d %s\n"
+msgstr "无法将报告发送至 %s：%d %s\n"
+
+#: reportbug/submit.py:404
+#, python-format
+msgid "Bug report written as %s\n"
+msgstr "缺陷报告已写入为 %s\n"
+
+#: reportbug/submit.py:415
+#, python-format
+msgid "Error: send/write operation failed, bug report saved to %s\n"
+msgstr "错误：发送/写入操作失败，缺陷报告已保存为 %s\n"
+
+#: reportbug/submit.py:420 reportbug/ui/text_ui.py:1052
+#, python-format
+msgid "Spawning %s...\n"
+msgstr "正在启动 %s……\n"
+
+#: reportbug/submit.py:426
+msgid ""
+"Mutt users should be aware it is mandatory to edit the draft before "
+"sending.\n"
+msgstr "Mutt 用户需要注意，您必须在发送前对草稿内容进行编辑。\n"
+
+#: reportbug/submit.py:428
+msgid "Report has not been sent yet; what do you want to do now?"
+msgstr "报告还没有发送；您是否现在要进行发送？"
+
+#: reportbug/submit.py:430
+msgid "Edit the message."
+msgstr "编辑信件。"
+
+#: reportbug/submit.py:431
+msgid "Quit reportbug; will save the draft for future use."
+msgstr "离开 reportbug；将会保存草稿以供未来使用。"
+
+#: reportbug/submit.py:438
+#, python-format
+msgid "Draft saved into %s\n"
+msgstr "草稿已保存至 %s\n"
+
+#: reportbug/submit.py:445
+#, python-format
+msgid ""
+"\n"
+"Message sent to: %s\n"
+msgstr ""
+"\n"
+"信件已发送至：%s\n"
+
+#: reportbug/submit.py:447
+#, python-format
+msgid ""
+"\n"
+"Bug report submitted to: %s\n"
+msgstr ""
+"\n"
+"缺陷报告已提交至：%s\n"
+
+#: reportbug/submit.py:455
+msgid "Copies sent to:\n"
+msgstr "附件已发送至：\n"
+
+#: reportbug/submit.py:460
+msgid "Copies will be sent after processing to:\n"
+msgstr "在处理过后，副本将被发送给：\n"
+
+#: reportbug/submit.py:468
+#, python-format
+msgid ""
+"If you want to provide additional information, please wait to\n"
+"receive the bug tracking number via email; you may then send any extra\n"
+"information to %s (e.g. %s), where n is the bug number.  Normally you\n"
+"will receive an acknowledgement via email including the bug report number\n"
+"within an hour; if you haven't received a confirmation, then the bug "
+"reporting process failed at some point (reportbug or MTA failure, BTS "
+"maintenance, etc.).\n"
+msgstr ""
+"如果您想要提供额外的信息，请先稍作等待，直到您经由电子邮件收到了缺陷跟踪编号"
+"为止；之后，您可以发送任何额外的信息至 %s（例如，%s），其中 n 是缺陷编号。正"
+"常情况下，您会在一小时内收到经由电子邮件收到一封确认邮件，其中包含了缺陷报告"
+"编号；如果您没有收到任何的确认信息，那么缺陷报告流程可能在某个环节上出了问题"
+"（可能是 reportbug 或者邮件传输代理出错，缺陷跟踪系统的维护，等等）。\n"
+
+#: reportbug/submit.py:485
+#, python-format
+msgid "A copy of the report is stored as: %s\n"
+msgstr "该报告的一份副本已经保存为：%s\n"
+
+#: reportbug/urlutils.py:97
+#, python-format
+msgid "Enter username for %s at %s: "
+msgstr "输入 %s 在 %s 的用户名："
+
+#: reportbug/urlutils.py:99
+#, python-format
+msgid "Enter password for %s in %s at %s: "
+msgstr "输入 %s 在 %s 位于 %s 的密码："
+
+#: reportbug/urlutils.py:166
+msgid "http_proxy environment variable must be formatted as a valid URI"
+msgstr "http_proxy 环境变量必须以合法的 URI 格式给出"
+
+#: reportbug/urlutils.py:170
+#, python-format
+msgid "Failed to open %(url)r (%(exc_name)s: %(exc)s)"
+msgstr "无法打开 %(url)r (%(exc_name)s: %(exc)s)"
+
+#: reportbug/utils.py:59
+msgid "Offer simple prompts, bypassing technical questions."
+msgstr "提供简单的提示信息，绕过技术性的问题。"
+
+#: reportbug/utils.py:60
+msgid ""
+"Offer more extensive prompts, including asking about things that a "
+"moderately sophisticated user would be expected to know about Debian."
+msgstr ""
+"提供更详尽的提示信息，包括询问一些具有一定使用经验的用户应当知道的与 Debian "
+"相关的问题。"
+
+#: reportbug/utils.py:63
+msgid ""
+"Like standard, but assumes you know a bit more about Debian, including "
+"\"incoming\"."
+msgstr ""
+"类似标准类型，但是假定您对 Debian 了解得稍微多一些，包括“incoming”相关的信"
+"息。"
+
+#: reportbug/utils.py:65
+msgid ""
+"Bypass most handholding measures and preliminary triage routines.  This mode "
+"should not be used by people unfamiliar with Debian's policies and operating "
+"procedures."
+msgstr ""
+"绕过大多数的协助方案和初步的分类流程。这个模式不应当被那些对 Debian 政策和操"
+"作流程不熟悉的用户所使用。"
+
+#: reportbug/utils.py:255
+#, python-format
+msgid "Invalid entry in %s"
+msgstr "%s 中的无效项"
+
+#: reportbug/utils.py:1062
+#, python-format
+msgid "Unrecognized token: %s\n"
+msgstr "无法识别的 token：%s\n"
+
+#: reportbug/ui/__init__.py:29
+msgid "A text-oriented console user interface"
+msgstr "一个面向文本的控制台用户界面"
+
+#: reportbug/ui/__init__.py:30
+msgid "A menu-based console user interface"
+msgstr "一个基于菜单的控制台用户界面"
+
+#: reportbug/ui/__init__.py:31
+msgid "A graphical (GTK+) user interface."
+msgstr "一个图形界面（GTK+）的用户界面。"
+
+#: reportbug/ui/gtk2_ui.py:28
+msgid "No graphical display detected, falling back to text UI."
+msgstr "未探测到图形显示，将回退到文字用户界面。"
+
+#: reportbug/ui/gtk2_ui.py:54
+msgid ""
+"Please install the python3-gi and gir1.2-gtk-3.0 packages to use this "
+"interface."
+msgstr "要使用该界面，请先安装 python3-gui 和 gir1.2-gtk-3.0 软件包。"
+
+#: reportbug/ui/gtk2_ui.py:83
+msgid "<MainContext of UI thread>"
+msgstr "<UI 线程的主上下文>"
+
+#: reportbug/ui/gtk2_ui.py:85
+msgid "<MainContext of reportbug thread>"
+msgstr "<reportbug 线程的主上下文>"
+
+#: reportbug/ui/gtk2_ui.py:95
+#, python-format
+msgid "Function should be called in %s but was called in %s"
+msgstr "函数应该在 %s 中被调用，但是它在 %s 中被调用"
+
+#: reportbug/ui/gtk2_ui.py:99
+#, python-format
+msgid "Function should be called with %s acquired"
+msgstr "函数应该在获取 %s 后再被调用"
+
+#: reportbug/ui/gtk2_ui.py:136 reportbug/ui/gtk2_ui.py:145
+#: reportbug/ui/gtk2_ui.py:152 reportbug/ui/gtk2_ui.py:256
+#: reportbug/ui/gtk2_ui.py:673 reportbug/ui/gtk2_ui.py:1560
+msgid "Reportbug"
+msgstr "报告缺陷"
+
+#: reportbug/ui/gtk2_ui.py:230
+msgid ""
+"An error has occurred while doing an operation in Reportbug.\n"
+"Please report the bug."
+msgstr ""
+"在 Reportbug 中进行的一项操作导致了错误发生。\n"
+"请报告这个问题。"
+
+#: reportbug/ui/gtk2_ui.py:237
+msgid "More details"
+msgstr "更多细节"
+
+#: reportbug/ui/gtk2_ui.py:413
+msgid "Retrieving bug information."
+msgstr "正在获取缺陷信息。"
+
+#: reportbug/ui/gtk2_ui.py:424
+msgid "Could not acquire my own main-context"
+msgstr "无法获取我自己的主要上下文"
+
+#: reportbug/ui/gtk2_ui.py:454
+msgid "The bug can't be fetched or it doesn't exist."
+msgstr "该缺陷无法获取，或它并不存在。"
+
+#: reportbug/ui/gtk2_ui.py:464
+msgid "Description: "
+msgstr "描述："
+
+#: reportbug/ui/gtk2_ui.py:483
+msgid "Open in browser"
+msgstr "在浏览器中打开"
+
+#: reportbug/ui/gtk2_ui.py:487
+msgid "Reply"
+msgstr "回复"
+
+#: reportbug/ui/gtk2_ui.py:514
+msgid "Reportbug: bug information"
+msgstr "Reportbug: 缺陷信息"
+
+#: reportbug/ui/gtk2_ui.py:547
+msgid "Could not acquire UI context"
+msgstr "无法获取用户界面上下文"
+
+#: reportbug/ui/gtk2_ui.py:718
+msgid ""
+"\n"
+"<b>Reportbug</b> is a tool designed to make the reporting of bugs in Debian "
+"and derived distributions relatively painless.\n"
+"\n"
+"This wizard will guide you through the bug reporting process step by step.\n"
+"\n"
+"<b>Note:</b> bug reports are publicly archived(including the email address "
+"of the submitter)."
+msgstr ""
+"\n"
+"<b>Reportbug</b> 是一个设计用来以相对无痛的方式向 Debian 及其衍生发行版报告缺"
+"陷与漏洞的工具。\n"
+"\n"
+"该向导会帮助您一步步完成缺陷报告流程。\n"
+"\n"
+"<b>注意：</b>缺陷报告是公开存档的（其中包括提交者的电子邮件地址）。"
+
+#: reportbug/ui/gtk2_ui.py:730
+msgid "Homepage of reportbug project"
+msgstr "reportbug 项目的主页"
+
+#: reportbug/ui/gtk2_ui.py:765
+msgid "(enter Ctrl+c to exit reportbug without reporting a bug)"
+msgstr "（输入 Ctrl+c 可以停止缺陷报告流程并离开 reportbug）"
+
+#: reportbug/ui/gtk2_ui.py:907
+msgid "Add a new item to the list"
+msgstr "向列表中添加新项目"
+
+#: reportbug/ui/gtk2_ui.py:987
+msgid "Option"
+msgstr "选项"
+
+#: reportbug/ui/gtk2_ui.py:991 reportbug/ui/gtk2_ui.py:1123
+msgid "Description"
+msgstr "描述"
+
+#: reportbug/ui/gtk2_ui.py:1050
+#, python-format
+msgid "Querying %s bug tracking system for reports on %s"
+msgstr "正在查询 %s 缺陷跟踪系统中 %s 的报告"
+
+#: reportbug/ui/gtk2_ui.py:1052
+#, python-format
+msgid "Querying %s bug tracking system for reports %s"
+msgstr "正在查询 %s 缺陷跟踪系统中的 %s 报告"
+
+#: reportbug/ui/gtk2_ui.py:1061
+#, python-format
+msgid "Unable to connect to %s BTS."
+msgstr "无法连接到 %s 缺陷跟踪系统。"
+
+#: reportbug/ui/gtk2_ui.py:1072
+#, python-format
+msgid "%d bug reports found"
+msgstr "找到了 %d 份缺陷报告"
+
+#: reportbug/ui/gtk2_ui.py:1074
+msgid "One bug report found"
+msgstr "找到了一份缺陷报告"
+
+#: reportbug/ui/gtk2_ui.py:1089 reportbug/ui/text_ui.py:608
+msgid "No record of this package found."
+msgstr "没有找到该软件包的记录。"
+
+#: reportbug/ui/gtk2_ui.py:1101
+msgid "List of bugs. Select a bug to retrieve and submit more information."
+msgstr "缺陷列表。选择一份缺陷报告以获取并提交更多信息。"
+
+#: reportbug/ui/gtk2_ui.py:1120
+msgid "ID"
+msgstr "编号"
+
+#: reportbug/ui/gtk2_ui.py:1121
+msgid "Tag"
+msgstr "标签"
+
+#: reportbug/ui/gtk2_ui.py:1122
+msgid "Package"
+msgstr "软件包"
+
+#: reportbug/ui/gtk2_ui.py:1124
+msgid "Status"
+msgstr "状态"
+
+#: reportbug/ui/gtk2_ui.py:1125
+msgid "Submitter"
+msgstr "提交者"
+
+#: reportbug/ui/gtk2_ui.py:1126
+msgid "Date"
+msgstr "日期"
+
+#: reportbug/ui/gtk2_ui.py:1127
+msgid "Severity"
+msgstr "严重性"
+
+#: reportbug/ui/gtk2_ui.py:1128
+msgid "Version"
+msgstr "版本"
+
+#: reportbug/ui/gtk2_ui.py:1129
+msgid "Filed date"
+msgstr "提交日期"
+
+#: reportbug/ui/gtk2_ui.py:1130
+msgid "Modified date"
+msgstr "修改日期"
+
+#: reportbug/ui/gtk2_ui.py:1137
+msgid "Retrieve and submit bug information"
+msgstr "获取并提交缺陷信息"
+
+#: reportbug/ui/gtk2_ui.py:1162
+msgid "Please select one ore more bugs"
+msgstr "请选择一个或多个缺陷"
+
+#: reportbug/ui/gtk2_ui.py:1213
+#, python-format
+msgid "%s. Double-click a bug to retrieve and submit more information."
+msgstr "%s。在缺陷条目上双击以获取并向其提交更多信息。"
+
+#: reportbug/ui/gtk2_ui.py:1307 reportbug/ui/gtk2_ui.py:1317
+msgid "Thanks for your report"
+msgstr "感谢您的报告"
+
+#: reportbug/ui/gtk2_ui.py:1325
+msgid "Subject: "
+msgstr "主题："
+
+#: reportbug/ui/gtk2_ui.py:1350
+msgid "Other system information"
+msgstr "其它系统信息"
+
+#: reportbug/ui/gtk2_ui.py:1360
+msgid "Please install <b>python3-gtkspellcheck</b> to enable spell checking"
+msgstr "请安装 <b>python3-gtkspellcheck</b> 以启用拼写检查"
+
+#: reportbug/ui/gtk2_ui.py:1419
+msgid "*** Please type your report below this line ***"
+msgstr "*** 请在本行下方填写您的报告 ***"
+
+#: reportbug/ui/gtk2_ui.py:1420
+msgid ""
+"Please type your report here.\n"
+"The text will be wrapped to be max 79 chars long per line."
+msgstr ""
+"请在此处输入您的报告。请使用英文。\n"
+"文本将被自动换行处理以确保每行最多 79 个字符。"
+
+#: reportbug/ui/gtk2_ui.py:1459
+msgid "(e to edit)"
+msgstr "（按 e 编辑）"
+
+#: reportbug/ui/gtk2_ui.py:1466
+msgid "Change editor"
+msgstr "更改编辑器"
+
+#: reportbug/ui/gtk2_ui.py:1469
+msgid "Pipe the message through the pager"
+msgstr "使用管道将信件传输给分页器"
+
+#: reportbug/ui/gtk2_ui.py:1472
+msgid "Print message to stdout"
+msgstr "将信件内容打印至标准输出"
+
+#: reportbug/ui/gtk2_ui.py:1473
+msgid "Display message in a text view"
+msgstr "在一个文本视图中显示信件"
+
+#: reportbug/ui/gtk2_ui.py:1551
+msgid "This operation may take a while"
+msgstr "该操作可能需要一段时间"
+
+#: reportbug/ui/gtk2_ui.py:1585
+msgid "_Quit"
+msgstr "退出(_Q)"
+
+#: reportbug/ui/gtk2_ui.py:1590
+msgid "_Continue"
+msgstr "继续(_C)"
+
+#: reportbug/ui/gtk2_ui.py:1637
+msgid "Are you sure you want to quit Reportbug?"
+msgstr "您确认要退出 Reportbug 吗？"
+
+#: reportbug/ui/gtk2_ui.py:1755
+msgid "ENTER"
+msgstr "回车"
+
+#: reportbug/ui/gtk2_ui.py:1813
+#, python-format
+msgid ""
+"Please install the %s package to use the GTK+(known as 'gtk2' in reportbug) "
+"interface.\n"
+"Falling back to 'text' interface."
+msgstr ""
+"请安装 %s 软件包以使用 GTK+（在 reportbug 中被称为“gtk2”）界面。\n"
+"回退到“text”界面。"
+
+#: reportbug/ui/gtk2_ui.py:1831
+msgid "Could not acquire new main-context"
+msgstr "无法获得新的主-上下文。"
+
+#: reportbug/ui/text_ui.py:121 reportbug/ui/text_ui.py:721
+#: reportbug/ui/text_ui.py:765 reportbug/ui/text_ui.py:939
+#: reportbug/ui/text_ui.py:987
+#, python-format
+msgid "Invalid report number: %s\n"
+msgstr "无效的报告编号：%s\n"
+
+#: reportbug/ui/text_ui.py:159
+msgid ""
+"\n"
+"User interrupt (^D).\n"
+msgstr ""
+"\n"
+"用户中断（^D）。\n"
+
+#: reportbug/ui/text_ui.py:202
+msgid "Only the following entries are allowed: "
+msgstr "仅允许下列条目："
+
+#: reportbug/ui/text_ui.py:211
+msgid "Display this help."
+msgstr "显示本帮助信息。"
+
+#: reportbug/ui/text_ui.py:214
+msgid "(default) "
+msgstr "（默认）"
+
+#: reportbug/ui/text_ui.py:218
+msgid "No help for this option."
+msgstr "该选项没有帮助信息。"
+
+#: reportbug/ui/text_ui.py:226
+msgid "Invalid selection.\n"
+msgstr "无效的选择。\n"
+
+#: reportbug/ui/text_ui.py:275
+msgid "  Press ENTER on a blank line to continue.\n"
+msgstr " 在空白行按下回车（ENTER）键以继续。\n"
+
+#: reportbug/ui/text_ui.py:425
+#, python-format
+msgid "Retrieving report #%d from %s bug tracking system...\n"
+msgstr "正在获取报告 #%d，来自 %s 缺陷跟踪系统……\n"
+
+#: reportbug/ui/text_ui.py:435
+#, python-format
+msgid "No report available: #%s\n"
+msgstr "没有可用报告：#%s\n"
+
+#: reportbug/ui/text_ui.py:442
+msgid "Cannot retrieve bug's package, exiting...\n"
+msgstr "无法获取缺陷对应的软件包，退出……\n"
+
+#: reportbug/ui/text_ui.py:474
+msgid "What do you want to do now?"
+msgstr "您现在想要做些什么？"
+
+#: reportbug/ui/text_ui.py:475
+msgid "Provide extra information."
+msgstr "提供额外信息。"
+
+#: reportbug/ui/text_ui.py:476
+msgid "Show other bug reports (return to bug listing)."
+msgstr "显示其它缺陷报告（回到缺陷列表）。"
+
+#: reportbug/ui/text_ui.py:477
+msgid "Show next message (followup)."
+msgstr "显示下一个信件（线索下游）。"
+
+#: reportbug/ui/text_ui.py:478
+msgid "Show previous message (followup)."
+msgstr "显示上一个信件（线索上游）。"
+
+#: reportbug/ui/text_ui.py:479
+msgid "Redisplay this message."
+msgstr "重新显示本信件。"
+
+#: reportbug/ui/text_ui.py:480
+msgid "Launch e-mail client to read full log."
+msgstr "启动电子邮件客户端来阅读完整记录。"
+
+#: reportbug/ui/text_ui.py:481
+msgid "Launch web browser to read full log."
+msgstr "启动网页浏览器来阅读完整记录。"
+
+#: reportbug/ui/text_ui.py:482 reportbug/ui/text_ui.py:677
+#: reportbug/ui/text_ui.py:894
+msgid "I'm bored; quit please."
+msgstr "我累了；退出程序吧。"
+
+#: reportbug/ui/text_ui.py:512
+#, python-format
+msgid "%s bug tracking system has no web URL; bypassing query\n"
+msgstr "%s 缺陷跟踪系统没有网页 URL；绕过查询步骤\n"
+
+#: reportbug/ui/text_ui.py:521 reportbug/ui/text_ui.py:524
+#, python-format
+msgid "Querying %s BTS for reports on %s%s...\n"
+msgstr "正在查询 %s 缺陷跟踪系统中关于 %s%s 的报告……\n"
+
+#: reportbug/ui/text_ui.py:534
+#, python-format
+msgid "Unable to connect to %s BTS (error: \"%s\"); "
+msgstr "无法连接到 %s 缺陷跟踪系统（错误：“%s”）；"
+
+#: reportbug/ui/text_ui.py:535
+msgid "continue"
+msgstr "继续"
+
+#: reportbug/ui/text_ui.py:536
+msgid "Keep going."
+msgstr "继续。"
+
+#: reportbug/ui/text_ui.py:537
+msgid "Abort."
+msgstr "中止。"
+
+#: reportbug/ui/text_ui.py:599
+#, python-format
+msgid ""
+"%d bug report found:\n"
+"\n"
+msgstr ""
+"找到了 %d 份缺陷报告：\n"
+"\n"
+
+#: reportbug/ui/text_ui.py:601
+#, python-format
+msgid ""
+"%d bug reports found:\n"
+"\n"
+msgstr ""
+"找到了 %d 份缺陷报告：\n"
+"\n"
+
+#: reportbug/ui/text_ui.py:657 reportbug/ui/text_ui.py:874
+msgid " (s to skip rest)"
+msgstr "（按 s 跳过剩余内容）"
+
+#: reportbug/ui/text_ui.py:666 reportbug/ui/text_ui.py:883
+msgid "Is the bug you found listed above"
+msgstr "您找到的缺陷是否存在于以上列表中"
+
+#: reportbug/ui/text_ui.py:668 reportbug/ui/text_ui.py:885
+msgid "What would you like to do next"
+msgstr "您接下来想要做些什么"
+
+#: reportbug/ui/text_ui.py:671 reportbug/ui/text_ui.py:888
+msgid "Problem already reported; optionally add extra information."
+msgstr "问题已经被报告；添加额外信息（可选）。"
+
+#: reportbug/ui/text_ui.py:672 reportbug/ui/text_ui.py:889
+msgid "Problem not listed above; possibly check more."
+msgstr "问题没有列出；可能需要进一步检查。"
+
+#: reportbug/ui/text_ui.py:673 reportbug/ui/text_ui.py:890
+msgid "Open the complete bugs list in a web browser."
+msgstr "在网页浏览器中打开完整缺陷列表。"
+
+#: reportbug/ui/text_ui.py:674 reportbug/ui/text_ui.py:891
+msgid ""
+"Get more information about a bug (you can also enter a number\n"
+"     without selecting \"m\" first)."
+msgstr "获取某个缺陷的更多信息（您也可以无需事先选中“m”，直接输入数字）。"
+
+#: reportbug/ui/text_ui.py:676 reportbug/ui/text_ui.py:893
+msgid "Redisplay the last bugs shown."
+msgstr "重新显示上一次显示的缺陷。"
+
+#: reportbug/ui/text_ui.py:678 reportbug/ui/text_ui.py:895
+msgid "Skip remaining problems; file a new report immediately."
+msgstr "跳过剩余的问题；立刻填写一个新报告。"
+
+#: reportbug/ui/text_ui.py:679 reportbug/ui/text_ui.py:898
+msgid "Open the report using an e-mail client."
+msgstr "使用一个电子邮件客户端打开报告。"
+
+#: reportbug/ui/text_ui.py:680
+msgid "Filter bug list using a pattern."
+msgstr "使用一个模式过滤缺陷列表。"
+
+#: reportbug/ui/text_ui.py:682 reportbug/ui/text_ui.py:901
+msgid " (skip to Next page)."
+msgstr "（跳至下一页）。"
+
+#: reportbug/ui/text_ui.py:709 reportbug/ui/text_ui.py:927
+msgid ""
+"Enter the number of the bug report you want to give more info on,\n"
+"or press ENTER to exit: #"
+msgstr ""
+"输入您希望补充更多信息的已有缺陷报告的编号，\n"
+"或者按下回车键（ENTER）以退出：#"
+
+#: reportbug/ui/text_ui.py:734 reportbug/ui/text_ui.py:958
+msgid "Please enter the number of the bug you would like to view: #"
+msgstr "请输入您想要查看的缺陷报告的编号：#"
+
+#: reportbug/ui/text_ui.py:743 reportbug/ui/text_ui.py:965
+msgid "Please enter the number of the bug you would like more info on: #"
+msgstr "请输入您想要补充更多信息的缺陷报告的编号：#"
+
+#: reportbug/ui/text_ui.py:814
+msgid ""
+"Enter the search pattern (a Perl-compatible regular expression)\n"
+"or press ENTER to exit: "
+msgstr ""
+"输入搜索模式（一个 Perl 兼容的正则表达式）\n"
+"或者按下回车键（ENTER）以退出："
+
+#: reportbug/ui/text_ui.py:823
+msgid "Invalid regular expression, press ENTER to continue."
+msgstr "无效正则表达式，按回车键（ENTER）以继续。"
+
+#: reportbug/ui/text_ui.py:830
+msgid "No match found, press ENTER to continue."
+msgstr "未找到匹配项，按下回车键（ENTER）以继续。"
+
+#: reportbug/ui/text_ui.py:860
+#, python-format
+msgid " %s: %d report%s (%d remain%s)\n"
+msgstr "%s: %d 报告%s（%d 剩余%s）\n"
+
+#: reportbug/ui/text_ui.py:863
+#, python-format
+msgid " %s: %d report%s\n"
+msgstr "%s: %d 报告%s\n"
+
+#: reportbug/ui/text_ui.py:896
+msgid "Filter (search) bug list using a pattern."
+msgstr "使用一个模式在缺陷列表中过滤（搜索）。"
+
+#: reportbug/ui/text_ui.py:897
+msgid "Up one level of filter."
+msgstr "返回上一个过滤器。"
+
+#: reportbug/ui/text_ui.py:899
+msgid "Top of the bug list (remove all filters)."
+msgstr "缺陷列表顶端（移除所有过滤器）。"
+
+#: reportbug/ui/text_ui.py:1010
+msgid ""
+"\n"
+"(You may need to press 'q' to exit your pager and continue using\n"
+"reportbug at this point.)"
+msgstr ""
+"\n"
+"（您此时可能需要按下“q”键以退出您的分页器并继续使用 reportbug。）"
+
+#: reportbug/ui/text_ui.py:1021
+msgid "No editor found!\n"
+msgstr "未找到编辑器！\n"
+
+#: reportbug/ui/text_ui.py:1049
+#, python-format
+msgid "Spawning %s in background; please press Enter when done editing.\n"
+msgstr "正在后台启动 %s；请在完成编辑后按下回车（Enter）键。\n"
+
+#: reportbug/ui/text_ui.py:1057
+#, python-format
+msgid "Warning: possible error exit from %s: %d\n"
+msgstr "警告：%s 可能以不正常的状态退出：%d\n"
+
+#: reportbug/ui/text_ui.py:1060
+#, python-format
+msgid "Bug report file %s removed!"
+msgstr "缺陷报告文件 %s 已被删除！"
+
+#: reportbug/ui/text_ui.py:1069
+msgid "No changes were made in the editor.\n"
+msgstr "编辑器没有对内容进行修改。\n"

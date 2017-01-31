@@ -1,0 +1,1546 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-02-13 17:44+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: bin/reportbug:96
+#, python-format
+msgid ""
+"reportbug stopped; your incomplete report is stored as \"%s\".\n"
+"This file may be located in a temporary directory; if so, it might disappear "
+"without any further notice. To recover this file to use it as bug report "
+"body, please take a look at the \"-i FILE, --include=FILE\" option.\n"
+"Alternatively, you can copy the content of the temporary file (both headers "
+"and body) and copy it into your MUA and send the mail to submit@bugs.debian."
+"org, editing the subject and bug text as needed (but not altering the other "
+"information).\n"
+msgstr ""
+
+#: bin/reportbug:154
+#, python-format
+msgid ""
+"Unable to attach file %s\n"
+"%s\n"
+msgstr ""
+
+#: bin/reportbug:184
+msgid "Done editing"
+msgstr ""
+
+#: bin/reportbug:185
+msgid "Continue (editing done)."
+msgstr ""
+
+#: bin/reportbug:186
+msgid "Don't continue yet."
+msgstr ""
+
+#: bin/reportbug:187
+msgid "Exit without sending report."
+msgstr ""
+
+#: bin/reportbug:195
+#, python-format
+msgid "Submit this report on %s (e to edit)"
+msgstr ""
+
+#: bin/reportbug:198
+msgid "Send this message (e to edit)"
+msgstr ""
+
+#: bin/reportbug:199
+#, python-format
+msgid "Message will be sent to %s\n"
+msgstr ""
+
+#: bin/reportbug:201
+#, python-format
+msgid "Report will be saved as %s\n"
+msgstr ""
+
+#: bin/reportbug:203
+#, python-format
+msgid "Report will be sent to %s\n"
+msgstr ""
+
+#: bin/reportbug:206
+msgid "Attachments:\n"
+msgstr ""
+
+#: bin/reportbug:212
+msgid "No subject found in message.  Please edit again.\n"
+msgstr ""
+
+#: bin/reportbug:224
+#, python-format
+msgid "Wrong line: %s\n"
+msgstr ""
+
+#: bin/reportbug:226
+msgid ""
+"ERROR: you have composed a WNPP bug report with fields unchanged from the "
+"template; this will NOT be submitted. Please edit all fields so they contain "
+"correct values (e to edit)"
+msgstr ""
+
+#: bin/reportbug:229
+#, python-format
+msgid "Save the report into %s ."
+msgstr ""
+
+#: bin/reportbug:231
+msgid "Submit the bug report via email."
+msgstr ""
+
+#: bin/reportbug:235
+msgid ""
+"Don't submit the bug report; instead, save it in a temporary file (exits "
+"reportbug)."
+msgstr ""
+
+#: bin/reportbug:237
+msgid "Save it in a temporary file and quit."
+msgstr ""
+
+#: bin/reportbug:238
+msgid "Attach a file."
+msgstr ""
+
+#: bin/reportbug:239
+msgid "Detach an attachment file."
+msgstr ""
+
+#: bin/reportbug:240
+msgid "Include a text file."
+msgstr ""
+
+#: bin/reportbug:241
+msgid "Change editor and re-edit."
+msgstr ""
+
+#: bin/reportbug:242 bin/reportbug:378
+msgid "Re-edit the bug report."
+msgstr ""
+
+#: bin/reportbug:243
+msgid "Pipe the message through the pager."
+msgstr ""
+
+#: bin/reportbug:244
+msgid "print message to stdout."
+msgstr ""
+
+#: bin/reportbug:245
+msgid "Add tags."
+msgstr ""
+
+#: bin/reportbug:246
+msgid "Add a X-Debbugs-CC recipient (a CC but after BTS processing)."
+msgstr ""
+
+#: bin/reportbug:247
+msgid "Choose a mailer to edit the report."
+msgstr ""
+
+#: bin/reportbug:253
+msgid "Choose a text file to include: "
+msgstr ""
+
+#: bin/reportbug:255
+msgid "Choose a file to attach: "
+msgstr ""
+
+#: bin/reportbug:262 bin/reportbug:1447
+#, python-format
+msgid "Can't find %s to include!\n"
+msgstr ""
+
+#: bin/reportbug:267
+#, python-format
+msgid ""
+"The attachment file %s size is bigger than the maximum of %d bytes: reduce "
+"its size else the report cannot be sent\n"
+msgstr ""
+
+#: bin/reportbug:279
+#, python-format
+msgid "Cannot include %s!\n"
+msgstr ""
+
+#: bin/reportbug:285
+msgid "No attachment file to detach.\n"
+msgstr ""
+
+#: bin/reportbug:287
+msgid "Choose an attachment file to detach (an empty line will exit): "
+msgstr ""
+
+#: bin/reportbug:291
+msgid "Select the file:"
+msgstr ""
+
+#: bin/reportbug:295
+#, python-format
+msgid ""
+"Attachment file \"%s\" successfully detached.\n"
+"\n"
+msgstr ""
+
+#: bin/reportbug:297
+msgid ""
+"Nothing to detach.\n"
+"\n"
+msgstr ""
+
+#: bin/reportbug:299
+msgid "Choose editor: "
+msgstr ""
+
+#: bin/reportbug:305
+msgid "Choose a mailer for your report"
+msgstr ""
+
+#: bin/reportbug:306
+msgid "Select mailer: "
+msgstr ""
+
+#: bin/reportbug:309
+msgid "Selected mail user agent cannot be found.\n"
+msgstr ""
+
+#: bin/reportbug:317
+msgid ""
+"Editing the report will lose all attachments: are you sure you want to "
+"continue?"
+msgstr ""
+
+#: bin/reportbug:318
+msgid "Yes, please"
+msgstr ""
+
+#: bin/reportbug:319
+msgid "No, thanks"
+msgstr ""
+
+#: bin/reportbug:347 bin/reportbug:2141
+msgid "Do any of the following apply to this report?"
+msgstr ""
+
+#: bin/reportbug:348 bin/reportbug:2143
+msgid "Please select tags: "
+msgstr ""
+
+#: bin/reportbug:368
+msgid ""
+"Please add the email address. Just press ENTER if you don't want anymore."
+msgstr ""
+
+#: bin/reportbug:375
+msgid "Report is unchanged.  Edit this report or quit"
+msgstr ""
+
+#: bin/reportbug:376
+msgid ""
+"Don't submit the bug report; instead, save it in a temporary file and quit."
+msgstr ""
+
+#: bin/reportbug:379
+msgid "Send report anyway."
+msgstr ""
+
+#: bin/reportbug:385
+msgid "Sending empty report anyway...\n"
+msgstr ""
+
+#: bin/reportbug:394
+#, python-format
+msgid "Finding package for '%s'...\n"
+msgstr ""
+
+#: bin/reportbug:398
+#, python-format
+msgid "Resolved as '%s'.\n"
+msgstr ""
+
+#: bin/reportbug:400
+msgid "No packages match.\n"
+msgstr ""
+
+#: bin/reportbug:407
+msgid "Please re-run reportbug selecting one of these packages:"
+msgstr ""
+
+#: bin/reportbug:419
+msgid "Multiple packages match: "
+msgstr ""
+
+#: bin/reportbug:421 bin/reportbug:1527 bin/reportbug:1559 bin/reportbug:1626
+msgid "Select one of these packages: "
+msgstr ""
+
+#: bin/reportbug:429
+#, python-format
+msgid "Using package '%s'.\n"
+msgstr ""
+
+#: bin/reportbug:435
+#, python-format
+msgid "%s is not a valid package name."
+msgstr ""
+
+#: bin/reportbug:444
+msgid ""
+"Please enter the name of the package in which you have found a problem, or "
+"choose one of these bug categories:"
+msgstr ""
+
+#: bin/reportbug:448
+msgid "Enter a package: "
+msgstr ""
+
+#: bin/reportbug:459
+msgid "Please enter the name of the package in which you have found a problem"
+msgstr ""
+
+#: bin/reportbug:462
+msgid ", or type 'other' to report a more general problem."
+msgstr ""
+
+#: bin/reportbug:465
+msgid ""
+" If you don't know what package the bug is in, please contact debian-"
+"user@lists.debian.org for assistance."
+msgstr ""
+
+#: bin/reportbug:488 bin/reportbug:1382
+msgid "Automatically selecting the package for the running kernel"
+msgstr ""
+
+#: bin/reportbug:493
+msgid "Is \"reportbug\" actually the package you are having problems with"
+msgstr ""
+
+#: bin/reportbug:504
+msgid "Are you reporting a problem with this program (reportbug)"
+msgstr ""
+
+#: bin/reportbug:506
+msgid "Yes, this is actually a bug in reportbug."
+msgstr ""
+
+#: bin/reportbug:507
+msgid "No, this is really a problem in the bug tracking system itself."
+msgstr ""
+
+#: bin/reportbug:513
+msgid ""
+"If you have a general problem, please do consider using the available Debian "
+"support channels to narrow the problem down. This will help us together to "
+"resolve the problem quicker. See https://www.debian.org/support"
+msgstr ""
+
+#: bin/reportbug:518
+msgid "Are you sure this bug doesn't apply to a specific package?"
+msgstr ""
+
+#: bin/reportbug:520
+msgid "Yes, this bug is truly general."
+msgstr ""
+
+#: bin/reportbug:521
+msgid "No, this is not really a general bug."
+msgstr ""
+
+#: bin/reportbug:527
+msgid "Are you sure you want to file a WNPP report?"
+msgstr ""
+
+#: bin/reportbug:528 bin/reportbug:537
+msgid "Yes, I am a developer or know what I'm doing."
+msgstr ""
+
+#: bin/reportbug:529
+msgid "No, I am not a developer and I don't know what wnpp means."
+msgstr ""
+
+#: bin/reportbug:536
+#, python-format
+msgid "Are you sure you want to file a bug on %s?"
+msgstr ""
+
+#: bin/reportbug:538
+#, python-format
+msgid "No, I am not a developer and I don't know what %s is."
+msgstr ""
+
+#: bin/reportbug:563
+#, python-format
+msgid ""
+"Welcome to reportbug!  Since it looks like this is the first time you have "
+"used reportbug, we are configuring its behavior.  These settings will be "
+"saved to the file \"%s\", which you will be free to edit further.\n"
+"\n"
+msgstr ""
+
+#: bin/reportbug:569
+msgid "Please choose the default operating mode for reportbug."
+msgstr ""
+
+#: bin/reportbug:571
+msgid "Select mode: "
+msgstr ""
+
+#: bin/reportbug:581
+msgid "Please choose the default interface for reportbug."
+msgstr ""
+
+#: bin/reportbug:583
+msgid "Select interface: "
+msgstr ""
+
+#: bin/reportbug:590
+msgid ""
+"Will reportbug often have direct Internet access?  (You should answer yes to "
+"this question unless you know what you are doing and plan to check whether "
+"duplicate reports have been filed via some other channel.)"
+msgstr ""
+
+#: bin/reportbug:595
+msgid "Yes, reportbug should assume it has access to the network always."
+msgstr ""
+
+#: bin/reportbug:597
+msgid "No, I am only online occasionally to send and receive mail."
+msgstr ""
+
+#: bin/reportbug:612
+msgid "What real name should be used for sending bug reports?"
+msgstr ""
+
+#: bin/reportbug:620
+msgid ""
+"Which of your email addresses should be used when sending bug reports? (Note "
+"that this address will be visible in the bug tracking system, so you may "
+"want to use a webmail address or another address with good spam filtering "
+"capabilities.)"
+msgstr ""
+
+#: bin/reportbug:628
+msgid "Your email address is not valid; please try another one.\n"
+msgstr ""
+
+#: bin/reportbug:632
+msgid ""
+"Do you have a \"mail transport agent\" (MTA) like Exim, Postfix or SSMTP "
+"configured on this computer to send mail to the Internet?"
+msgstr ""
+
+#: bin/reportbug:635
+msgid ""
+"Yes, I can run /usr/sbin/sendmail without horrible things happening. If you "
+"can send email from this machine without setting an SMTP Host in your "
+"mailer, you should choose this answer."
+msgstr ""
+
+#: bin/reportbug:639
+msgid "No, I need to use an SMTP Host or I don't know if I have an MTA."
+msgstr ""
+
+#: bin/reportbug:648
+msgid ""
+"Please enter the name of your SMTP host.  Usually it's called something like "
+"\"mail.example.org\" or \"smtp.example.org\". If you need to use a different "
+"port than default, use the <host>:<port> alternative format.\n"
+"\n"
+"Just press ENTER if you don't have one or don't know, and so a Debian SMTP "
+"host will be used."
+msgstr ""
+
+#: bin/reportbug:662
+#, python-format
+msgid ""
+"If you need to use a user name to send email via \"%s\" on your computer, "
+"please enter that user name.  Just press ENTER if you don't need a user name."
+msgstr ""
+
+#: bin/reportbug:672
+msgid ""
+"Do you want to encrypt the SMTP connection with TLS (only available if the "
+"SMTP host supports it)?"
+msgstr ""
+
+#: bin/reportbug:674
+msgid "Yes"
+msgstr ""
+
+#: bin/reportbug:675
+msgid "No"
+msgstr ""
+
+#: bin/reportbug:679
+msgid ""
+"Please enter the name of your proxy server.  It should only use this "
+"parameter if you are behind a firewall. The PROXY argument should be  "
+"formatted as a valid HTTP URL, including (if necessary) a port number; for "
+"example, http://192.168.1.1:3128/. Just press ENTER if you don't have one or "
+"don't know."
+msgstr ""
+
+#: bin/reportbug:692
+#, python-format
+msgid "Unable to rename %s as %s~\n"
+msgstr ""
+
+#: bin/reportbug:700
+#, python-format
+msgid ""
+"Unable to save %s; most likely, you do not have a home directory.  Please "
+"fix this before using reportbug again.\n"
+msgstr ""
+
+#: bin/reportbug:777
+msgid ""
+"Default preferences file written.  To reconfigure, re-run reportbug with the "
+"\"--configure\" option.\n"
+msgstr ""
+
+#: bin/reportbug:789 bin/reportbug:808
+#, python-format
+msgid "Ignored bogus setting for %s: %s\n"
+msgstr ""
+
+#: bin/reportbug:817
+msgid "*** Warning:"
+msgstr ""
+
+#: bin/reportbug:840
+#, python-format
+msgid "Warning: untranslated token \"%s\"\n"
+msgstr ""
+
+#: bin/reportbug:847
+msgid "do not include conffiles in report"
+msgstr ""
+
+#: bin/reportbug:852
+msgid "specify report class for GNATS BTSes"
+msgstr ""
+
+#: bin/reportbug:855
+msgid "send report only to yourself"
+msgstr ""
+
+#: bin/reportbug:858
+msgid "operate in test mode (maintainer use only)"
+msgstr ""
+
+#: bin/reportbug:860
+msgid "specify an editor for your report"
+msgstr ""
+
+#: bin/reportbug:862
+msgid "report the bug against the package containing the specified file"
+msgstr ""
+
+#: bin/reportbug:865
+msgid "parse information from buildd format: $source_$version"
+msgstr ""
+
+#: bin/reportbug:868
+msgid "only search the path with -f"
+msgstr ""
+
+#: bin/reportbug:871
+msgid "sign report with GNU Privacy Guard (GnuPG/gpg)"
+msgstr ""
+
+#: bin/reportbug:874
+msgid "send the report using Gnus"
+msgstr ""
+
+#: bin/reportbug:877
+msgid "sign report with Pretty Good Privacy (PGP)"
+msgstr ""
+
+#: bin/reportbug:881
+msgid "add a custom RFC2822 header to your report"
+msgstr ""
+
+#: bin/reportbug:883
+msgid "add a custom pseudo-header to your report"
+msgstr ""
+
+#: bin/reportbug:885
+msgid "show copyright and license information"
+msgstr ""
+
+#: bin/reportbug:888
+msgid "send the report to the maintainer only"
+msgstr ""
+
+#: bin/reportbug:891
+msgid "send the report using mutt"
+msgstr ""
+
+#: bin/reportbug:892
+msgid "add a BTS mirror"
+msgstr ""
+
+#: bin/reportbug:895
+msgid "send the report using mh/nmh"
+msgstr ""
+
+#: bin/reportbug:899
+msgid "specify a bug number to look for"
+msgstr ""
+
+#: bin/reportbug:901
+msgid "send the report using the specified mail user agent"
+msgstr ""
+
+#: bin/reportbug:904
+msgid "send the report using the specified mail transport agent"
+msgstr ""
+
+#: bin/reportbug:907
+msgid "send a copy to the specified address"
+msgstr ""
+
+#: bin/reportbug:909
+msgid "output the report to standard output only"
+msgstr ""
+
+#: bin/reportbug:912
+msgid "file report without any mail to the maintainer or tracking lists"
+msgstr ""
+
+#: bin/reportbug:915
+msgid "reduce the verbosity of the output"
+msgstr ""
+
+#: bin/reportbug:918
+msgid "the subject for your report"
+msgstr ""
+
+#: bin/reportbug:920
+msgid "do not send a copy of the report to yourself"
+msgstr ""
+
+#: bin/reportbug:923
+msgid "do not strip blank lines and comments from config files"
+msgstr ""
+
+#: bin/reportbug:926
+msgid "output the report to the specified file (both mail headers and body)"
+msgstr ""
+
+#: bin/reportbug:929
+msgid "disable all external queries"
+msgstr ""
+
+#: bin/reportbug:932
+msgid "include the specified file in the report"
+msgstr ""
+
+#: bin/reportbug:934
+msgid "attach the specified file to the report"
+msgstr ""
+
+#: bin/reportbug:937
+msgid "do not query the BTS for reports"
+msgstr ""
+
+#: bin/reportbug:939
+msgid "query the BTS for reports"
+msgstr ""
+
+#: bin/reportbug:944
+msgid "add the specified tag to the report"
+msgstr ""
+
+#: bin/reportbug:946
+msgid "use this proxy for HTTP accesses"
+msgstr ""
+
+#: bin/reportbug:948
+msgid "specify originating email address"
+msgstr ""
+
+#: bin/reportbug:950
+msgid "specify real name for your report"
+msgstr ""
+
+#: bin/reportbug:952
+msgid "specify SMTP server for mailing"
+msgstr ""
+
+#: bin/reportbug:954
+msgid "use TLS to talk to SMTP servers"
+msgstr ""
+
+#: bin/reportbug:957
+msgid "report the bug against the source package"
+msgstr ""
+
+#: bin/reportbug:959
+msgid "username to use for SMTP"
+msgstr ""
+
+#: bin/reportbug:960
+msgid "password to use for SMTP"
+msgstr ""
+
+#: bin/reportbug:962
+msgid "specify Reply-To address for your report"
+msgstr ""
+
+#: bin/reportbug:964
+msgid "query on source packages, not binary packages"
+msgstr ""
+
+#: bin/reportbug:967
+msgid "query on binary packages only"
+msgstr ""
+
+#: bin/reportbug:972
+msgid "send the report only to the security team, if tag=security"
+msgstr ""
+
+#: bin/reportbug:976
+msgid "do not send the report only to the security team, if tag=security"
+msgstr ""
+
+#: bin/reportbug:979
+msgid "include debconf settings in your report"
+msgstr ""
+
+#: bin/reportbug:981
+msgid "exclude debconf settings from your report"
+msgstr ""
+
+#: bin/reportbug:983
+msgid "include justification for the severity of your report"
+msgstr ""
+
+#: bin/reportbug:986
+msgid "specify the version number for the package"
+msgstr ""
+
+#: bin/reportbug:991
+msgid "choose which user interface to use"
+msgstr ""
+
+#: bin/reportbug:993
+msgid "only query the BTS"
+msgstr ""
+
+#: bin/reportbug:998
+msgid "choose the type of report to file"
+msgstr ""
+
+#: bin/reportbug:1003
+msgid "choose BTS to file the report with"
+msgstr ""
+
+#: bin/reportbug:1007
+msgid "identify the severity of the report"
+msgstr ""
+
+#: bin/reportbug:1009
+msgid "output a template report only"
+msgstr ""
+
+#: bin/reportbug:1011
+msgid "reconfigure reportbug for this user"
+msgstr ""
+
+#: bin/reportbug:1013
+msgid "check for new releases on various sites"
+msgstr ""
+
+#: bin/reportbug:1016
+msgid "do not check for new releases"
+msgstr ""
+
+#: bin/reportbug:1018
+msgid "choose the operating mode for reportbug"
+msgstr ""
+
+#: bin/reportbug:1024
+msgid "verify integrity of installed package using debsums"
+msgstr ""
+
+#: bin/reportbug:1026
+msgid "do not verify package installation"
+msgstr ""
+
+#: bin/reportbug:1028
+msgid ""
+"send appreciative email to the maintainer, rather than filing a bug report"
+msgstr ""
+
+#: bin/reportbug:1031
+msgid "specify the body for the report as a string"
+msgstr ""
+
+#: bin/reportbug:1034
+msgid "use the specified file as the body of the report"
+msgstr ""
+
+#: bin/reportbug:1037
+msgid "don't check whether the package is installed"
+msgstr ""
+
+#: bin/reportbug:1040
+msgid ""
+"check whether the specified package is installed when filing a report "
+"(default)"
+msgstr ""
+
+#: bin/reportbug:1043
+msgid "prompt before exiting"
+msgstr ""
+
+#: bin/reportbug:1045
+msgid "show contents of message before sending"
+msgstr ""
+
+#: bin/reportbug:1047
+msgid "don't show contents of message before sending (default)"
+msgstr ""
+
+#: bin/reportbug:1051
+msgid "don't execute the bug script (if present)"
+msgstr ""
+
+#: bin/reportbug:1053
+msgid "Save the draft in this directory"
+msgstr ""
+
+#: bin/reportbug:1055
+#, python-format
+msgid "Specify the network timeout, in seconds [default: %default]"
+msgstr ""
+
+#: bin/reportbug:1059
+msgid "don't show additional CC menu"
+msgstr ""
+
+#: bin/reportbug:1062
+msgid "don't show tags menu"
+msgstr ""
+
+#: bin/reportbug:1064
+msgid "Specify the program to open the reports mbox."
+msgstr ""
+
+#: bin/reportbug:1066
+msgid "Specify the maximum size in byte for an attachment [default: 10485760]."
+msgstr ""
+
+#: bin/reportbug:1071
+msgid "Order bugs to show the latest first"
+msgstr ""
+
+#: bin/reportbug:1073
+msgid ""
+"Specify the Envelope From (Return-path) address used to send the bug report"
+msgstr ""
+
+#: bin/reportbug:1090
+msgid "Your email address is not valid; exiting.\n"
+msgstr ""
+
+#: bin/reportbug:1103
+#, python-format
+msgid "The attachment file %s does not exist."
+msgstr ""
+
+#: bin/reportbug:1107
+#, python-format
+msgid ""
+"The attachment file %s size is bigger than the maximum of %d bytes: reduce "
+"its size else the report cannot be sent"
+msgstr ""
+
+#: bin/reportbug:1112
+msgid "The above files can't be attached; exiting"
+msgstr ""
+
+#: bin/reportbug:1116
+msgid ""
+"Option -K/--keyid requires --gpg or --pgp sign option set, which currently "
+"is not; exiting.\n"
+msgstr ""
+
+#: bin/reportbug:1123
+#, python-format
+msgid "The directory %s does not exist; exiting."
+msgstr ""
+
+#: bin/reportbug:1128
+msgid "Specified mail user agent is not supported; exiting.\n"
+msgstr ""
+
+#: bin/reportbug:1132
+msgid "Selected mail user agent cannot be found; exiting.\n"
+msgstr ""
+
+#: bin/reportbug:1149
+#, python-format
+msgid "*** Unable to import %s interface: %s Falling back to text interface.\n"
+msgstr ""
+
+#: bin/reportbug:1159
+#, python-format
+msgid ""
+"*** Unable to initialize %s interface. Falling back to text interface.\n"
+msgstr ""
+
+#: bin/reportbug:1238
+#, python-format
+msgid ""
+"Body file %s size bigger than the maximum of %d bytes: reduce its size else "
+"the report cannot be sent"
+msgstr ""
+
+#: bin/reportbug:1246
+#, python-format
+msgid "Unable to read body from file %s.\n"
+msgstr ""
+
+#: bin/reportbug:1289
+#, python-format
+msgid ""
+"*** Warning: %s is no longer an appropriate smtphost setting for reportbug: "
+"it has been superseded by reportbug.debian.org and this one is forced as "
+"smtphost; please update your .reportbugrc file.\n"
+msgstr ""
+
+#: bin/reportbug:1297
+msgid ""
+"Attachments are incompatible with using an MUA.  They will be ignored.\n"
+msgstr ""
+
+#: bin/reportbug:1307
+#, python-format
+msgid "Warning: no reportbug configuration found.  Proceeding in %s mode.\n"
+msgstr ""
+
+#: bin/reportbug:1318
+msgid "The signature option is ignored when using an MUA.\n"
+msgstr ""
+
+#: bin/reportbug:1320
+msgid "The signature option is ignored when producing a template.\n"
+msgstr ""
+
+#: bin/reportbug:1325
+msgid "reportbug will not run as root non-interactively.\n"
+msgstr ""
+
+#: bin/reportbug:1330
+msgid "Running 'reportbug' as root is probably insecure!"
+msgstr ""
+
+#: bin/reportbug:1332
+msgid ""
+"Running 'reportbug' as an administrative user is probably not a good idea!"
+msgstr ""
+
+#: bin/reportbug:1334
+msgid "  Continue"
+msgstr ""
+
+#: bin/reportbug:1338
+msgid "Continue with reportbug."
+msgstr ""
+
+#: bin/reportbug:1339
+msgid "Exit."
+msgstr ""
+
+#: bin/reportbug:1341
+msgid "reportbug stopped.\n"
+msgstr ""
+
+#: bin/reportbug:1346
+msgid "To report a bug, please rerun reportbug.\n"
+msgstr ""
+
+#: bin/reportbug:1361
+msgid "Please report one bug at a time.\n"
+msgstr ""
+
+#: bin/reportbug:1362
+msgid "[Did you forget to put all switches before the package name?]\n"
+msgstr ""
+
+#: bin/reportbug:1387
+msgid ""
+"No package specified or we were unable to find it in the apt cache; "
+"stopping.\n"
+msgstr ""
+
+#: bin/reportbug:1392
+msgid "*** Welcome to reportbug.  Use ? for help at prompts. ***\n"
+msgstr ""
+
+#: bin/reportbug:1396
+msgid ""
+"Note: bug reports are publicly archived (including the email address of the "
+"submitter).\n"
+msgstr ""
+
+#: bin/reportbug:1403
+#, python-format
+msgid ""
+"Unable to use specified character set \"%s\"; you probably need either "
+"cjkcodecs (for users of Asian locales) or iconvcodec installed.\n"
+"Falling back to ASCII encoding.\n"
+msgstr ""
+
+#: bin/reportbug:1408
+#, python-format
+msgid ""
+"Detected character set: %s\n"
+" Please change you locale if this is incorrect.\n"
+"\n"
+msgstr ""
+
+#: bin/reportbug:1412
+#, python-format
+msgid "Using '%s' as your from address.\n"
+msgstr ""
+
+#: bin/reportbug:1424
+msgid ""
+"You appear to be using the \"vi\" editor, which is not suited for new "
+"users.  You probably want to change this setting by using \"update-"
+"alternatives --config editor\" as root.  (You can bypass this message in the "
+"future by using reportbug in \"standard\" mode or higher.) Do you want to "
+"continue?"
+msgstr ""
+
+#: bin/reportbug:1431
+msgid "Continue filing this report."
+msgstr ""
+
+#: bin/reportbug:1432
+msgid "Stop reportbug to change editors."
+msgstr ""
+
+#: bin/reportbug:1486
+msgid "The report bug number provided seems to not exist.\n"
+msgstr ""
+
+#: bin/reportbug:1511
+#, python-format
+msgid "Dependency package \"%s\" corresponds to actual package \"%s\".\n"
+msgstr ""
+
+#: bin/reportbug:1523
+#, python-format
+msgid ""
+"%s is a dependency package.  Which of the following packages is the bug in?"
+msgstr ""
+
+#: bin/reportbug:1528 bin/reportbug:1567 bin/reportbug:1609 bin/reportbug:1631
+#, python-format
+msgid "Getting status for %s...\n"
+msgstr ""
+
+#: bin/reportbug:1555
+msgid "Which of the following packages is the bug in?"
+msgstr ""
+
+#: bin/reportbug:1564 bin/reportbug:1629
+msgid "No package specified; stopping.\n"
+msgstr ""
+
+#: bin/reportbug:1573
+msgid "No matching source or binary packages.\n"
+msgstr ""
+
+#: bin/reportbug:1580
+#, python-format
+msgid ""
+"A package named \"%s\" does not appear to be installed; do you want to "
+"search for a similar-looking filename in an installed package"
+msgstr ""
+
+#: bin/reportbug:1583
+msgid "Look for a file with a similar filename."
+msgstr ""
+
+#: bin/reportbug:1584
+msgid "Continue filing with this package name."
+msgstr ""
+
+#: bin/reportbug:1589
+#, python-format
+msgid "Getting available info for %s...\n"
+msgstr ""
+
+#: bin/reportbug:1599
+#, python-format
+msgid ""
+"A package named '%s' does not appear to be installed on your system; "
+"however, '%s' contains a file named '%s'.  Do you want to file your report "
+"on the package reportbug found"
+msgstr ""
+
+#: bin/reportbug:1603
+msgid "Yes, use the package specified."
+msgstr ""
+
+#: bin/reportbug:1604
+msgid "No, give up the search."
+msgstr ""
+
+#: bin/reportbug:1605 bin/reportbug:1618
+msgid "Package not installed; stopping.\n"
+msgstr ""
+
+#: bin/reportbug:1613
+msgid "This package does not appear to be installed; continue with this report"
+msgstr ""
+
+#: bin/reportbug:1615 bin/reportbug:1636 bin/reportbug:2189
+msgid "Ignore this problem and continue."
+msgstr ""
+
+#: bin/reportbug:1616 bin/reportbug:1637 bin/reportbug:1702 bin/reportbug:1738
+#: bin/reportbug:1758 bin/reportbug:2190
+msgid "Exit without filing a report."
+msgstr ""
+
+#: bin/reportbug:1623
+msgid "Which of the following installed packages is the bug in?"
+msgstr ""
+
+#: bin/reportbug:1635
+msgid "This package does not appear to exist; continue"
+msgstr ""
+
+#: bin/reportbug:1639
+msgid "Package does not exist; stopping.\n"
+msgstr ""
+
+#: bin/reportbug:1696
+#, python-brace-format
+msgid ""
+"There may be a problem with your installation of {0};\n"
+"the following problems were detected by debsums:\n"
+"{1}\n"
+"Do you still want to file a report"
+msgstr ""
+
+#: bin/reportbug:1699
+msgid ""
+"Ignore this problem and continue.  This may be appropriate if you have fixed "
+"the package manually already.  This problem may also result from the use of "
+"localepurge."
+msgstr ""
+
+#: bin/reportbug:1705
+msgid "Package integrity check failed; stopping.\n"
+msgstr ""
+
+#: bin/reportbug:1712
+msgid ""
+"Please enter the version of the package this report applies to (blank OK)"
+msgstr ""
+
+#: bin/reportbug:1721
+msgid ""
+"Checking for newer versions at madison, incoming.debian.org and http://ftp-"
+"master.debian.org/new.html\n"
+msgstr ""
+
+#: bin/reportbug:1725
+msgid "Checking for newer versions at madison...\n"
+msgstr ""
+
+#: bin/reportbug:1732
+#, python-format
+msgid ""
+"\n"
+"Your version of %s (%s) is newer than that in Debian!\n"
+"Do you still want to file a report"
+msgstr ""
+
+#: bin/reportbug:1734
+msgid ""
+"Ignore this problem and continue.  This may be appropriate if you know this "
+"bug is present in older releases of the package, or you're running a mixed "
+"stable/testing installation."
+msgstr ""
+
+#: bin/reportbug:1740 bin/reportbug:1760
+msgid "Newer released version; stopping.\n"
+msgstr ""
+
+#: bin/reportbug:1751
+#, python-brace-format
+msgid ""
+"Your version ({0}) of {1} appears to be out of date.\n"
+"The following newer release(s) are available in the Debian archive:\n"
+"{2}Do you still want to file a report"
+msgstr ""
+
+#: bin/reportbug:1755
+msgid ""
+"Ignore this problem and continue.  This may be appropriate if you know this "
+"bug is still present in more recent releases of the package."
+msgstr ""
+
+#: bin/reportbug:1765
+#, python-format
+msgid "Will send report to %s (per request).\n"
+msgstr ""
+
+#: bin/reportbug:1769
+#, python-format
+msgid "Package originates from %s.\n"
+msgstr ""
+
+#: bin/reportbug:1772
+#, python-format
+msgid "Package originates from %s; overriding your system selection.\n"
+msgstr ""
+
+#: bin/reportbug:1777 bin/reportbug:1781 bin/reportbug:1783
+#, python-format
+msgid "Unknown origin %s; will send to %s.\n"
+msgstr ""
+
+#: bin/reportbug:1786
+#, python-format
+msgid "Will use %s protocol talking to %s.\n"
+msgstr ""
+
+#: bin/reportbug:1794
+#, python-format
+msgid "Will send report to %s (per lsb_release).\n"
+msgstr ""
+
+#: bin/reportbug:1837
+msgid ""
+"There is no record of this package in the bug tracking system.\n"
+"Send report directly to maintainer"
+msgstr ""
+
+#: bin/reportbug:1839
+#, python-format
+msgid "Send the report to the maintainer (%s)."
+msgstr ""
+
+#: bin/reportbug:1840
+msgid "Send the report to the BTS anyway."
+msgstr ""
+
+#: bin/reportbug:1844
+msgid "No bug reports found.\n"
+msgstr ""
+
+#: bin/reportbug:1847
+msgid "Exiting at user request.\n"
+msgstr ""
+
+#: bin/reportbug:1849
+msgid "Nothing new to report; exiting.\n"
+msgstr ""
+
+#: bin/reportbug:1852
+msgid "Error accessing the BTS, no bugs information available.\n"
+msgstr ""
+
+#: bin/reportbug:1864
+#, python-format
+msgid "Maintainer for %s is '%s'.\n"
+msgstr ""
+
+#: bin/reportbug:1867
+msgid ""
+"This package seems to be currently \"orphaned\"; it also seems you're a\n"
+"bit interested in this package, since you're reporting a bug against\n"
+"it, so you might consider being involved in the package maintenance in "
+"Debian and/or adopting it.  Please be aware that your\n"
+"report may not be resolved for a while, because the package seems to lack "
+"an\n"
+"active maintainer, but please GO ON and REPORT the bug, if there is\n"
+"one.\n"
+"\n"
+"For more details, please see: http://www.debian.org/devel/wnpp/"
+msgstr ""
+
+#: bin/reportbug:1883
+#, python-format
+msgid "Looking up dependencies of %s...\n"
+msgstr ""
+
+#: bin/reportbug:1892
+#, python-format
+msgid "Getting status for related package %s...\n"
+msgstr ""
+
+#: bin/reportbug:1897
+#, python-format
+msgid "Looking up 'depends' of related package %s...\n"
+msgstr ""
+
+#: bin/reportbug:1902
+#, python-format
+msgid "Looking up 'recommends' of related package %s...\n"
+msgstr ""
+
+#: bin/reportbug:1907
+#, python-format
+msgid "Looking up 'suggests' of related package %s...\n"
+msgstr ""
+
+#: bin/reportbug:1911
+msgid "Looking up status of additional packages...\n"
+msgstr ""
+
+#: bin/reportbug:1917
+msgid "Getting changed configuration files...\n"
+msgstr ""
+
+#: bin/reportbug:1927
+msgid "*** WARNING: The following configuration files have been modified:\n"
+msgstr ""
+
+#: bin/reportbug:1929
+msgid ""
+"\n"
+"Send modified configuration files"
+msgstr ""
+
+#: bin/reportbug:1930
+msgid "Send your modified configuration files."
+msgstr ""
+
+#: bin/reportbug:1931
+msgid "Don't send modified configuration files."
+msgstr ""
+
+#: bin/reportbug:1932
+msgid "Display modified configuration files (exit with \"q\")."
+msgstr ""
+
+#: bin/reportbug:1962
+msgid "*** The following debconf settings were detected:\n"
+msgstr ""
+
+#: bin/reportbug:1963
+msgid ""
+"\n"
+"Include these settings in your report"
+msgstr ""
+
+#: bin/reportbug:1964
+msgid "Send your debconf settings."
+msgstr ""
+
+#: bin/reportbug:1965
+msgid "Don't send your debconf settings."
+msgstr ""
+
+#: bin/reportbug:1986
+msgid "Please provide a subject for your response."
+msgstr ""
+
+#: bin/reportbug:1991 bin/reportbug:2016
+msgid "Providing a subject is mandatory.\n"
+msgstr ""
+
+#: bin/reportbug:1995
+#, python-format
+msgid "Does this bug still exist in version %s of this package?"
+msgstr ""
+
+#: bin/reportbug:1997
+msgid "Yes, it does."
+msgstr ""
+
+#: bin/reportbug:1998
+msgid "No, it doesn't (or I don't know)."
+msgstr ""
+
+#: bin/reportbug:2006
+msgid ""
+"Briefly describe the problem (max. 100 characters allowed). This will be the "
+"bug email subject, so keep the summary as concise as possible, for example: "
+"\"fails to send email\" or \"does not start with -q option specified"
+"\" (enter Ctrl+c to exit reportbug without reporting a bug)."
+msgstr ""
+
+#: bin/reportbug:2020
+msgid ""
+"Your description is a bit long; please enter a shorter subject. (An empty "
+"response will retain the existing subject.)"
+msgstr ""
+
+#: bin/reportbug:2026 bin/reportbug:2029
+#, python-format
+msgid "Rewriting subject to '%s'\n"
+msgstr ""
+
+#: bin/reportbug:2037
+msgid ""
+"Enter any additional addresses this report should be sent to; press ENTER "
+"after each address."
+msgstr ""
+
+#: bin/reportbug:2052
+#, python-format
+msgid "Removing release critical severities, since running in '%s' mode.\n"
+msgstr ""
+
+#: bin/reportbug:2059
+msgid "How would you rate the severity of this problem or report?"
+msgstr ""
+
+#: bin/reportbug:2062
+msgid "Please select a severity level: "
+msgstr ""
+
+#: bin/reportbug:2071
+msgid "What sort of problem are you reporting?"
+msgstr ""
+
+#: bin/reportbug:2073
+msgid "Please select a class: "
+msgstr ""
+
+#: bin/reportbug:2082
+#, python-brace-format
+msgid ""
+"You are reporting a {0} bug; which of the following criteria does it meet?"
+msgstr ""
+
+#: bin/reportbug:2085
+msgid "Please select the impact of the bug: "
+msgstr ""
+
+#: bin/reportbug:2089
+msgid ""
+"You are reporting a serious bug; which section of the Debian Policy Manual "
+"contains the \"must\" or \"required\" directive that it violates (E.g., "
+"\"1.2.3\")? Just type \"unknown\" if you are not sure (that would downgrade "
+"severity to normal)."
+msgstr ""
+
+#: bin/reportbug:2102
+msgid "Severity downgraded to \"normal\".\n"
+msgstr ""
+
+#: bin/reportbug:2108
+#, python-format
+msgid "Checking buildd.debian.org for past builds of %s...\n"
+msgstr ""
+
+#: bin/reportbug:2125
+msgid ""
+"Has this package successfully been built for this architecture in the past "
+"(you can look this up at buildd.debian.org)"
+msgstr ""
+
+#: bin/reportbug:2128
+msgid "Yes, this is a recently-introduced problem."
+msgstr ""
+
+#: bin/reportbug:2129
+msgid "No, it has always been this way."
+msgstr ""
+
+#: bin/reportbug:2152
+msgid "Adding security tag to this report.\n"
+msgstr ""
+
+#: bin/reportbug:2162
+msgid ""
+"Are you reporting an undisclosed vulnerability? If so, in order to "
+"responsibly disclose the issue, it should not be sent to the public BTS "
+"right now, but instead to the private Security Team mailing list."
+msgstr ""
+
+#: bin/reportbug:2166
+msgid ""
+"Yes, it is an undisclosed vulnerability, send this report to the private "
+"Security Team mailing list and not to the BTS."
+msgstr ""
+
+#: bin/reportbug:2169
+msgid ""
+"No, it is already a publicly disclosed vulnerability, send this report to "
+"the BTS."
+msgstr ""
+
+#: bin/reportbug:2177
+msgid "Gathering additional data, this may take a while...\n"
+msgstr ""
+
+#: bin/reportbug:2187
+#, python-format
+msgid ""
+"The package bug script %s exited with an error status (return code = %s). Do "
+"you still want to file a report?"
+msgstr ""
+
+#: bin/reportbug:2213
+msgid ""
+"Will send a CC of this report to the Debian Security and Testing Security "
+"Team.\n"
+msgstr ""
+
+#: bin/reportbug:2296
+msgid ""
+"What is the filename of the patch (if none, or you have already included it, "
+"just press ENTER)?"
+msgstr ""
+
+#: bin/reportbug:2307
+#, python-format
+msgid "%s not found!"
+msgstr ""
+
+#: bin/reportbug:2319
+#, python-format
+msgid "Passing message to %s for signature...\n"
+msgstr ""
+
+#: bin/reportbug:2323
+msgid "Signature failed; sending message unsigned.\n"
+msgstr ""
+
+#: bin/reportbug:2357
+msgid "Please press ENTER to exit reportbug: "
+msgstr ""
+
+#: bin/reportbug:2365
+msgid ""
+"\n"
+"reportbug: exiting due to user interrupt.\n"
+msgstr ""
+
+#: bin/reportbug:2367
+#, python-format
+msgid "error accessing BTS: %s\n"
+msgstr ""
