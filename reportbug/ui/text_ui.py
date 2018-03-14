@@ -44,6 +44,8 @@ from reportbug.exceptions import (
 from reportbug.urlutils import launch_browser
 import reportbug.utils
 
+from . import _
+
 ISATTY = sys.stdin.isatty()
 charset = 'us-ascii'
 
@@ -116,7 +118,7 @@ def _launch_mbox_reader(mbox_reader_cmd, bts, bugs, number, mirrors, archived,
                                            debbugs.get_report_url(bts, number, mirrors, archived, mbox),
                                            http_proxy, timeout)
     except ValueError:
-        ewrite('Invalid report number: %s\n',
+        ewrite(_('Invalid report number: %s\n'),
                number)
 
 
@@ -154,7 +156,7 @@ def our_raw_input(prompt=None, completions=None, completer=None):
         else:
             ret = input()
     except EOFError:
-        ewrite('\nUser interrupt (^D).\n')
+        ewrite(_('\nUser interrupt (^D).\n'))
         raise SystemExit
 
     if readline:
@@ -197,7 +199,7 @@ def select_options(msg, ok, help, allow_numbers=None, nowrap=False):
                 else:
                     nums = list(allow_numbers)
                     nums.sort()
-                    err_message = 'Only the following entries are allowed: ' + \
+                    err_message = _('Only the following entries are allowed: ') + \
                                   ', '.join(map(str, nums))
             except (ValueError, TypeError):
                 pass
@@ -206,14 +208,14 @@ def select_options(msg, ok, help, allow_numbers=None, nowrap=False):
         ch = default
     ch = ch[0]
     if ch == '?':
-        help['?'] = 'Display this help.'
+        help['?'] = _('Display this help.')
         for ch in ok:
             if ch in string.ascii_uppercase:
-                desc = '(default) '
+                desc = _('(default) ')
             else:
                 desc = ''
             desc += help.get(ch, help.get(ch.lower(),
-                                          'No help for this option.'))
+                                          _('No help for this option.')))
             ewrite(indent_wrap_text(desc + '\n', '%s - ' % ch, 4))
         return select_options(msg, ok, help, allow_numbers, nowrap)
     elif (ch.lower() in ok) or (ch.upper() in ok):
@@ -221,7 +223,7 @@ def select_options(msg, ok, help, allow_numbers=None, nowrap=False):
     elif err_message:
         ewrite(indent_wrap_text(err_message))
     else:
-        ewrite('Invalid selection.\n')
+        ewrite(_('Invalid selection.\n'))
 
     return select_options(msg, ok, help, allow_numbers, nowrap)
 
@@ -270,7 +272,7 @@ def get_string(prompt, options=None, title=None, empty_ok=False, force_prompt=Fa
 
 def get_multiline(prompt):
     ewrite('\n')
-    ewrite(indent_wrap_text(prompt + "  Press ENTER on a blank line to continue.\n"))
+    ewrite(indent_wrap_text(prompt + _("  Press ENTER on a blank line to continue.\n")))
     l = []
     while 1:
         entry = get_string('', force_prompt=True).strip()
@@ -420,7 +422,7 @@ def show_report(number, system, mirrors,
                 http_proxy, timeout, screen=None, queryonly=False, title='',
                 archived='no', mbox_reader_cmd=None):
     sysinfo = debbugs.SYSTEMS[system]
-    ewrite('Retrieving report #%d from %s bug tracking system...\n',
+    ewrite(_('Retrieving report #%d from %s bug tracking system...\n'),
            number, sysinfo['name'])
 
     try:
@@ -430,14 +432,14 @@ def show_report(number, system, mirrors,
         info = None
 
     if not info:
-        ewrite('No report available: #%s\n', number)
+        ewrite(_('No report available: #%s\n'), number)
         raise NoBugs
 
     buginfo, messages = info
 
     # XXX: could this be ever possible?
     if not (buginfo.package or not buginfo.source):
-        ewrite('Cannot retrieve bug\'s package, exiting...\n')
+        ewrite(_('Cannot retrieve bug\'s package, exiting...\n'))
         sys.exit(-1)
 
     current_message = 0
@@ -468,15 +470,15 @@ def show_report(number, system, mirrors,
         if (current_message):
             options = 'p' + options
 
-        x = select_options("What do you want to do now?", options,
-                           {'x': 'Provide extra information.',
-                            'o': 'Show other bug reports (return to bug listing).',
-                            'n': 'Show next message (followup).',
-                            'p': 'Show previous message (followup).',
-                            'r': 'Redisplay this message.',
-                            'e': 'Launch e-mail client to read full log.',
-                            'b': 'Launch web browser to read full log.',
-                            'q': "I'm bored; quit please."},
+        x = select_options(_("What do you want to do now?"), options,
+                           {'x': _('Provide extra information.'),
+                            'o': _('Show other bug reports (return to bug listing).'),
+                            'n': _('Show next message (followup).'),
+                            'p': _('Show previous message (followup).'),
+                            'r': _('Redisplay this message.'),
+                            'e': _('Launch e-mail client to read full log.'),
+                            'b': _('Launch web browser to read full log.'),
+                            'q': _("I'm bored; quit please.")},
                            allow_numbers=list(range(1, len(messages) + 1)))
         if x == 'x':
             return buginfo
@@ -506,7 +508,7 @@ def handle_bts_query(package, bts, timeout, mirrors=None, http_proxy="",
                      mbox_reader_cmd=None, latest_first=False):
     root = debbugs.SYSTEMS[bts].get('btsroot')
     if not root:
-        ewrite('%s bug tracking system has no web URL; bypassing query\n',
+        ewrite(_('%s bug tracking system has no web URL; bypassing query\n'),
                debbugs.SYSTEMS[bts]['name'])
         return
 
@@ -515,10 +517,10 @@ def handle_bts_query(package, bts, timeout, mirrors=None, http_proxy="",
         srcstr = " (source)"
 
     if isinstance(package, str):
-        long_message('Querying %s BTS for reports on %s%s...\n',
+        long_message(_('Querying %s BTS for reports on %s%s...\n'),
                      debbugs.SYSTEMS[bts]['name'], package, srcstr)
     else:
-        long_message('Querying %s BTS for reports on %s%s...\n',
+        long_message(_('Querying %s BTS for reports on %s%s...\n'),
                      debbugs.SYSTEMS[bts]['name'],
                      ' '.join([str(x) for x in package]), srcstr)
 
@@ -528,10 +530,10 @@ def handle_bts_query(package, bts, timeout, mirrors=None, http_proxy="",
             package, timeout, bts, mirrors=mirrors, version=version,
             source=source, http_proxy=http_proxy, archived=archived)
     except Exception as e:
-        ewrite('Unable to connect to %s BTS (error: "%s"); ' % (debbugs.SYSTEMS[bts]['name'], repr(e)))
-        res = select_options('continue', 'yN',
-                             {'y': 'Keep going.',
-                              'n': 'Abort.'})
+        ewrite(_('Unable to connect to %s BTS (error: "%s"); ') % (debbugs.SYSTEMS[bts]['name'], repr(e)))
+        res = select_options(_('continue'), 'yN',
+                             {'y': _('Keep going.'),
+                              'n': _('Abort.')})
         if res == 'n':
             raise NoNetwork
         else:
@@ -593,16 +595,16 @@ def handle_bts_query(package, bts, timeout, mirrors=None, http_proxy="",
             else:
                 raise NoBugs
         elif count == 1:
-            ewrite('%d bug report found:\n\n', count)
+            ewrite(_('%d bug report found:\n\n'), count)
         else:
-            ewrite('%d bug reports found:\n\n', count)
+            ewrite(_('%d bug reports found:\n\n'), count)
 
         return browse_bugs(hierarchy, count, bugs, bts, queryonly,
                            mirrors, http_proxy, timeout, screen, title, package,
                            mbox_reader_cmd)
 
     except NoPackage:
-        long_message('No record of this package found.')
+        long_message(_('No record of this package found.'))
         raise NoPackage
 
 
@@ -651,7 +653,7 @@ def browse_bugs(hierarchy, count, bugs, bts, queryonly, mirrors,
 
             if category == hierarchy[-1] or \
                (scount >= (rows - len(hierarchy[catcount + 1][1]) - 1)):
-                skipmsg = ' (s to skip rest)'
+                skipmsg = _(' (s to skip rest)')
                 if endcount == count:
                     skipmsg = ''
 
@@ -660,23 +662,23 @@ def browse_bugs(hierarchy, count, bugs, bts, queryonly, mirrors,
                     options = 'Nbmrqfe'
 
                 rstr = "(%d-%d/%d) " % (startcount, endcount, count)
-                pstr = rstr + "Is the bug you found listed above"
+                pstr = rstr + _("Is the bug you found listed above")
                 if queryonly:
-                    pstr = rstr + "What would you like to do next"
+                    pstr = rstr + _("What would you like to do next")
                 allowed = bugs + list(range(1, count + 1))
                 helptext = {
-                    'y': 'Problem already reported; optionally add extra information.',
-                    'n': 'Problem not listed above; possibly check more.',
-                    'b': 'Open the complete bugs list in a web browser.',
-                    'm': 'Get more information about a bug (you can also enter a number\n'
-                         '     without selecting "m" first).',
-                    'r': 'Redisplay the last bugs shown.',
-                    'q': "I'm bored; quit please.",
-                    's': 'Skip remaining problems; file a new report immediately.',
-                    'e': 'Open the report using an e-mail client.',
-                    'f': 'Filter bug list using a pattern.'}
+                    'y': _('Problem already reported; optionally add extra information.'),
+                    'n': _('Problem not listed above; possibly check more.'),
+                    'b': _('Open the complete bugs list in a web browser.'),
+                    'm': _('Get more information about a bug (you can also enter a number\n'
+                         '     without selecting "m" first).'),
+                    'r': _('Redisplay the last bugs shown.'),
+                    'q': _("I'm bored; quit please."),
+                    's': _('Skip remaining problems; file a new report immediately.'),
+                    'e': _('Open the report using an e-mail client.'),
+                    'f': _('Filter bug list using a pattern.')}
                 if skipmsg:
-                    helptext['n'] = helptext['n'][:-1] + ' (skip to Next page).'
+                    helptext['n'] = helptext['n'][:-1] + _(' (skip to Next page).')
 
                 while 1:
                     for line in lastpage:
@@ -702,10 +704,10 @@ def browse_bugs(hierarchy, count, bugs, bts, queryonly, mirrors,
                         if len(bugs) == 1:
                             number = '1'
                         else:
-                            number = our_raw_input(
+                            number = our_raw_input(_(
                                 'Enter the number of the bug report '
                                 'you want to give more info on,\n'
-                                'or press ENTER to exit: #', allowed)
+                                'or press ENTER to exit: #'), allowed)
                         while number and number[0] == '#':
                             number = number[1:]
                         if number:
@@ -715,7 +717,7 @@ def browse_bugs(hierarchy, count, bugs, bts, queryonly, mirrors,
                                     number = bugs[number - 1]
                                 return debbugs.get_report(number, timeout)[0]
                             except ValueError:
-                                ewrite('Invalid report number: %s\n',
+                                ewrite(_('Invalid report number: %s\n'),
                                        number)
                         else:
                             raise NoReport
@@ -728,7 +730,7 @@ def browse_bugs(hierarchy, count, bugs, bts, queryonly, mirrors,
                         else:
                             return retval
                     elif x == 'e':
-                        number = our_raw_input('Please enter the number of the bug you would like to view: #', allowed)
+                        number = our_raw_input(_('Please enter the number of the bug you would like to view: #'), allowed)
                         _launch_mbox_reader(mbox_reader_cmd, bts, bugs, number,
                                             mirrors, 'no', True, http_proxy,
                                             timeout)
@@ -737,8 +739,8 @@ def browse_bugs(hierarchy, count, bugs, bts, queryonly, mirrors,
                             if len(bugs) == 1:
                                 number = '1'
                             else:
-                                number = our_raw_input('Please enter the number of the bug '
-                                                       'you would like more info on: #', allowed)
+                                number = our_raw_input(_('Please enter the number of the bug '
+                                                       'you would like more info on: #'), allowed)
                         else:
                             number = x
 
@@ -759,7 +761,7 @@ def browse_bugs(hierarchy, count, bugs, bts, queryonly, mirrors,
                                 if res:
                                     return res
                             except ValueError:
-                                ewrite('Invalid report number: %s\n',
+                                ewrite(_('Invalid report number: %s\n'),
                                        number)
 
             startcount = endcount + 1
@@ -808,8 +810,8 @@ def search_bugs(hierarchyfull, bts, queryonly, mirrors,
         print(msg)
         sys.exit(1)
 
-    pattern = our_raw_input('Enter the search pattern (a Perl-compatible regular expression)\n'
-                            'or press ENTER to exit: ')
+    pattern = our_raw_input(_('Enter the search pattern (a Perl-compatible regular expression)\n'
+                            'or press ENTER to exit: '))
     if not pattern:
         return "FilterEnd"
 
@@ -817,14 +819,14 @@ def search_bugs(hierarchyfull, bts, queryonly, mirrors,
     try:
         hierarchy = hiermatch.matched_hierarchy(hierarchyfull, pattern)
     except InvalidRegex:
-        our_raw_input('Invalid regular expression, press ENTER to continue.')
+        our_raw_input(_('Invalid regular expression, press ENTER to continue.'))
         return "FilterEnd"
 
     count, bugs = proc_hierarchy(hierarchy)
     exp = re.compile(r'\#(\d+):')
 
     if not count:
-        our_raw_input('No match found, press ENTER to continue.')
+        our_raw_input(_('No match found, press ENTER to continue.'))
         return "FilterEnd"
 
     endcount = catcount = 0
@@ -854,10 +856,10 @@ def search_bugs(hierarchyfull, bts, queryonly, mirrors,
                 rplural = ''
 
             if remain:
-                lastpage.append(' %s: %d report%s (%d remain%s)\n' %
+                lastpage.append(_(' %s: %d report%s (%d remain%s)\n') %
                                 (catname, total, tplural, remain, rplural))
             else:
-                lastpage.append(' %s: %d report%s\n' %
+                lastpage.append(_(' %s: %d report%s\n') %
                                 (catname, total, tplural))
 
             oldscount, oldecount = scount, endcount
@@ -868,7 +870,7 @@ def search_bugs(hierarchyfull, bts, queryonly, mirrors,
 
             if category == hierarchy[-1] or \
                (scount >= (rows - len(hierarchy[catcount + 1][1]) - 1)):
-                skipmsg = ' (s to skip rest)'
+                skipmsg = _(' (s to skip rest)')
                 if endcount == count:
                     skipmsg = ''
 
@@ -877,25 +879,25 @@ def search_bugs(hierarchyfull, bts, queryonly, mirrors,
                     options = 'Nmbrqfute'
 
                 rstr = "(%d-%d/%d) " % (startcount, endcount, count)
-                pstr = rstr + "Is the bug you found listed above"
+                pstr = rstr + _("Is the bug you found listed above")
                 if queryonly:
-                    pstr = rstr + "What would you like to do next"
+                    pstr = rstr + _("What would you like to do next")
                 allowed = bugs + list(range(1, count + 1))
                 helptext = {
-                    'y': 'Problem already reported; optionally add extra information.',
-                    'n': 'Problem not listed above; possibly check more.',
-                    'b': 'Open the complete bugs list in a web browser.',
-                    'm': 'Get more information about a bug (you can also enter a number\n'
-                         '     without selecting "m" first).',
-                    'r': 'Redisplay the last bugs shown.',
-                    'q': "I'm bored; quit please.",
-                    's': 'Skip remaining problems; file a new report immediately.',
-                    'f': 'Filter (search) bug list using a pattern.',
-                    'u': 'Up one level of filter.',
-                    'e': 'Open the report using an e-mail client.',
-                    't': 'Top of the bug list (remove all filters).'}
+                    'y': _('Problem already reported; optionally add extra information.'),
+                    'n': _('Problem not listed above; possibly check more.'),
+                    'b': _('Open the complete bugs list in a web browser.'),
+                    'm': _('Get more information about a bug (you can also enter a number\n'
+                         '     without selecting "m" first).'),
+                    'r': _('Redisplay the last bugs shown.'),
+                    'q': _("I'm bored; quit please."),
+                    's': _('Skip remaining problems; file a new report immediately.'),
+                    'f': _('Filter (search) bug list using a pattern.'),
+                    'u': _('Up one level of filter.'),
+                    'e': _('Open the report using an e-mail client.'),
+                    't': _('Top of the bug list (remove all filters).')}
                 if skipmsg:
-                    helptext['n'] = helptext['n'][:-1] + ' (skip to Next page).'
+                    helptext['n'] = helptext['n'][:-1] + _(' (skip to Next page).')
 
                 while 1:
                     for line in lastpage:
@@ -920,10 +922,10 @@ def search_bugs(hierarchyfull, bts, queryonly, mirrors,
                         if len(bugs) == 1:
                             number = '1'
                         else:
-                            number = our_raw_input(
+                            number = our_raw_input(_(
                                 'Enter the number of the bug report '
                                 'you want to give more info on,\n'
-                                'or press ENTER to exit: #', allowed)
+                                'or press ENTER to exit: #'), allowed)
                         while number and number[0] == '#':
                             number = number[1:]
                         if number:
@@ -933,7 +935,7 @@ def search_bugs(hierarchyfull, bts, queryonly, mirrors,
                                     number = bugs[number - 1]
                                 return debbugs.get_report(number, timeout)[0]
                             except ValueError:
-                                ewrite('Invalid report number: %s\n',
+                                ewrite(_('Invalid report number: %s\n'),
                                        number)
                         else:
                             raise NoReport
@@ -952,15 +954,15 @@ def search_bugs(hierarchyfull, bts, queryonly, mirrors,
                         # go back to the Top level.
                         return "Top"
                     elif x == 'e':
-                        number = our_raw_input('Please enter the number of the '
-                                               'bug you would like to view: #', allowed)
+                        number = our_raw_input(_('Please enter the number of the '
+                                               'bug you would like to view: #'), allowed)
                         _launch_mbox_reader(mbox_reader_cmd, bts, bugs, number,
                                             mirrors, 'no', True, http_proxy, timeout)
                     else:
                         if x == 'm' or x == 'i':
-                            number = our_raw_input(
+                            number = our_raw_input(_(
                                 'Please enter the number of the bug '
-                                'you would like more info on: #',
+                                'you would like more info on: #'),
                                 allowed)
                         else:
                             number = x
@@ -981,7 +983,7 @@ def search_bugs(hierarchyfull, bts, queryonly, mirrors,
                                 if res:
                                     return res
                             except ValueError:
-                                ewrite('Invalid report number: %s\n', number)
+                                ewrite(_('Invalid report number: %s\n'), number)
 
                 startcount = endcount + 1
                 scount = 0
@@ -1004,7 +1006,7 @@ def display_report(text, use_pager=True, presubj=False):
         ewrite(text)
         return
     elif presubj:
-        text += "\n(You may need to press 'q' to exit your pager and continue using\nreportbug at this point.)"
+        text += _("\n(You may need to press 'q' to exit your pager and continue using\nreportbug at this point.)")
 
     pager = os.environ.get('PAGER', 'sensible-pager')
     try:
@@ -1016,7 +1018,7 @@ def display_report(text, use_pager=True, presubj=False):
 
 def spawn_editor(message, filename, editor, charset='utf-8'):
     if not editor:
-        ewrite('No editor found!\n')
+        ewrite(_('No editor found!\n'))
         return (message, 0)
 
     edname = os.path.basename(editor.split()[0])
@@ -1045,18 +1047,18 @@ def spawn_editor(message, filename, editor, charset='utf-8'):
             opts = '--line %d' % ourline
 
     if '&' in editor or edname == 'kate':
-        ewrite("Spawning %s in background; please press Enter when done "
-               "editing.\n", edname)
+        ewrite(_("Spawning %s in background; please press Enter when done "
+               "editing.\n"), edname)
     else:
-        ewrite("Spawning %s...\n", edname)
+        ewrite(_("Spawning %s...\n"), edname)
 
     result = os.system("%s %s '%s'" % (editor, opts, filename))
 
     if result:
-        ewrite('Warning: possible error exit from %s: %d\n', edname, result)
+        ewrite(_('Warning: possible error exit from %s: %d\n'), edname, result)
 
     if not os.path.exists(filename):
-        ewrite('Bug report file %s removed!', filename)
+        ewrite(_('Bug report file %s removed!'), filename)
         sys.exit(1)
 
     if '&' in editor:
@@ -1066,7 +1068,7 @@ def spawn_editor(message, filename, editor, charset='utf-8'):
         newmessage = f.read()
 
     if newmessage == message:
-        ewrite('No changes were made in the editor.\n')
+        ewrite(_('No changes were made in the editor.\n'))
 
     return (newmessage, newmessage != message)
 

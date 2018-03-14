@@ -21,12 +21,14 @@
 #  ARISING OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS
 #  SOFTWARE.
 
+# Gettext support
+from reportbug import _
 
 __all__ = ['text_ui', 'urwid_ui', 'gtk2_ui']
 
-UIS = {'text': 'A text-oriented console user interface',
-       'urwid': 'A menu-based console user interface',
-       'gtk2': 'A graphical (GTK+) user interface.'}
+UIS = {'text': _('A text-oriented console user interface'),
+       'urwid': _('A menu-based console user interface'),
+       'gtk2': _('A graphical (GTK+) user interface.')}
 
 # Only the available UIs
 AVAILABLE_UIS = {}

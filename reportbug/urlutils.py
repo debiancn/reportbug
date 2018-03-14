@@ -37,6 +37,7 @@ from .exceptions import (
     NoNetwork,
 )
 
+from . import _
 from .__init__ import VERSION_NUMBER
 
 UA_STR = 'reportbug/' + VERSION_NUMBER + ' (Debian)'
@@ -93,9 +94,9 @@ class handlepasswd(urllib.request.HTTPPasswordMgrWithDefaultRealm):
         if user is not None:
             return user, password
 
-        user = input('Enter username for %s at %s: ' % (realm, authurl))
+        user = input(_('Enter username for %s at %s: ') % (realm, authurl))
         password = getpass.getpass(
-            "Enter password for %s in %s at %s: " % (user, realm, authurl))
+            _("Enter password for %s in %s at %s: ") % (user, realm, authurl))
         self.add_password(realm, authurl, user, password)
         return user, password
 
@@ -162,11 +163,11 @@ def open_url(url, http_proxy=None, timeout=60):
         else:
             raise NoNetwork
     except TypeError:
-        print("http_proxy environment variable must be formatted as a valid URI", file=sys.stderr)
+        print(_("http_proxy environment variable must be formatted as a valid URI"), file=sys.stderr)
         raise NoNetwork
     except http.client.HTTPException as exc:
         exc_name = exc.__class__.__name__
-        message = "Failed to open %(url)r (%(exc_name)s: %(exc)s)" % vars()
+        message = _("Failed to open %(url)r (%(exc_name)s: %(exc)s)") % vars()
         raise NoNetwork(message)
     return page
 

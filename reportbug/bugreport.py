@@ -24,6 +24,7 @@ import os
 
 from . import utils
 from . import debbugs
+from . import _
 import subprocess
 import os
 
@@ -54,7 +55,7 @@ class bugreport(object):
             try:
                 self.followup = followup.bug_num
             except:
-                ui.long_message('Invalid value for followup, it must be a debianbts.Bugreport instance or an integer')
+                ui.long_message(_('Invalid value for followup, it must be a debianbts.Bugreport instance or an integer'))
                 raise TypeError
         else:
             self.followup = followup
@@ -68,7 +69,7 @@ class bugreport(object):
 
     def tset(self, value):
         if value not in ('debbugs', 'launchpad'):
-            ui.long_message('invalid report type %s, defaulting to debbugs' %
+            ui.long_message(_('invalid report type %s, defaulting to debbugs') %
                             value)
             self.__type = 'debbugs'
         else:

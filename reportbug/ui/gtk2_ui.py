@@ -20,11 +20,12 @@
 #  ARISING OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS
 #  SOFTWARE.
 
+import os
+from . import _
 from reportbug.exceptions import UINotImportable
 
-import os
 if not ('DISPLAY' in os.environ or 'WAYLAND_DISPLAY' in os.environ):
-    raise UINotImportable('No graphical display detected, falling back to text UI.')
+    raise UINotImportable(_('No graphical display detected, falling back to text UI.'))
 
 try:
     import gi
@@ -49,7 +50,9 @@ try:
 
     gi.require_foreign('cairo')
 except ImportError:
-    raise UINotImportable('Please install the python3-gi and gir1.2-gtk-3.0 packages to use this interface.')
+    raise UINotImportable(
+            _('Please install the python3-gi and '
+              'gir1.2-gtk-3.0 packages to use this interface.'))
 
 global Vte
 
@@ -76,9 +79,9 @@ global application, assistant, report_message, reportbug_context, ui_context
 
 def _describe_context(context):
     if context == ui_context:
-        return '<MainContext of UI thread>'
+        return _('<MainContext of UI thread>')
     elif context == reportbug_context:
-        return '<MainContext of reportbug thread>'
+        return _('<MainContext of reportbug thread>')
     else:
         return repr(context)
 
@@ -88,11 +91,11 @@ def _assert_context(expected):
 
     # This compares by pointer value of the underlying GMainContext
     if really != expected:
-        raise AssertionError('Function should be called in %s but was called in %s' %
+        raise AssertionError(_('Function should be called in %s but was called in %s') %
                              (_describe_context(really), _describe_context(expected)))
 
     if not really.is_owner():
-        raise AssertionError('Function should be called with %s acquired')
+        raise AssertionError(_('Function should be called with %s acquired'))
 
 
 def highlight(s):
@@ -129,7 +132,7 @@ def info_dialog(message):
     dialog = Gtk.MessageDialog(assistant, Gtk.DialogFlags.MODAL | Gtk.DialogFlags.DESTROY_WITH_PARENT,
                                Gtk.MessageType.INFO, Gtk.ButtonsType.CLOSE, message)
     dialog.connect('response', lambda d, *args: d.destroy())
-    dialog.set_title('Reportbug')
+    dialog.set_title(_('Reportbug'))
     dialog.show_all()
 
 
@@ -138,14 +141,14 @@ def error_dialog(message):
     dialog = Gtk.MessageDialog(assistant, Gtk.DialogFlags.MODAL | Gtk.DialogFlags.DESTROY_WITH_PARENT,
                                Gtk.MessageType.ERROR, Gtk.ButtonsType.CLOSE, message)
     dialog.connect('response', lambda d, *args: d.destroy())
-    dialog.set_title('Reportbug')
+    dialog.set_title(_('Reportbug'))
     dialog.show_all()
 
 
 class CustomDialog(Gtk.Dialog):
     def __init__(self, stock_image, message, buttons, *args, **kwargs):
         _assert_context(ui_context)
-        Gtk.Dialog.__init__(self, "Reportbug", assistant,
+        Gtk.Dialog.__init__(self, _("Reportbug"), assistant,
                             Gtk.DialogFlags.MODAL | Gtk.DialogFlags.DESTROY_WITH_PARENT,
                             buttons)
         # Try following the HIG
@@ -220,11 +223,17 @@ class ExceptionDialog(CustomDialog):
 
     def __init__(self, tb):
         _assert_context(ui_context)
-        CustomDialog.__init__(self, Gtk.STOCK_DIALOG_ERROR, "An error has occurred while doing an operation in Reportbug.\nPlease report the bug.", (Gtk.STOCK_CLOSE, Gtk.ResponseType.CLOSE), tb)
+        CustomDialog.__init__(
+                self,
+                Gtk.STOCK_DIALOG_ERROR,
+                _("An error has occurred while doing an operation in "
+                  "Reportbug.\nPlease report the bug."),
+                (Gtk.STOCK_CLOSE, Gtk.ResponseType.CLOSE),
+                tb)
 
     def setup_dialog(self, vbox, tb):
         # The traceback
-        expander = Gtk.Expander.new_with_mnemonic("More details")
+        expander = Gtk.Expander.new_with_mnemonic(_("More details"))
         vbox.pack_start(expander, True, True, 0)
 
         view = Gtk.TextView()
@@ -243,7 +252,7 @@ class ExceptionDialog(CustomDialog):
 class ReportViewerDialog(Gtk.Dialog):
     def __init__(self, message):
         _assert_context(ui_context)
-        Gtk.Dialog.__init__(self, "Reportbug", assistant,
+        Gtk.Dialog.__init__(self, _("Reportbug"), assistant,
                             Gtk.DialogFlags.MODAL | Gtk.DialogFlags.DESTROY_WITH_PARENT,
                             (Gtk.STOCK_COPY, Gtk.ResponseType.APPLY,
                              Gtk.STOCK_CLOSE, Gtk.ResponseType.CLOSE))
@@ -400,7 +409,7 @@ class BugPage(Gtk.EventBox, threading.Thread):
         self.bug_status = None
 
         vbox = Gtk.VBox(spacing=12)
-        vbox.pack_start(Gtk.Label(label="Retrieving bug information."), False, True, 0)
+        vbox.pack_start(Gtk.Label(label=_("Retrieving bug information.")), False, True, 0)
 
         self.progress = Gtk.ProgressBar()
         self.progress.set_pulse_step(0.01)
@@ -411,7 +420,7 @@ class BugPage(Gtk.EventBox, threading.Thread):
     def run(self):
         if not self.context.acquire():
             # should be impossible
-            raise AssertionError('Could not acquire my own main-context')
+            raise AssertionError(_('Could not acquire my own main-context'))
         self.context.push_thread_default()
 
         # Start the progress bar
@@ -441,7 +450,7 @@ class BugPage(Gtk.EventBox, threading.Thread):
     def not_found(self):
         _assert_context(ui_context)
         self.drop_progressbar()
-        self.add(Gtk.Label(label="The bug can't be fetched or it doesn't exist."))
+        self.add(Gtk.Label(label=_("The bug can't be fetched or it doesn't exist.")))
         self.show_all()
 
     def found(self, info):
@@ -451,7 +460,7 @@ class BugPage(Gtk.EventBox, threading.Thread):
         bodies = info[1]
         vbox = Gtk.VBox(spacing=12)
         vbox.set_border_width(12)
-        label = Gtk.Label(label='Description: ' + desc)
+        label = Gtk.Label(label=_('Description: ') + desc)
         label.set_line_wrap(True)
         label.set_justify(Gtk.Justification.FILL)
         vbox.pack_start(label, False, True, 0)
@@ -470,11 +479,11 @@ class BugPage(Gtk.EventBox, threading.Thread):
         vbox.pack_start(scrolled, True, True, 0)
 
         bbox = Gtk.HButtonBox()
-        button = Gtk.Button(label="Open in browser")
+        button = Gtk.Button(label=_("Open in browser"))
         button.connect('clicked', self.on_open_browser)
         bbox.pack_start(button, True, True, 0)
         if not self.queryonly:
-            button = Gtk.Button(label="Reply")
+            button = Gtk.Button(label=_("Reply"))
             button.set_image(Gtk.Image.new_from_stock(Gtk.STOCK_EDIT, Gtk.IconSize.BUTTON))
             button.connect('clicked', self.on_reply)
             bbox.pack_start(button, True, True, 0)
@@ -501,7 +510,7 @@ class BugPage(Gtk.EventBox, threading.Thread):
 class BugsDialog(Gtk.Dialog):
     def __init__(self, assistant, queryonly):
         _assert_context(ui_context)
-        Gtk.Dialog.__init__(self, "Reportbug: bug information", assistant,
+        Gtk.Dialog.__init__(self, _("Reportbug: bug information"), assistant,
                             Gtk.DialogFlags.MODAL | Gtk.DialogFlags.DESTROY_WITH_PARENT,
                             (Gtk.STOCK_CLOSE, Gtk.ResponseType.CLOSE))
         self.assistant = assistant
@@ -534,7 +543,7 @@ class ReportbugApplication(threading.Thread):
     def run(self):
         if not ui_context.acquire():
             # should be impossible
-            raise AssertionError('Could not acquire UI context')
+            raise AssertionError(_('Could not acquire UI context'))
         ui_context.push_thread_default()
 
         Gtk.main()
@@ -660,7 +669,7 @@ class Page(ReportbugConnector):
         self.set_page_type(self.page_type)
         self.assistant.set_page_side_image(self.widget, GdkPixbuf.Pixbuf.new_from_file(self.side_image))
         self.assistant.set_next_page(self)
-        self.set_page_title("Reportbug")
+        self.set_page_title(_("Reportbug"))
 
     # Setup keyboard focus in the page
     def setup_focus(self):
@@ -705,19 +714,19 @@ class IntroPage(Page):
 
         vbox = Gtk.VBox(spacing=24)
 
-        label = Gtk.Label(label="""
+        label = Gtk.Label(label=_("""
 <b>Reportbug</b> is a tool designed to make the reporting of bugs in Debian and derived distributions relatively painless.
 
 This wizard will guide you through the bug reporting process step by step.
 
-<b>Note:</b> bug reports are publicly archived(including the email address of the submitter).""")
+<b>Note:</b> bug reports are publicly archived(including the email address of the submitter)."""))
         label.set_use_markup(True)
         label.set_line_wrap(True)
         label.set_justify(Gtk.Justification.FILL)
         vbox.pack_start(label, False, True, 0)
 
         link = Gtk.LinkButton.new_with_label("https://salsa.debian.org/reportbug-team/reportbug",
-                                             "Homepage of reportbug project")
+                                             _("Homepage of reportbug project"))
         vbox.pack_start(link, False, True, 0)
         return vbox
 
@@ -752,7 +761,7 @@ class GetStringPage(Page):
     def execute(self, prompt, options=None, force_prompt=False, default=''):
         _assert_context(ui_context)
         # Hackish: remove the text needed for textual UIs...
-        GLib.idle_add(self.label.set_text, prompt.replace('(enter Ctrl+c to exit reportbug without reporting a bug)', ''))
+        GLib.idle_add(self.label.set_text, prompt.replace(_('(enter Ctrl+c to exit reportbug without reporting a bug)'), ''))
         self.entry.set_text(default)
 
         if options:
@@ -894,7 +903,7 @@ class GetListPage(TreePage):
 
     def on_add(self, button):
         _assert_context(ui_context)
-        dialog = InputStringDialog("Add a new item to the list")
+        dialog = InputStringDialog(_("Add a new item to the list"))
         dialog.show_all()
         dialog.connect('response', self.on_add_dialog_response)
 
@@ -974,11 +983,11 @@ class MenuPage(TreePage):
         if multiple:
             self.selection.set_mode(Gtk.SelectionMode.MULTIPLE)
 
-        self.view.append_column(Gtk.TreeViewColumn('Option', Gtk.CellRendererText(), markup=0))
+        self.view.append_column(Gtk.TreeViewColumn(_('Option'), Gtk.CellRendererText(), markup=0))
         rend = WrapRendererText()
         rend.set_property('wrap-mode', Pango.WrapMode.WORD)
         rend.set_property('wrap-width', 300)
-        self.view.append_column(Gtk.TreeViewColumn('Description', rend, text=1))
+        self.view.append_column(Gtk.TreeViewColumn(_('Description'), rend, text=1))
 
         default_iter = None
         # here below, 'text' is the value of the description of the item, but
@@ -1037,9 +1046,9 @@ class HandleBTSQueryPage(TreePage):
             if source:
                 pkgname += '(source)'
 
-            progress_label = 'Querying %s bug tracking system for reports on %s' % (debbugs.SYSTEMS[bts]['name'], pkgname)
+            progress_label = _('Querying %s bug tracking system for reports on %s') % (debbugs.SYSTEMS[bts]['name'], pkgname)
         else:
-            progress_label = 'Querying %s bug tracking system for reports %s' % (debbugs.SYSTEMS[bts]['name'], ' '.join([str(x) for x in package]))
+            progress_label = _('Querying %s bug tracking system for reports %s') % (debbugs.SYSTEMS[bts]['name'], ' '.join([str(x) for x in package]))
 
         self.application.run_once_in_main_thread(self.assistant.set_progress_label, progress_label)
 
@@ -1048,7 +1057,7 @@ class HandleBTSQueryPage(TreePage):
                 package, timeout, bts, mirrors=mirrors, version=version,
                 http_proxy=http_proxy, archived=archived, source=source)
         except:
-            error_dialog("Unable to connect to %s BTS." % sysinfo['name'])
+            error_dialog(_("Unable to connect to %s BTS.") % sysinfo['name'])
             raise NoBugs
 
         try:
@@ -1059,9 +1068,9 @@ class HandleBTSQueryPage(TreePage):
                     raise NoBugs
             else:
                 if count > 1:
-                    sectitle = '%d bug reports found' % (count,)
+                    sectitle = _('%d bug reports found') % (count,)
                 else:
-                    sectitle = 'One bug report found'
+                    sectitle = _('One bug report found')
 
                 report = []
                 for category, bugs in hierarchy:
@@ -1076,7 +1085,7 @@ class HandleBTSQueryPage(TreePage):
                 return(report, sectitle), {}
 
         except NoPackage:
-            error_dialog('No record of this package found.')
+            error_dialog(_('No record of this package found.'))
             raise NoPackage
 
         raise SyncReturn(None)
@@ -1088,7 +1097,7 @@ class HandleBTSQueryPage(TreePage):
     def create_widget(self):
         _assert_context(ui_context)
         vbox = Gtk.VBox(spacing=6)
-        self.label = Gtk.Label(label="List of bugs. Select a bug to retrieve and submit more information.")
+        self.label = Gtk.Label(label=_("List of bugs. Select a bug to retrieve and submit more information."))
         vbox.pack_start(self.label, False, True, 6)
 
         hbox = Gtk.HBox(spacing=6)
@@ -1106,15 +1115,25 @@ class HandleBTSQueryPage(TreePage):
         self.view = Gtk.TreeView()
         self.view.set_rules_hint(True)
         scrolled = create_scrollable(self.view)
-        self.columns = ['ID', 'Tag', 'Package', 'Description', 'Status', 'Submitter', 'Date', 'Severity', 'Version',
-                        'Filed date', 'Modified date']
+        self.columns = [
+                _('ID'),
+                _('Tag'),
+                _('Package'),
+                _('Description'),
+                _('Status'),
+                _('Submitter'),
+                _('Date'),
+                _('Severity'),
+                _('Version'),
+                _('Filed date'),
+                _('Modified date')]
         for col in zip(self.columns, list(range(len(self.columns)))):
             column = Gtk.TreeViewColumn(col[0], Gtk.CellRendererText(), text=col[1])
             column.set_reorderable(True)
             self.view.append_column(column)
         vbox.pack_start(scrolled, True, True, 0)
 
-        button = Gtk.Button(label="Retrieve and submit bug information")
+        button = Gtk.Button(label=_("Retrieve and submit bug information"))
         button.set_image(Gtk.Image.new_from_stock(Gtk.STOCK_INFO, Gtk.IconSize.BUTTON))
         button.connect('clicked', self.on_retrieve_info)
         vbox.pack_start(button, False, True, 0)
@@ -1139,7 +1158,7 @@ class HandleBTSQueryPage(TreePage):
         _assert_context(ui_context)
         bug_ids = TreePage.get_value(self)
         if not bug_ids:
-            info_dialog("Please select one or more bugs")
+            info_dialog(_("Please select one or more bugs"))
             return
 
         dialog = BugsDialog(self.assistant, self.queryonly)
@@ -1188,7 +1207,9 @@ class HandleBTSQueryPage(TreePage):
 
     def execute(self, buglist, sectitle):
         _assert_context(ui_context)
-        GLib.idle_add(self.label.set_text, "%s. Double-click a bug to retrieve and submit more information." % sectitle)
+        GLib.idle_add(
+                self.label.set_text,
+                _("%s. Double-click a bug to retrieve and submit more information.") % sectitle)
 
         self.model = Gtk.TreeStore(*([str] * len(self.columns)))
         for category in buglist:
@@ -1282,7 +1303,7 @@ class LongMessagePage(Page):
         # Reportbug should use final_message, so emulate it
         if('nnnnnn' in message):
             self.set_page_type(Gtk.AssistantPageType.CONFIRM)
-            self.set_page_title("Thanks for your report")
+            self.set_page_title(_("Thanks for your report"))
 
 
 class FinalMessagePage(LongMessagePage):
@@ -1292,7 +1313,7 @@ class FinalMessagePage(LongMessagePage):
     def execute(self, *args, **kwargs):
         _assert_context(ui_context)
         LongMessagePage.execute(self, *args, **kwargs)
-        self.set_page_title("Thanks for your report")
+        self.set_page_title(_("Thanks for your report"))
 
 
 class EditorPage(Page):
@@ -1300,7 +1321,7 @@ class EditorPage(Page):
         _assert_context(ui_context)
         vbox = Gtk.VBox(spacing=6)
         hbox = Gtk.HBox(spacing=12)
-        hbox.pack_start(Gtk.Label(label="Subject: "), False, True, 0)
+        hbox.pack_start(Gtk.Label(label=_("Subject: ")), False, True, 0)
         self.subject = Gtk.Entry()
         hbox.pack_start(self.subject, True, True, 0)
         vbox.pack_start(hbox, False, True, 0)
@@ -1325,7 +1346,7 @@ class EditorPage(Page):
         scrolled = create_scrollable(self.view)
         vbox.pack_start(scrolled, True, True, 0)
 
-        expander = Gtk.Expander.new_with_mnemonic("Other system information")
+        expander = Gtk.Expander.new_with_mnemonic(_("Other system information"))
         view = Gtk.TextView()
         view.set_editable(False)
         self.others_buffer = view.get_buffer()
@@ -1335,7 +1356,7 @@ class EditorPage(Page):
 
         if gtkspellcheck is NotImplemented:
             box = Gtk.EventBox()
-            label = Gtk.Label(label="Please install <b>python3-gtkspellcheck</b> to enable spell checking")
+            label = Gtk.Label(label=_("Please install <b>python3-gtkspellcheck</b> to enable spell checking"))
             label.set_use_markup(True)
             label.set_line_wrap(True)
             label.set_selectable(True)
@@ -1393,8 +1414,8 @@ class EditorPage(Page):
         self.others_buffer.set_text(self.report.get_others())
 
         info = self.report.get_original_info()
-        if info.strip() == "*** Please type your report below this line ***":
-            info = "Please type your report here.\nThe text will be wrapped to be max 79 chars long per line."
+        if info.strip() == _("*** Please type your report below this line ***"):
+            info = _("Please type your report here.\nThe text will be wrapped to be max 79 chars long per line.")
             self.handle_first_info()
         self.info_buffer.set_text(info)
 
@@ -1433,21 +1454,21 @@ class SelectOptionsPage(Page):
     def execute(self, prompt, menuopts, options):
         _assert_context(ui_context)
         # remove text UI indication
-        prompt = prompt.replace('(e to edit)', '')
+        prompt = prompt.replace(_('(e to edit)'), '')
         GLib.idle_add(self.label.set_text, prompt)
 
         buttons = []
         for menuopt in menuopts:
             desc = options[menuopt.lower()]
             # do we really need to launch an external editor?
-            if 'Change editor' in desc:
+            if _('Change editor') in desc:
                 continue
             # this will be handled using the text view below
-            if 'Pipe the message through the pager' in desc:
+            if _('Pipe the message through the pager') in desc:
                 continue
             # stdout is a textview for us
-            if 'Print message to stdout' in desc:
-                button = Gtk.Button(label="Display message in a text view")
+            if _('Print message to stdout') in desc:
+                button = Gtk.Button(label=_("Display message in a text view"))
                 button.connect('clicked', self.on_display_clicked)
                 buttons.append(button)
             else:
@@ -1524,7 +1545,7 @@ class ProgressPage(Page):
 
     def reset_label(self):
         _assert_context(ui_context)
-        self.set_label("This operation may take a while")
+        self.set_label(_("This operation may take a while"))
 
 
 class ReportbugAssistant(Gtk.Assistant):
@@ -1533,7 +1554,7 @@ class ReportbugAssistant(Gtk.Assistant):
         Gtk.Assistant.__init__(self)
         self.application = application
 
-        self.set_title('Reportbug')
+        self.set_title(_('Reportbug'))
         self.hack_buttons()
         self.showing_page = None
         self.requested_page = None
@@ -1558,12 +1579,12 @@ class ReportbugAssistant(Gtk.Assistant):
             if widget.get_label() == 'gtk-cancel':
                 image = Gtk.Image.new_from_stock(Gtk.STOCK_QUIT,
                                                  Gtk.IconSize.BUTTON)
-                widget.set_label("_Quit")
+                widget.set_label(_("_Quit"))
                 widget.set_image(image)
                 return
             if widget.get_label() == 'gtk-go-forward':
                 image = Gtk.Image.new_from_stock(Gtk.STOCK_GO_FORWARD, Gtk.IconSize.BUTTON)
-                widget.set_label("_Continue")
+                widget.set_label(_("_Continue"))
                 widget.set_image(image)
                 return
 
@@ -1610,7 +1631,7 @@ class ReportbugAssistant(Gtk.Assistant):
         _assert_context(ui_context)
         dialog = Gtk.MessageDialog(None, Gtk.DialogFlags.MODAL | Gtk.DialogFlags.DESTROY_WITH_PARENT,
                                    Gtk.MessageType.WARNING, Gtk.ButtonsType.YES_NO,
-                                   "Are you sure you want to quit Reportbug?")
+                                   _("Are you sure you want to quit Reportbug?"))
         response = dialog.run()
         dialog.destroy()
         if response == Gtk.ResponseType.YES:
@@ -1728,7 +1749,7 @@ def select_multiple(*args, **kwargs):
 
 def get_multiline(prompt, *args, **kwargs):
     _assert_context(reportbug_context)
-    if 'ENTER' in prompt:
+    if _('ENTER') in prompt:
         # This is a list, let's handle it the best way
         return get_list(prompt, *args, **kwargs)
     else:
@@ -1781,8 +1802,8 @@ def initialize():
         gi.require_version('Vte', '2.91')
         from gi.repository import Vte
     except (ImportError,ValueError):
-        message = """Please install the %s package to use the GTK+(known as 'gtk2' in reportbug) interface.
-Falling back to 'text' interface."""
+        message = _("""Please install the %s package to use the GTK+(known as 'gtk2' in reportbug) interface.
+Falling back to 'text' interface.""")
         dialog = Gtk.MessageDialog(None, Gtk.DialogFlags.MODAL | Gtk.DialogFlags.DESTROY_WITH_PARENT,
                                    Gtk.MessageType.INFO, Gtk.ButtonsType.CLOSE, None)
         dialog.set_markup(message % "<b>gir1.2-vte-2.91</b>")
@@ -1798,7 +1819,7 @@ Falling back to 'text' interface."""
     reportbug_context = GLib.MainContext()
     if not reportbug_context.acquire():
         # should be impossible
-        raise AssertionError('Could not acquire new main-context')
+        raise AssertionError(_('Could not acquire new main-context'))
     reportbug_context.push_thread_default()
 
     # A secondary thread (the ReportbugApplication) runs the GTK UI.

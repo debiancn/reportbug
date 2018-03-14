@@ -22,6 +22,7 @@
 #  SOFTWARE.
 
 from . import utils
+from . import _
 import sys
 import mailbox
 import email
@@ -60,58 +61,58 @@ class Error(Exception):
 
 # Severity levels
 SEVERITIES = {
-    'critical': """makes unrelated software on the system (or the
+    'critical': _("""makes unrelated software on the system (or the
     whole system) break, or causes serious data loss, or introduces a
-    security hole on systems where you install the package.""",
-    'grave': """makes the package in question unusable by most or all users,
+    security hole on systems where you install the package."""),
+    'grave': _("""makes the package in question unusable by most or all users,
     or causes data loss, or introduces a security hole allowing access
-    to the accounts of users who use the package.""",
-    'serious': """is a severe violation of Debian policy (that is,
+    to the accounts of users who use the package."""),
+    'serious': _("""is a severe violation of Debian policy (that is,
     the problem is a violation of a 'must' or 'required' directive);
     may or may not affect the usability of the package.  Note that non-severe
     policy violations may be 'normal,' 'minor,' or 'wishlist' bugs.
     (Package maintainers may also designate other bugs as 'serious' and thus
     release-critical; however, end users should not do so.). For the canonical
     list of issues deserving a serious severity you can refer to this webpage:
-    http://release.debian.org/testing/rc_policy.txt .""",
-    'important': """a bug which has a major effect on the usability
+    http://release.debian.org/testing/rc_policy.txt ."""),
+    'important': _("""a bug which has a major effect on the usability
     of a package, without rendering it completely unusable to
-    everyone.""",
-    'does-not-build': """a bug that stops the package from being built
-    from source.  (This is a 'virtual severity'.)""",
-    'normal': """a bug that does not undermine the usability of the
+    everyone."""),
+    'does-not-build': _("""a bug that stops the package from being built
+    from source.  (This is a 'virtual severity'.)"""),
+    'normal': _("""a bug that does not undermine the usability of the
     whole package; for example, a problem with a particular option or
-    menu item.""",
-    'minor': """things like spelling mistakes and other minor
+    menu item."""),
+    'minor': _("""things like spelling mistakes and other minor
     cosmetic errors that do not affect the core functionality of the
-    package.""",
-    'wishlist': "suggestions and requests for new features.",
+    package."""),
+    'wishlist': _("suggestions and requests for new features."),
 }
 
 # justifications for critical bugs
 JUSTIFICATIONS = {
     'critical': (
-        ('breaks unrelated software', """breaks unrelated software on the system
-    (packages that have a dependency relationship are not unrelated)"""),
-        ('breaks the whole system', """renders the entire system unusable (e.g.,
-    unbootable, unable to reach a multiuser runlevel, etc.)"""),
-        ('causes serious data loss', """causes loss of important, irreplaceable
-    data"""),
-        ('root security hole', """introduces a security hole allowing access to
+        ('breaks unrelated software', _("""breaks unrelated software on the system
+    (packages that have a dependency relationship are not unrelated)""")),
+        ('breaks the whole system', _("""renders the entire system unusable (e.g.,
+    unbootable, unable to reach a multiuser runlevel, etc.)""")),
+        ('causes serious data loss', _("""causes loss of important, irreplaceable
+    data""")),
+        ('root security hole', _("""introduces a security hole allowing access to
     root (or another privileged system account), or data normally
-    accessible only by such accounts"""),
-        ('unknown', """not sure, or none of the above"""),
+    accessible only by such accounts""")),
+        ('unknown', _("""not sure, or none of the above""")),
     ),
     'grave': (
-        ('renders package unusable', """renders the package unusable, or mostly
+        ('renders package unusable', _("""renders the package unusable, or mostly
     so, on all or nearly all possible systems on which it could be installed
     (i.e., not a hardware-specific bug); or renders package uninstallable
-    or unremovable without special effort"""),
-        ('causes non-serious data loss', """causes the loss of data on the system
-    that is unimportant, or restorable without resorting to backup media"""),
-        ('user security hole', """introduces a security hole allowing access to
-    user accounts or data not normally accessible"""),
-        ('unknown', """not sure, or none of the above"""),
+    or unremovable without special effort""")),
+        ('causes non-serious data loss', _("""causes the loss of data on the system
+    that is unimportant, or restorable without resorting to backup media""")),
+        ('user security hole', _("""introduces a security hole allowing access to
+    user accounts or data not normally accessible""")),
+        ('unknown', _("""not sure, or none of the above""")),
     )
 }
 
@@ -130,16 +131,16 @@ JUSTORDER = {
 }
 
 SEVERITIES_gnats = {
-    'critical': 'The product, component or concept is completely'
-                'non-operational or some essential functionality is missing.  No'
-                'workaround is known.',
-    'serious': 'The product, component or concept is not working'
-               'properly or significant functionality is missing.  Problems that'
-               'would otherwise be considered ''critical'' are rated ''serious'' when'
-               'a workaround is known.',
-    'non-critical': 'The product, component or concept is working'
-                    'in general, but lacks features, has irritating behavior, does'
-                    'something wrong, or doesn''t match its documentation.',
+    'critical': _('The product, component or concept is completely '
+                'non-operational or some essential functionality is missing.  No '
+                'workaround is known.'),
+    'serious': _('The product, component or concept is not working '
+               'properly or significant functionality is missing.  Problems that '
+               'would otherwise be considered ''critical'' are rated ''serious'' when '
+               'a workaround is known.'),
+    'non-critical': _('The product, component or concept is working '
+                    'in general, but lacks features, has irritating behavior, does '
+                    'something wrong, or doesn''t match its documentation.'),
 }
 
 # Rank order of severities, for sorting
@@ -163,50 +164,50 @@ def convert_severity(severity, type='debbugs'):
 
 # These packages are virtual in Debian; we don't look them up...
 debother = {
-    'bugs.debian.org': 'The bug tracking system, @bugs.debian.org',
-    'buildd.debian.org': 'Problems and requests related to the Debian Buildds',
-    'buildd.emdebian.org': 'Problems related to building packages for Emdebian',
-    'cdimage.debian.org': 'CD Image issues',
-    'cdrom': 'Installation system',
-    'cloud.debian.org': 'Issues involving Debian images for public/private clouds',
-    'contributors.debian.org': 'Issues with the Debian Contributors Website and coordination of maintenance',
-    'd-i.debian.org': 'Issues regarding the d-i.debian.org service and general Debian Installer tasks',
-    'debian-maintainers': 'Problems and requests related to Debian Maintainers',
-    'debian-i18n': 'Requests regarding Internationalization (i18n) of the distribution',
-    'debian-live': 'General problems with Debian Live systems',
-    'ftp.debian.org': 'Problems with the FTP site and Package removal requests',
-    'general': 'General problems (e.g. "many manpages are mode 755")',
-    'installation-reports': 'Reports of installation problems with stable & testing',
-    'jenkins.debian.org': 'Issues with the jenkins.debian.org service',
-    'lists.debian.org': 'The mailing lists, debian-*@lists.debian.org',
-    'manpages.debian.org': 'Issues with the Debian Manpages Website and coordination of maintenance',
-    'mirrors': 'Problems with the official mirrors',
-    'nm.debian.org': 'New Member process and nm.debian.org webpages',
-    'pet.debian.net': 'The Debian Package Entropy Tracker',
-    'piuparts.debian.org': 'Issues with the piuparts.debian.org service',
-    'press': 'Press release issues',
-    'project': 'Problems related to project administration',
-    'qa.debian.org': 'The Quality Assurance group',
-    'release.debian.org': 'Requests regarding Debian releases and release team tools',
-    'release-notes': 'Problems with the Release Notes',
-    'rtc.debian.org': 'Issues in the operation of the Debian RTC services which are not package-specific bugs',
-    'security-tracker': 'The Debian Security Bug Tracker',
-    'security.debian.org': 'The Debian Security Team',
-    'snapshot.debian.org': 'Issues with the snapshot.debian.org service ',
-    'spam': 'Spam (reassign spam to here so we can complain about it)',
-    'sponsorship-requests': 'Requests for package review and sponsorship',
-    'sso.debian.org': 'Problems and requests related to the Debian Single Sign On system',
-    'summit.debconf.org': 'Problems and requests related to the DebConf Summit instance',
-    'tech-ctte': 'The Debian Technical Committee (see the Constitution)',
-    'tracker.debian.org': 'Issues with the Debian Package Tracker and coordination of its maintenance',
-    'upgrade-reports': 'Reports of upgrade problems for stable & testing',
-    'wiki.debian.org': 'Problems with the Debian wiki',
-    'wnpp': 'Work-Needing and Prospective Packages list',
-    'www.debian.org': 'Problems with the WWW site'
+    'bugs.debian.org': _('The bug tracking system, @bugs.debian.org'),
+    'buildd.debian.org': _('Problems and requests related to the Debian Buildds'),
+    'buildd.emdebian.org': _('Problems related to building packages for Emdebian'),
+    'cdimage.debian.org': _('CD Image issues'),
+    'cdrom': _('Installation system'),
+    'cloud.debian.org': _('Issues involving Debian images for public/private clouds'),
+    'contributors.debian.org': _('Issues with the Debian Contributors Website and coordination of maintenance'),
+    'd-i.debian.org': _('Issues regarding the d-i.debian.org service and general Debian Installer tasks'),
+    'debian-maintainers': _('Problems and requests related to Debian Maintainers'),
+    'debian-i18n': _('Requests regarding Internationalization (i18n) of the distribution'),
+    'debian-live': _('General problems with Debian Live systems'),
+    'ftp.debian.org': _('Problems with the FTP site and Package removal requests'),
+    'general': _('General problems (e.g. "many manpages are mode 755")'),
+    'installation-reports': _('Reports of installation problems with stable & testing'),
+    'jenkins.debian.org': _('Issues with the jenkins.debian.org service'),
+    'lists.debian.org': _('The mailing lists, debian-*@lists.debian.org'),
+    'manpages.debian.org': _('Issues with the Debian Manpages Website and coordination of maintenance'),
+    'mirrors': _('Problems with the official mirrors'),
+    'nm.debian.org': _('New Member process and nm.debian.org webpages'),
+    'pet.debian.net': _('The Debian Package Entropy Tracker'),
+    'piuparts.debian.org': _('Issues with the piuparts.debian.org service'),
+    'press': _('Press release issues'),
+    'project': _('Problems related to project administration'),
+    'qa.debian.org': _('The Quality Assurance group'),
+    'release.debian.org': _('Requests regarding Debian releases and release team tools'),
+    'release-notes': _('Problems with the Release Notes'),
+    'rtc.debian.org': _('Issues in the operation of the Debian RTC services which are not package-specific bugs'),
+    'security-tracker': _('The Debian Security Bug Tracker'),
+    'security.debian.org': _('The Debian Security Team'),
+    'snapshot.debian.org': _('Issues with the snapshot.debian.org service '),
+    'spam': _('Spam (reassign spam to here so we can complain about it)'),
+    'sponsorship-requests': _('Requests for package review and sponsorship'),
+    'sso.debian.org': _('Problems and requests related to the Debian Single Sign On system'),
+    'summit.debconf.org': _('Problems and requests related to the DebConf Summit instance'),
+    'tech-ctte': _('The Debian Technical Committee (see the Constitution)'),
+    'tracker.debian.org': _('Issues with the Debian Package Tracker and coordination of its maintenance'),
+    'upgrade-reports': _('Reports of upgrade problems for stable & testing'),
+    'wiki.debian.org': _('Problems with the Debian wiki'),
+    'wnpp': _('Work-Needing and Prospective Packages list'),
+    'www.debian.org': _('Problems with the WWW site')
 }
 
 progenyother = {
-    'debian-general': 'Any non-package-specific bug',
+    'debian-general': _('Any non-package-specific bug'),
 }
 
 
@@ -217,36 +218,36 @@ def handle_debian_ftp(package, bts, ui, fromaddr, timeout, online=True, http_pro
     pseudos = []
     query = True
 
-    tag = ui.menu('What sort of request is this?  (If none of these '
+    tag = ui.menu(_('What sort of request is this?  (If none of these '
                   'things mean anything to you, or you are trying to report '
                   'a bug in an existing package, please press Enter to '
-                  'exit reportbug.)', {
-                      'ROM': "Package removal - Request Of Maintainer.",
-                      'RoQA': "Package removal - Requested by the QA team.",
-                      'ROP': "Package removal - Request of Porter.",
-                      'NBS': "Package removal - Not Built [by] Source.",
-                      'NPOASR': "Package removal - Never Part Of A Stable Release.",
-                      'NVIU': "Package removal - Newer Version In Unstable.",
-                      'ANAIS': "Package removal - Architecture Not Allowed In Source.",
-                      'ICE': "Package removal - Internal Compiler Error.",
-                      'override': "Change override request.",
-                      'other': "Not a package removal request, report other problems.",
-                  }, 'Choose the request type: ', empty_ok=True)
+                  'exit reportbug.)'), {
+                      'ROM': _("Package removal - Request Of Maintainer."),
+                      'RoQA': _("Package removal - Requested by the QA team."),
+                      'ROP': _("Package removal - Request of Porter."),
+                      'NBS': _("Package removal - Not Built [by] Source."),
+                      'NPOASR': _("Package removal - Never Part Of A Stable Release."),
+                      'NVIU': _("Package removal - Newer Version In Unstable."),
+                      'ANAIS': _("Package removal - Architecture Not Allowed In Source."),
+                      'ICE': _("Package removal - Internal Compiler Error."),
+                      'override': _("Change override request."),
+                      'other': _("Not a package removal request, report other problems."),
+                  }, _('Choose the request type: '), empty_ok=True)
     if not tag:
-        ui.long_message('To report a bug in a package, use the name of the package, not ftp.debian.org.\n')
+        ui.long_message(_('To report a bug in a package, use the name of the package, not ftp.debian.org.\n'))
         raise SystemExit
 
     severity = 'normal'
     if tag == 'other':
         return
     else:
-        prompt = 'Please enter the name of the package: '
+        prompt = _('Please enter the name of the package: ')
         package = ui.get_string(prompt)
         if not package:
-            ui.log_message('You seem to want to report a generic bug, not request a removal\n')
+            ui.log_message(_('You seem to want to report a generic bug, not request a removal\n'))
             return
 
-        ui.log_message('Checking status database...\n')
+        ui.log_message(_('Checking status database...\n'))
         info = utils.get_package_status(package)
         available = info[1]
 
@@ -258,9 +259,9 @@ def handle_debian_ftp(package, bts, ui, fromaddr, timeout, online=True, http_pro
 
         if not info:
             cont = ui.select_options(
-                "This package doesn't appear to exist; continue?",
-                'yN', {'y': 'Ignore this problem and continue.',
-                       'n': 'Exit without filing a report.'})
+                _("This package doesn't appear to exist; continue?"),
+                'yN', {'y': _('Ignore this problem and continue.'),
+                       'n': _('Exit without filing a report.')})
             if cont == 'n':
                 sys.exit(1)
         else:
@@ -272,7 +273,7 @@ def handle_debian_ftp(package, bts, ui, fromaddr, timeout, online=True, http_pro
 
     if tag == 'override':
         # we handle here the override change request
-        new_section = ui.menu('Select the new section', {
+        new_section = ui.menu(_('Select the new section'), {
             'admin': "", 'cli-mono': "", 'comm': "", 'database': "",
             'debian-installer': "", 'debug': "", 'devel': "", 'doc': "",
             'editors': "", 'education': "", 'electronics': "",
@@ -289,36 +290,37 @@ def handle_debian_ftp(package, bts, ui, fromaddr, timeout, online=True, http_pro
             'science': "", 'shells': "", 'sound': "", 'tex': "",
             'text': "", 'utils': "", 'vcs': "", 'video': "", 'web': "",
             'x11': "", 'xfce': "", 'zope': "",
-        }, 'Choose the section: ', default=section, empty_ok=True)
+        }, _('Choose the section: '), default=section, empty_ok=True)
         if not new_section:
             new_section = section
 
-        new_priority = ui.menu('Select the new priority', {
+        new_priority = ui.menu(_('Select the new priority'), {
             'required': "",
             'important': "",
             'standard': "",
             'optional': "",
             'extra': "",
-        }, 'Choose the priority: ', default=priority, empty_ok=True)
+        }, _('Choose the priority: '), default=priority, empty_ok=True)
         if not new_priority:
             new_priority = priority
 
         if new_section == section and new_priority == priority:
-            cont = ui.select_options(
+            cont = ui.select_options(_(
                 "You didn't change section nor priority: is this because it's "
-                "ftp.debian.org override file that needs updating?",
-                'Yn', {'y': 'ftp.debian.org override file needs updating',
-                       'n': 'No, it\'s not the override file'})
+                "ftp.debian.org override file that needs updating?"),
+                'Yn', {'y': _('ftp.debian.org override file needs updating'),
+                       'n': _('No, it\'s not the override file')})
             if cont == 'n':
-                ui.long_message("There's nothing we can do for you, then; "
-                                "exiting...")
+                ui.long_message(
+                        _("There's nothing we can do for you, then; "
+                          "exiting..."))
                 sys.exit(1)
 
-        arch_section = ui.menu('Is this request for an archive section other than "main"?', {
+        arch_section = ui.menu(_('Is this request for an archive section other than "main"?'), {
             'main': "",
             'contrib': "",
             'non-free': "",
-        }, 'Choose the archive section: ', default='main', empty_ok=True)
+        }, _('Choose the archive section: '), default='main', empty_ok=True)
         if not arch_section:
             arch_section = 'main'
 
@@ -326,25 +328,25 @@ def handle_debian_ftp(package, bts, ui, fromaddr, timeout, online=True, http_pro
             subject = "override: %s:%s/%s %s" % (package, arch_section, new_section, new_priority)
         else:
             subject = "override: %s:%s/%s" % (package, new_section, new_priority)
-        body = "(Describe here the reason for this change)"
+        body = _("(Describe here the reason for this change)")
     else:
         # we handle here the removal requests
-        suite = ui.menu('Is the removal to be done in a suite other than'
-                        ' "unstable"?  Don\'t select anything for "unstable"', {
-                            'oldstable': "Old stable.",
-                            'oldstable-proposed-updates': "Old stable proposed updates.",
-                            'stable': "Stable.",
-                            'stable-proposed-updates': "Stable proposed updates.",
-                            'testing': "Testing only (NOT unstable)",
-                            'testing-proposed-updates': "Testing proposed updates",
-                            'experimental': "Experimental.",
-                        }, 'Choose the suite: ', empty_ok=True)
+        suite = ui.menu(_('Is the removal to be done in a suite other than'
+                        ' "unstable"?  Don\'t select anything for "unstable"'), {
+                            'oldstable': _("Old stable."),
+                            'oldstable-proposed-updates': _("Old stable proposed updates."),
+                            'stable': _("Stable."),
+                            'stable-proposed-updates': _("Stable proposed updates."),
+                            'testing': _("Testing only (NOT unstable)"),
+                            'testing-proposed-updates': _("Testing proposed updates"),
+                            'experimental': _("Experimental."),
+                        }, _('Choose the suite: '), empty_ok=True)
         if not suite:
             suite = 'unstable'
 
         if suite not in ('testing', 'unstable', 'experimental'):
             headers.append('X-Debbugs-CC: debian-release@lists.debian.org')
-            ui.log_message('Your report will be carbon-copied to debian-release.\n')
+            ui.log_message(_('Your report will be carbon-copied to debian-release.\n'))
 
         why = 'Please enter the reason for removal: '
         reason = ui.get_string(why)
@@ -352,23 +354,24 @@ def handle_debian_ftp(package, bts, ui, fromaddr, timeout, online=True, http_pro
             return
 
         partial = ui.select_options(
-            "Is this removal request for specific architectures?",
-            'yN', {'y': 'This is a partial (specific architectures) removal.',
-                   'n': 'This removal is for all architectures.'})
+            _("Is this removal request for specific architectures?"),
+            'yN', {'y': _('This is a partial (specific architectures) removal.'),
+                   'n': _('This removal is for all architectures.')})
         if partial == 'y':
-            prompt = 'Please enter the arch list separated by a space: '
+            prompt = _('Please enter the arch list separated by a space: ')
             archs = ui.get_string(prompt)
             if not archs:
-                ui.long_message('Partial removal requests must have a list of architectures.\n')
+                ui.long_message(_('Partial removal requests must have a list of architectures.\n'))
                 raise SystemExit
 
         if suite == 'testing' and archs:
-            ui.long_message('Partial removal for testing; forcing suite to '
-                            '\'unstable\', since it\'s the proper way to do that.')
+            ui.long_message(_('Partial removal for testing; forcing suite to '
+                            '\'unstable\', since it\'s the proper way to do that.'))
             suite = 'unstable'
-            body = '(please explain the reason for the removal here)\n\n' + \
-                   'Note: this was a request for a partial removal from testing, ' + \
-                   'converted in one for unstable'
+            body = _(
+                    '(please explain the reason for the removal here)\n\n'
+                   'Note: this was a request for a partial removal from testing, '
+                   'converted in one for unstable')
 
         if archs:
             if suite != 'unstable':
@@ -382,8 +385,9 @@ def handle_debian_ftp(package, bts, ui, fromaddr, timeout, online=True, http_pro
                 subject = 'RM: %s -- %s; %s' % (package, tag, reason)
 
         if suite == 'testing':
-            ui.long_message('Please use release.debian.org pseudo-package and '
-                            'report a bug there.')
+            ui.long_message(_(
+                'Please use release.debian.org pseudo-package and '
+                'report a bug there.'))
             sys.exit(1)
 
     return (subject, severity, headers, pseudos, body, query)
@@ -407,21 +411,21 @@ def handle_debian_release(package, bts, ui, fromaddr, timeout, online=True, http
     stable_security = stable + '-security'
     testing = utils.SUITE2CODENAME['testing']
 
-    tag = ui.menu('What sort of request is this?  (If none of these '
+    tag = ui.menu(_('What sort of request is this?  (If none of these '
                   'things mean anything to you, or you are trying to report '
                   'a bug in an existing package, please press Enter to '
-                  'exit reportbug.)', {
-                      'binnmu': "binNMU requests",
-                      'britney': "testing migration script bugs",
-                      'transition': "transition tracking",
-                      'unblock': "unblock requests",
-                      #oldstable_pu: "%s proposed updates requests" % oldstable,
-                      stable_pu: "%s proposed updates requests" % stable,
-                      'rm': "Stable/Testing removal requests",
-                      'other': "None of the other options",
-                  }, 'Choose the request type: ', empty_ok=True)
+                  'exit reportbug.)'), {
+                      'binnmu': _("binNMU requests"),
+                      'britney': _("testing migration script bugs"),
+                      'transition': _("transition tracking"),
+                      'unblock': _("unblock requests"),
+                      #oldstable_pu: _("%s proposed updates requests") % oldstable,
+                      stable_pu: _("%s proposed updates requests") % stable,
+                      'rm': _("Stable/Testing removal requests"),
+                      'other': _("None of the other options"),
+                  }, _('Choose the request type: '), empty_ok=True)
     if not tag:
-        ui.long_message('To report a bug in a package, use the name of the package, not release.debian.org.\n')
+        ui.long_message(_('To report a bug in a package, use the name of the package, not release.debian.org.\n'))
         raise SystemExit
 
     severity = 'normal'
@@ -429,19 +433,19 @@ def handle_debian_release(package, bts, ui, fromaddr, timeout, online=True, http
         return
 
     if tag == 'britney':
-        subject_britney = ui.get_string('Please enter the subject of the bug report: ')
+        subject_britney = ui.get_string(_('Please enter the subject of the bug report: '))
         if not subject_britney:
-            ui.long_message('No subject specified, exiting')
+            ui.long_message(_('No subject specified, exiting'))
             sys.exit(1)
     else:
         # package checks code
-        prompt = 'Please enter the name of the package: '
+        prompt = _('Please enter the name of the package: ')
         package = ui.get_string(prompt)
         if not package:
-            ui.log_message('You seem to want to report a generic bug.\n')
+            ui.log_message(_('You seem to want to report a generic bug.\n'))
             return
 
-        ui.log_message('Checking status database...\n')
+        ui.log_message(_('Checking status database...\n'))
         info = utils.get_package_status(package)
         available = info[1]
 
@@ -453,9 +457,9 @@ def handle_debian_release(package, bts, ui, fromaddr, timeout, online=True, http
 
         if not info:
             cont = ui.select_options(
-                "This package doesn't appear to exist; continue?",
-                'yN', {'y': 'Ignore this problem and continue.',
-                       'n': 'Exit without filing a report.'})
+                _("This package doesn't appear to exist; continue?"),
+                'yN', {'y': _('Ignore this problem and continue.'),
+                       'n': _('Exit without filing a report.')})
             if cont == 'n':
                 sys.exit(1)
         else:
@@ -468,38 +472,38 @@ def handle_debian_release(package, bts, ui, fromaddr, timeout, online=True, http
             version = list(checkversions.get_versions_available(package, timeout, (tag[:-3],)).values())[0]
         if version:
             cont = ui.select_options(
-                "Latest version seems to be %s, is this the proper one ?" % (version),
-                "Yn", {'y': "This is the correct version",
-                       'n': "Enter the proper version"})
+                _("Latest version seems to be %s, is this the proper one ?") % (version),
+                "Yn", {'y': _("This is the correct version"),
+                       'n': _("Enter the proper version")})
             if cont == 'n':
                 version = None
         if not version:
-            version = ui.get_string('Please enter the version of the package: ')
+            version = ui.get_string(_('Please enter the version of the package: '))
             if not version:
-                ui.log_message("A version is required for action %s, not sending bug\n" % (tag))
+                ui.log_message(_("A version is required for action %s, not sending bug\n") % (tag))
                 return
 
     if tag in ('binnmu', 'rm'):
-        partial = ui.select_options(
-            "Is this request for specific architectures?",
-            'yN', {'y': 'This is a partial (specific architectures) request.',
-                   'n': 'This request is for all architectures.'})
+        partial = ui.select_options(_(
+            "Is this request for specific architectures?"),
+            'yN', {'y': _('This is a partial (specific architectures) request.'),
+                   'n': _('This request is for all architectures.')})
         if partial == 'y':
             if tag == 'rm':
-                ui.long_message('The proper way to request a partial removal '
+                ui.long_message(_('The proper way to request a partial removal '
                                 'from testing is to file a partial removal from unstable: '
                                 'this way the package for the specified architectures will '
                                 'be automatically removed from testing too. Please re-run '
-                                'reportbug against ftp.debian.org package.')
+                                'reportbug against ftp.debian.org package.'))
                 raise SystemExit
-            prompt = 'Please enter the arch list separated by a space: '
+            prompt = _('Please enter the arch list separated by a space: ')
             archs = ui.get_string(prompt)
             if not archs:
-                ui.long_message('No architecture specified, skipping...')
+                ui.long_message(_('No architecture specified, skipping...'))
 
     if tag == 'binnmu':
-        suite = ui.menu("For which suite are you requesting this binNMU?"
-                        "  Don't select anything for \"unstable\"", {
+        suite = ui.menu(_("For which suite are you requesting this binNMU?"
+                        "  Don't select anything for \"unstable\""), {
                             stable: "",
                             stable_backports: "",
                             stable_security: "",
@@ -508,7 +512,7 @@ def handle_debian_release(package, bts, ui, fromaddr, timeout, online=True, http
                             oldstable_security: "",
                             testing: "",
                             'experimental': "",
-                        }, 'Choose the suite: ', empty_ok=True)
+                        }, _('Choose the suite: '), empty_ok=True)
         if not suite:
             suite = 'unstable'
 
@@ -520,18 +524,18 @@ def handle_debian_release(package, bts, ui, fromaddr, timeout, online=True, http
         pseudos.append("Usertags: %s" % (tag))
 
     if tag == 'binnmu':
-        reason = ui.get_string("binNMU changelog entry: ")
+        reason = ui.get_string(_("binNMU changelog entry: "))
         subject = "nmu: %s_%s" % (package, version)
         body = "nmu %s_%s . %s . %s . -m \"%s\"\n" % (package, version, archs or "ANY", suite, reason)
     elif tag == 'transition':
         subject = 'transition: %s' % (package)
-        body = '(please explain about the transition: impacted packages, reason, ...\n' \
-               ' for more info see: https://wiki.debian.org/Teams/ReleaseTeam/Transitions)\n'
-        affected = '<Fill out>'
-        good = '<Fill out>'
-        bad = '<Fill out>'
+        body = _('(please explain about the transition: impacted packages, reason, ...\n'
+                 ' for more info see: https://wiki.debian.org/Teams/ReleaseTeam/Transitions)\n')
+        affected = _('<Fill out>')
+        good = _('<Fill out>')
+        bad = _('<Fill out>')
 
-        ui.long_message('To assist the release team, please fill in the following information. '
+        ui.long_message(_('To assist the release team, please fill in the following information. '
                         'You will be asked to provide package names of the library package(s) '
                         'that are the source of the transition.  If more than one library is '
                         'changing the name, please use a space separated list.  Alternatively '
@@ -539,12 +543,12 @@ def handle_debian_release(package, bts, ui, fromaddr, timeout, online=True, http
                         'ensure that the "old" regex does not match the "new" packages.  '
                         'Example: old="/libapt-pkg4.10|libapt-inst1.2/ libept1" '
                         'new="/libapt-pkg4.12|libapt-inst1.5|libept1.4.12/". For further '
-                        'reference, please refer to http://ben.debian.net/ .')
+                        'reference, please refer to http://ben.debian.net/ .'))
 
-        prompt = 'Please enter old binary package name of the library (or a regex matching it):'
+        prompt = _('Please enter old binary package name of the library (or a regex matching it):')
         tfrom = ui.get_string(prompt)
         if tfrom:
-            prompt = 'Please enter new binary package name of the library (or a regex matching it):'
+            prompt = _('Please enter new binary package name of the library (or a regex matching it):')
             tto = ui.get_string(prompt)
         else:
             tto = None
@@ -589,10 +593,10 @@ def handle_debian_release(package, bts, ui, fromaddr, timeout, online=True, http
                 """ % (package, package, version))
     elif tag.endswith('-pu'):
         subject = '%s: package %s/%s' % (tag, package, version)
-        body = '(please explain the reason for this update here)\n'
+        body = _('(please explain the reason for this update here)\n')
     elif tag == 'rm':
         subject = 'RM: %s/%s' % (package, version)
-        body = '(explain the reason for the removal here)\n'
+        body = _('(explain the reason for the removal here)\n')
 
     return (subject, severity, headers, pseudos, body, query)
 
@@ -625,18 +629,18 @@ def handle_wnpp(package, bts, ui, fromaddr, timeout, online=True, http_proxy=Non
     pseudos = []
     query = True
 
-    tag = ui.menu('What sort of request is this?  (If none of these '
+    tag = ui.menu(_('What sort of request is this?  (If none of these '
                   'things mean anything to you, or you are trying to report '
                   'a bug in an existing package, please press Enter to '
-                  'exit reportbug.)', {
-                      'O': "The package has been `Orphaned'. It needs a new maintainer as soon as possible.",
-                      'RFA': "This is a `Request for Adoption'. Due to lack of time, resources, interest or something similar, the current maintainer is asking for someone else to maintain this package. They will maintain it in the meantime, but perhaps not in the best possible way. In short: the package needs a new maintainer.",
-                      'RFH': "This is a `Request For Help'. The current maintainer wants to continue to maintain this package, but they need some help to do this because their time is limited or the package is quite big and needs several maintainers.",
-                      'ITP': "This is an `Intent To Package'. Please submit a package description along with copyright and URL in such a report.",
-                      'RFP': "This is a `Request For Package'. You have found an interesting piece of software and would like someone else to maintain it for Debian. Please submit a package description along with copyright and URL in such a report.",
-                  }, 'Choose the request type: ', empty_ok=True)
+                  'exit reportbug.)'), {
+                      'O': _("The package has been `Orphaned'. It needs a new maintainer as soon as possible."),
+                      'RFA': _("This is a `Request for Adoption'. Due to lack of time, resources, interest or something similar, the current maintainer is asking for someone else to maintain this package. They will maintain it in the meantime, but perhaps not in the best possible way. In short: the package needs a new maintainer."),
+                      'RFH': _("This is a `Request For Help'. The current maintainer wants to continue to maintain this package, but they need some help to do this because their time is limited or the package is quite big and needs several maintainers."),
+                      'ITP': _("This is an `Intent To Package'. Please submit a package description along with copyright and URL in such a report."),
+                      'RFP': _("This is a `Request For Package'. You have found an interesting piece of software and would like someone else to maintain it for Debian. Please submit a package description along with copyright and URL in such a report."),
+                  }, _('Choose the request type: '), empty_ok=True)
     if not tag:
-        ui.long_message('To report a bug in a package, use the name of the package, not wnpp.\n')
+        ui.long_message(_('To report a bug in a package, use the name of the package, not wnpp.\n'))
         raise SystemExit
 
     # keep asking for package name until one is entered
@@ -644,15 +648,15 @@ def handle_wnpp(package, bts, ui, fromaddr, timeout, online=True, http_proxy=Non
 
     while not package:
         if tag in ('RFP', 'ITP'):
-            prompt = 'Please enter the proposed package name: '
+            prompt = _('Please enter the proposed package name: ')
         else:
-            prompt = 'Please enter the package name: '
+            prompt = _('Please enter the package name: ')
         package = ui.get_string(prompt)
         if not utils.check_package_name(package):
-            ui.long_message('Invalid package name')
+            ui.long_message(_('Invalid package name'))
             package = ""
 
-    ui.log_message('Checking status database...\n')
+    ui.log_message(_('Checking status database...\n'))
     info = utils.get_package_status(package, avail=True)
     available = info[1]
 
@@ -661,12 +665,12 @@ def handle_wnpp(package, bts, ui, fromaddr, timeout, online=True, http_proxy=Non
         if available and (not online or checkversions.check_available(
                 package, '0', timeout, http_proxy=http_proxy)):
             if not ui.yes_no(
-                    ('A package called %s already appears to exist (at least on '
-                     'your system); continue?' % package),
-                    'Ignore this problem and continue.  If you have '
+                    (_('A package called %s already appears to exist (at least on '
+                     'your system); continue?') % package),
+                    _('Ignore this problem and continue.  If you have '
                     'already locally created a package with this name, this '
-                    'warning message may have been produced in error.',
-                    'Exit without filing a report.', default=0):
+                    'warning message may have been produced in error.'),
+                    _('Exit without filing a report.'), default=0):
                 sys.exit(1)
 
         severity = 'wishlist'
@@ -675,16 +679,16 @@ def handle_wnpp(package, bts, ui, fromaddr, timeout, online=True, http_proxy=Non
         short_desc = ""
 
         while not short_desc:
-            short_desc = ui.get_string(
+            short_desc = ui.get_string(_(
                 'Please briefly describe this package; this should be an '
-                'appropriate short description for the eventual package: ')
+                'appropriate short description for the eventual package: '))
 
         if tag == 'ITP':
             headers.append('X-Debbugs-CC: debian-devel@lists.debian.org')
             pseudos.append('Owner: {}'.format(
                 email.header.make_header(email.header.decode_header(fromaddr))))
-            ui.log_message('Your report will be carbon-copied to debian-devel, '
-                           'per Debian policy.\n')
+            ui.log_message(_('Your report will be carbon-copied to debian-devel, '
+                           'per Debian policy.\n'))
 
         body = itp_template % vars()
     elif tag in ('O', 'RFA', 'RFH'):
@@ -697,9 +701,9 @@ def handle_wnpp(package, bts, ui, fromaddr, timeout, online=True, http_proxy=Non
 
         if not info:
             cont = ui.select_options(
-                "This package doesn't appear to exist; continue?",
-                'yN', {'y': 'Ignore this problem and continue.',
-                       'n': 'Exit without filing a report.'})
+                _("This package doesn't appear to exist; continue?"),
+                'yN', {'y': _('Ignore this problem and continue.'),
+                       'n': _('Exit without filing a report.')})
             if cont == 'n':
                 sys.exit(1)
             short_desc = long_desc = ''
@@ -714,8 +718,9 @@ def handle_wnpp(package, bts, ui, fromaddr, timeout, online=True, http_proxy=Non
 
         if tag == 'RFH':
             headers.append('X-Debbugs-CC: debian-devel@lists.debian.org')
-            ui.log_message('Your request will be carbon-copied to debian-devel, '
-                           'per Debian policy.\n')
+            ui.log_message(
+                    _('Your request will be carbon-copied to debian-devel, '
+                      'per Debian policy.\n'))
 
         if long_desc:
             orphstr = 'intend to orphan'
@@ -795,36 +800,36 @@ SYSTEMS = {'debian':
            }
 
 CLASSES = {
-    'sw-bug': 'The problem is a bug in the software or code.  For'
-              'example, a crash would be a sw-bug.',
-    'doc-bug': 'The problem is in the documentation.  For example,'
-               'an error in a man page would be a doc-bug.',
-    'change-request': 'You are requesting a new feature or a change'
-                      'in the behavior of software, or are making a suggestion.  For'
-                      'example, if you wanted reportbug to be able to get your local'
-                      'weather forecast, as well as report bugs, that would be a'
-                      'change-request.',
+    'sw-bug': _('The problem is a bug in the software or code.  For '
+              'example, a crash would be a sw-bug.'),
+    'doc-bug': _('The problem is in the documentation.  For example, '
+               'an error in a man page would be a doc-bug.'),
+    'change-request': _('You are requesting a new feature or a change '
+                      'in the behavior of software, or are making a suggestion.  For '
+                      'example, if you wanted reportbug to be able to get your local '
+                      'weather forecast, as well as report bugs, that would be a '
+                      'change-request.'),
 }
 
 CLASSLIST = ['sw-bug', 'doc-bug', 'change-request']
 
 CRITICAL_TAGS = {
-    'security': 'This problem is a security vulnerability in Debian.',
+    'security': _('This problem is a security vulnerability in Debian.'),
 }
 
 EXPERT_TAGS = {
-    'security': 'This problem is a security vulnerability in Debian.',
+    'security': _('This problem is a security vulnerability in Debian.'),
 }
 
 TAGS = {
-    'patch': 'You are including a patch to fix this problem.',
-    'upstream': 'This bug applies to the upstream part of the package.',
-    'd-i': 'This bug is relevant to the development of debian-installer.',
-    'ipv6': 'This bug affects support for Internet Protocol version 6.',
-    'lfs': 'This bug affects support for large files (over 2 gigabytes).',
-    'l10n': 'This bug reports a localization/internationalization issue.',
-    'a11y': 'This bug is relevant to the accessibility of the package.',
-    'newcomer': 'This bug has a known solution but the maintainer requests someone else implement it.',
+    'patch': _('You are including a patch to fix this problem.'),
+    'upstream': _('This bug applies to the upstream part of the package.'),
+    'd-i': _('This bug is relevant to the development of debian-installer.'),
+    'ipv6': _('This bug affects support for Internet Protocol version 6.'),
+    'lfs': _('This bug affects support for large files (over 2 gigabytes).'),
+    'l10n': _('This bug reports a localization/internationalization issue.'),
+    'a11y': _('This bug is relevant to the accessibility of the package.'),
+    'newcomer': _('This bug has a known solution but the maintainer requests someone else implement it.'),
 }
 
 

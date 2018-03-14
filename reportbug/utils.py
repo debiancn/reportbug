@@ -42,6 +42,7 @@ import pipes
 import apt
 import gzip
 
+from . import _
 from .urlutils import open_url
 
 # Paths for dpkg
@@ -56,15 +57,15 @@ PSEUDOHEADERS = ('Package', 'Source', 'Version', 'Severity', 'File', 'Tags',
 # These pseudo-headers can be repeated in the report
 REPEATABLE_PSEUDOHEADERS = ['Control',]
 
-MODES = {'novice': 'Offer simple prompts, bypassing technical questions.',
-         'standard': 'Offer more extensive prompts, including asking about '
+MODES = {'novice': _('Offer simple prompts, bypassing technical questions.'),
+         'standard': _('Offer more extensive prompts, including asking about '
                      'things that a moderately sophisticated user would be expected to '
-                     'know about Debian.',
-         'advanced': 'Like standard, but assumes you know a bit more about '
-                     'Debian, including "incoming".',
-         'expert': 'Bypass most handholding measures and preliminary triage '
+                     'know about Debian.'),
+         'advanced': _('Like standard, but assumes you know a bit more about '
+                     'Debian, including "incoming".'),
+         'expert': _('Bypass most handholding measures and preliminary triage '
                    'routines.  This mode should not be used by people unfamiliar with '
-                   'Debian\'s policies and operating procedures.'}
+                   'Debian\'s policies and operating procedures.')}
 MODELIST = ['novice', 'standard', 'advanced', 'expert']
 for mode in MODELIST:
     exec('MODE_%s=%d' % (mode.upper(), MODELIST.index(mode)))
@@ -259,7 +260,7 @@ def find_rewritten(username):
                     if name.strip() == username:
                         return alias.strip()
                 except ValueError:
-                    print('Invalid entry in %s' % filename)
+                    print(_('Invalid entry in %s') % filename)
                     return None
 
 
@@ -1052,7 +1053,7 @@ def parse_config_files():
                     token = lex.get_token().lower()
                     args['envelopefrom'] = token
                 else:
-                    sys.stderr.write('Unrecognized token: %s\n' % token)
+                    sys.stderr.write(_('Unrecognized token: %s\n') % token)
 
                 token = lex.get_token()
 
