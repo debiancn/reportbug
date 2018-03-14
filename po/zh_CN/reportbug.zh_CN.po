@@ -1,0 +1,1699 @@
+# Simplified Chinese Translation for reportbug.
+# reportbug 的简体中文翻译。
+# Copyright (C) 2017 reportbug's COPYRIGHT HOLDER
+# This file is distributed under the same license as the reportbug package.
+#
+# Boyuan Yang <073plan@gmail.com>, 2017, 2018.
+msgid ""
+msgstr ""
+"Project-Id-Version: reportbug 7.5.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-07-02 19:56+0800\n"
+"PO-Revision-Date: 2018-07-02 20:01+0800\n"
+"Last-Translator: Boyuan Yang <073plan@gmail.com>\n"
+"Language-Team: Chinese (Simplified) <debian-l10n-chinese@lists.debian.org>\n"
+"Language: zh_CN\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Poedit 2.0.8\n"
+
+#: bin/reportbug:97
+#, python-format
+msgid ""
+"reportbug stopped; your incomplete report is stored as \"%s\".\n"
+"This file may be located in a temporary directory; if so, it might disappear "
+"without any further notice. To recover this file to use it as bug report "
+"body, please take a look at the \"-i FILE, --include=FILE\" option.\n"
+"Alternatively, you can copy the content of the temporary file (both headers "
+"and body) and copy it into your MUA and send the mail to submit@bugs.debian."
+"org, editing the subject and bug text as needed (but not altering the other "
+"information).\n"
+msgstr ""
+"reportbug 已停止工作；您未完成的报告存储在“%s”。\n"
+"该文件可能存放在一个临时目录中；如果情况如此，该文件可能在没有通知的情况下消"
+"失。如需将该文件用于未来的缺陷报告正文，请使用“-i FILE, --include=FILE”命令行"
+"选项。\n"
+"此外，您还可以将这个临时文件的内容（包括头部和正文部分）读取出来，将其复制到"
+"您的电子邮件客户端并设置为向 submit@bugs.debian.org 发信。请按照您的需求编辑"
+"该电子邮件的主题和缺陷描述文本（但是请不要修改其它附带的信息）。\n"
+
+#: bin/reportbug:154
+#, python-format
+msgid ""
+"Unable to attach file %s\n"
+"%s\n"
+msgstr ""
+"无法附加文件 %s\n"
+"%s\n"
+
+#: bin/reportbug:184
+msgid "Done editing"
+msgstr "完成编辑"
+
+#: bin/reportbug:185
+msgid "Continue (editing done)."
+msgstr "继续（编辑已完成）。"
+
+#: bin/reportbug:186
+msgid "Don't continue yet."
+msgstr "暂时不要继续。"
+
+#: bin/reportbug:187
+msgid "Exit without sending report."
+msgstr "退出且不发送报告。"
+
+#: bin/reportbug:196
+#, python-format
+msgid "Submit this report on %s (e to edit)"
+msgstr "向 %s 提交这份报告（按 e 编辑）"
+
+#: bin/reportbug:199
+msgid "Send this message (e to edit)"
+msgstr "发送这个信件（按 e 编辑）"
+
+#: bin/reportbug:200
+#, python-format
+msgid "Message will be sent to %s\n"
+msgstr "信件将发送至 %s\n"
+
+#: bin/reportbug:202
+#, python-format
+msgid "Report will be saved as %s\n"
+msgstr "报告将另存为 %s\n"
+
+#: bin/reportbug:204
+#, python-format
+msgid "Report will be sent to %s\n"
+msgstr "报告将发送至 %s\n"
+
+#: bin/reportbug:207
+msgid "Attachments:\n"
+msgstr "附件：\n"
+
+#: bin/reportbug:213
+msgid "No subject found in message.  Please edit again.\n"
+msgstr "信件没有主题。请重新编辑。\n"
+
+#: bin/reportbug:225
+#, python-format
+msgid "Wrong line: %s\n"
+msgstr "错误的行：%s\n"
+
+#: bin/reportbug:227
+msgid ""
+"ERROR: you have composed a WNPP bug report with fields unchanged from the "
+"template; this will NOT be submitted. Please edit all fields so they contain "
+"correct values (e to edit)"
+msgstr ""
+"错误：您编写了一个 wnpp 缺陷报告，但是其模板中的某些项目没有修改；该报告不会"
+"被提交。请编辑所有项目并填入正确的内容（按 e 编辑）"
+
+#: bin/reportbug:230
+#, python-format
+msgid "Save the report into %s ."
+msgstr "将报告保存至 %s。"
+
+#: bin/reportbug:232
+msgid "Submit the bug report via email."
+msgstr "使用电子邮件提交缺陷报告。"
+
+#: bin/reportbug:236
+msgid ""
+"Don't submit the bug report; instead, save it in a temporary file (exits "
+"reportbug)."
+msgstr "不要提交缺陷报告；仅将其保存在一个临时文件中（同时退出 reportbug）。"
+
+#: bin/reportbug:238
+msgid "Save it in a temporary file and quit."
+msgstr "将其保存到一个临时文件中并退出。"
+
+#: bin/reportbug:239
+msgid "Attach a file."
+msgstr "附加一个文件。"
+
+#: bin/reportbug:240
+msgid "Detach an attachment file."
+msgstr "移除一个附件。"
+
+#: bin/reportbug:241
+msgid "Include a text file."
+msgstr "导入一个文本文件。"
+
+#: bin/reportbug:242
+msgid "Change editor and re-edit."
+msgstr "更改编辑器并重新编辑。"
+
+#: bin/reportbug:243 bin/reportbug:381
+msgid "Re-edit the bug report."
+msgstr "重新编辑该缺陷报告。"
+
+#: bin/reportbug:244
+msgid "Pipe the message through the pager."
+msgstr "使用管道将信件传输给分页器。"
+
+#: bin/reportbug:245
+msgid "print message to stdout."
+msgstr "将信件内容打印至标准输出。"
+
+#: bin/reportbug:246
+msgid "Add tags."
+msgstr "添加标签。"
+
+#: bin/reportbug:247
+msgid "Add a X-Debbugs-CC recipient (a CC but after BTS processing)."
+msgstr ""
+"添加一个 X-Debbugs-CC 收件人（类似一个抄送 CC，但在缺陷跟踪系统处理完成后发"
+"送）。"
+
+#: bin/reportbug:248
+msgid "Choose a mailer to edit the report."
+msgstr "选择一个发信程序来编辑这个报告。"
+
+#: bin/reportbug:254
+msgid "Choose a text file to include: "
+msgstr "选择要导入的文本文件："
+
+#: bin/reportbug:256
+msgid "Choose a file to attach: "
+msgstr "选择要添加的附件："
+
+#: bin/reportbug:263 bin/reportbug:1447
+#, python-format
+msgid "Can't find %s to include!\n"
+msgstr "无法导入，未找到 %s！\n"
+
+#: bin/reportbug:268
+#, python-format
+msgid ""
+"The attachment file %s size is bigger than the maximum of %d bytes: reduce "
+"its size else the report cannot be sent\n"
+msgstr "附件文件 %s 的大小已经超过最大 %d 字节的限制；请减小其尺寸再发送报告\n"
+
+#: bin/reportbug:280
+#, python-format
+msgid "Cannot include %s!\n"
+msgstr "无法导入 %s！\n"
+
+#: bin/reportbug:286
+msgid "No attachment file to detach.\n"
+msgstr "没有可移除的附件。\n"
+
+#: bin/reportbug:288
+msgid "Choose an attachment file to detach (an empty line will exit): "
+msgstr "请选择要移除的附件文件（输入空行以退出）："
+
+#: bin/reportbug:292
+msgid "Select the file:"
+msgstr "选择文件："
+
+#: bin/reportbug:296
+#, python-format
+msgid ""
+"Attachment file \"%s\" successfully detached.\n"
+"\n"
+msgstr ""
+"附件文件“%s”已成功移除。\n"
+"\n"
+
+#: bin/reportbug:298
+msgid ""
+"Nothing to detach.\n"
+"\n"
+msgstr ""
+"没有供移除的文件。\n"
+"\n"
+
+#: bin/reportbug:300
+msgid "Choose editor: "
+msgstr "选择编辑器："
+
+#: bin/reportbug:306
+msgid "Choose a mailer for your report"
+msgstr "为您的报告选择一个发信程序"
+
+#: bin/reportbug:307
+msgid "Select mailer: "
+msgstr "选择发信程序："
+
+#: bin/reportbug:310
+msgid "Selected mail user agent cannot be found.\n"
+msgstr "所选的邮件用户代理无法找到。\n"
+
+#: bin/reportbug:318
+msgid ""
+"Editing the report will lose all attachments: are you sure you want to "
+"continue?"
+msgstr "继续编辑报告会丢失所有附件；您是否要继续？"
+
+#: bin/reportbug:319
+msgid "Yes, please"
+msgstr "是的，请继续"
+
+#: bin/reportbug:320
+msgid "No, thanks"
+msgstr "不，谢谢"
+
+#: bin/reportbug:349 bin/reportbug:2170
+msgid "Do any of the following apply to this report?"
+msgstr "如下所列的标签是否能够应用于该报告中？"
+
+#: bin/reportbug:350 bin/reportbug:2172
+msgid "Please select tags: "
+msgstr "请选择标签："
+
+#: bin/reportbug:371
+msgid ""
+"Please add the email address. Just press ENTER if you don't want anymore."
+msgstr "请添加电子邮件地址。添加完成后，请按下回车（ENTER）键。"
+
+#: bin/reportbug:378
+msgid "Report is unchanged.  Edit this report or quit"
+msgstr "报告没有修改。继续编辑该报告或退出"
+
+#: bin/reportbug:379
+msgid ""
+"Don't submit the bug report; instead, save it in a temporary file and quit."
+msgstr "不要提交缺陷报告；仅将其保存在一个临时文件中并退出。"
+
+#: bin/reportbug:382
+msgid "Send report anyway."
+msgstr "无论如何发送报告。"
+
+#: bin/reportbug:388
+msgid "Sending empty report anyway...\n"
+msgstr "无论如何发送报告……\n"
+
+#: bin/reportbug:397
+#, python-format
+msgid "Finding package for '%s'...\n"
+msgstr "正在为“%s”查找软件包……\n"
+
+#: bin/reportbug:401
+#, python-format
+msgid "Resolved as '%s'.\n"
+msgstr "所得结果为“%s”。\n"
+
+#: bin/reportbug:403
+msgid "No packages match.\n"
+msgstr "没有匹配的软件包。\n"
+
+#: bin/reportbug:410
+msgid "Please re-run reportbug selecting one of these packages:"
+msgstr "请重新运行 reportbug 并选择下列软件包中的合适项："
+
+#: bin/reportbug:422
+msgid "Multiple packages match: "
+msgstr "有多个软件包匹配："
+
+#: bin/reportbug:424 bin/reportbug:1527 bin/reportbug:1559 bin/reportbug:1626
+msgid "Select one of these packages: "
+msgstr "选择这些软件包中的一个："
+
+#: bin/reportbug:432
+#, python-format
+msgid "Using package '%s'.\n"
+msgstr "将使用软件包“%s”。\n"
+
+#: bin/reportbug:438
+#, python-format
+msgid "%s is not a valid package name."
+msgstr "%s 不是合法的软件包名称。"
+
+#: bin/reportbug:447
+msgid ""
+"Please enter the name of the package in which you have found a problem, or "
+"choose one of these bug categories:"
+msgstr "请输入您发现的问题所在的软件包的名称，或者选择下列缺陷分类中的一个："
+
+#: bin/reportbug:451
+msgid "Enter a package: "
+msgstr "输入一个软件包名称："
+
+#: bin/reportbug:462
+msgid "Please enter the name of the package in which you have found a problem"
+msgstr "请输入您发现的问题所在的软件包的名称"
+
+#: bin/reportbug:465
+msgid ", or type 'other' to report a more general problem."
+msgstr "，或者输入“other”来报告一个更加一般性的问题。"
+
+#: bin/reportbug:468
+msgid ""
+" If you don't know what package the bug is in, please contact debian-"
+"user@lists.debian.org for assistance."
+msgstr ""
+"如果您不清楚这个缺陷存在于哪个软件包中，请联系 debian-user@lists.debian.org "
+"以获取帮助。"
+
+#: bin/reportbug:491 bin/reportbug:1385
+msgid "Automatically selecting the package for the running kernel"
+msgstr "自动为正在运行的内核选择对应的软件包"
+
+#: bin/reportbug:496
+msgid "Is \"reportbug\" actually the package you are having problems with"
+msgstr "\"reportbug\"是否是您所遇到的问题所在的软件包"
+
+#: bin/reportbug:507
+msgid "Are you reporting a problem with this program (reportbug)"
+msgstr "您是否要为当前程序（reportbug）报告问题"
+
+#: bin/reportbug:509
+msgid "Yes, this is actually a bug in reportbug."
+msgstr "是的，其实是 reportbug 工具存在缺陷。"
+
+#: bin/reportbug:510
+msgid "No, this is really a problem in the bug tracking system itself."
+msgstr "不，这真的是缺陷跟踪系统本身存在着问题。"
+
+#: bin/reportbug:516
+msgid ""
+"If you have a general problem, please do consider using the available Debian "
+"support channels to narrow the problem down. This will help us together to "
+"resolve the problem quicker. See https://www.debian.org/support"
+msgstr ""
+"如果您遇到了一般性的问题，请考虑从您可以接触到的 Debian 支持途径获取帮助以缩"
+"减问题范围。这样便于大家更加有效快速地解决问题。请访问 https://www.debian."
+"org/support"
+
+#: bin/reportbug:521
+msgid "Are you sure this bug doesn't apply to a specific package?"
+msgstr "您确认这个缺陷不适用于任何一个特定的软件包吗？"
+
+#: bin/reportbug:523
+msgid "Yes, this bug is truly general."
+msgstr "是的，这个缺陷真的很具有普遍性。"
+
+#: bin/reportbug:524
+msgid "No, this is not really a general bug."
+msgstr "不，这个缺陷其实不是一个普遍的问题。"
+
+#: bin/reportbug:530
+msgid "Are you sure you want to file a WNPP report?"
+msgstr "您确认要提交一份 WNPP 报告吗？"
+
+#: bin/reportbug:531 bin/reportbug:540
+msgid "Yes, I am a developer or know what I'm doing."
+msgstr "是的，我是一个开发者，或者我知道我正在做什么。"
+
+#: bin/reportbug:532
+msgid "No, I am not a developer and I don't know what wnpp means."
+msgstr "不，我不是开发者，我也不知道 wnpp 是什么意思。"
+
+#: bin/reportbug:539
+#, python-format
+msgid "Are you sure you want to file a bug on %s?"
+msgstr "您确认要为 %s 提交一份缺陷报告吗？"
+
+#: bin/reportbug:541
+#, python-format
+msgid "No, I am not a developer and I don't know what %s is."
+msgstr "不，我不是开发者，我也不知道 %s 是什么意思。"
+
+#: bin/reportbug:566
+#, python-format
+msgid ""
+"Welcome to reportbug!  Since it looks like this is the first time you have "
+"used reportbug, we are configuring its behavior.  These settings will be "
+"saved to the file \"%s\", which you will be free to edit further.\n"
+"\n"
+msgstr ""
+"欢迎使用 reportbug！看起来您是第一次使用 reportbug 工具，我们将协助您配置好工"
+"具的行为。这些设置将会保存到“%s”文件中，您稍后可以进一步对其进行编辑。\n"
+"\n"
+
+#: bin/reportbug:572
+msgid "Please choose the default operating mode for reportbug."
+msgstr "请选择 reportbug 的默认工作模式："
+
+#: bin/reportbug:574
+msgid "Select mode: "
+msgstr "选择模式："
+
+#: bin/reportbug:584
+msgid "Please choose the default interface for reportbug."
+msgstr "请选择 reportbug 的默认界面："
+
+#: bin/reportbug:586
+msgid "Select interface: "
+msgstr "选择界面："
+
+#: bin/reportbug:593
+msgid ""
+"Will reportbug often have direct Internet access?  (You should answer yes to "
+"this question unless you know what you are doing and plan to check whether "
+"duplicate reports have been filed via some other channel.)"
+msgstr ""
+"reportbug 是否能够在大多数情况下访问互联网？（除非十分您了解您的行为，并且计"
+"划使用其它途径检查是否存在重复报告，否则请回答“是”。）"
+
+#: bin/reportbug:598
+msgid "Yes, reportbug should assume it has access to the network always."
+msgstr "是的，reportbug 应当假定它总是能够访问互联网。"
+
+#: bin/reportbug:600
+msgid "No, I am only online occasionally to send and receive mail."
+msgstr "不，我只是偶尔接入互联网来收发邮件。"
+
+#: bin/reportbug:615
+msgid "What real name should be used for sending bug reports?"
+msgstr "在发出的缺陷报告中，应当使用什么名称作为您的真实名称？"
+
+#: bin/reportbug:623
+msgid ""
+"Which of your email addresses should be used when sending bug reports? (Note "
+"that this address will be visible in the bug tracking system, so you may "
+"want to use a webmail address or another address with good spam filtering "
+"capabilities.)"
+msgstr ""
+"在您发送缺陷报告时，应当使用什么作为您的电子邮件地址？（请注意，该地址将在缺"
+"陷跟踪系统中可见，所以您最好能够提供一个 webmail 地址或者具有良好的垃圾邮件过"
+"滤功能的电子邮件地址。）"
+
+#: bin/reportbug:631
+msgid "Your email address is not valid; please try another one.\n"
+msgstr "您的电子邮件地址无效；请尝试其它地址。\n"
+
+#: bin/reportbug:635
+msgid ""
+"Do you have a \"mail transport agent\" (MTA) like Exim, Postfix or SSMTP "
+"configured on this computer to send mail to the Internet?"
+msgstr ""
+"您是否在本计算机上配置了一个“邮件传输代理”（MTA），例如 Exim, Postfix 或 "
+"SSMTP 来向互联网发送电子邮件？"
+
+#: bin/reportbug:638
+msgid ""
+"Yes, I can run /usr/sbin/sendmail without horrible things happening. If you "
+"can send email from this machine without setting an SMTP Host in your "
+"mailer, you should choose this answer."
+msgstr ""
+"是的，我可以运行 /usr/sbin/sendmail 而不发生糟糕的错误。如果您可以从本机直接"
+"发送电子邮件而无需发件时设置 SMTP 主机，您应该选择该选项。"
+
+#: bin/reportbug:642
+msgid "No, I need to use an SMTP Host or I don't know if I have an MTA."
+msgstr "不，我需要使用一个 SMTP 主机或者我不知道我是不是拥有一个 MTA。"
+
+#: bin/reportbug:651
+msgid ""
+"Please enter the name of your SMTP host.  Usually it's called something like "
+"\"mail.example.org\" or \"smtp.example.org\". If you need to use a different "
+"port than default, use the <host>:<port> alternative format.\n"
+"\n"
+"Just press ENTER if you don't have one or don't know, and so a Debian SMTP "
+"host will be used."
+msgstr ""
+"请输入您的 SMTP 主机的名称。通常它的名字类似“mail.example.org”或者“smtp."
+"example.org”。如果您需要使用与默认端口不同的端口配置，请使用 <host>:<port> 这"
+"样的格式。\n"
+"\n"
+"如果您没有类似的 SMTP 主机或者不知道相关配置是什么，请直接按下回车键跳过，程"
+"序会使用 Debian 提供的 SMTP 主机。"
+
+#: bin/reportbug:665
+#, python-format
+msgid ""
+"If you need to use a user name to send email via \"%s\" on your computer, "
+"please enter that user name.  Just press ENTER if you don't need a user name."
+msgstr ""
+"如果您在本机经由“%s”发送电子邮件时需要一个用户名，请输入该用户名。如果您不需"
+"要类似的用户名的话，请直接按回车（ENTER）键。"
+
+#: bin/reportbug:675
+msgid ""
+"Do you want to encrypt the SMTP connection with TLS (only available if the "
+"SMTP host supports it)?"
+msgstr "您是否希望使用 TLS 加密 SMTP 连接（仅当对应的 SMTP 主机支持时可用）？"
+
+#: bin/reportbug:677
+msgid "Yes"
+msgstr "是"
+
+#: bin/reportbug:678
+msgid "No"
+msgstr "否"
+
+#: bin/reportbug:682
+msgid ""
+"Please enter the name of your proxy server.  It should only use this "
+"parameter if you are behind a firewall. The PROXY argument should be  "
+"formatted as a valid HTTP URL, including (if necessary) a port number; for "
+"example, http://192.168.1.1:3128/. Just press ENTER if you don't have one or "
+"don't know."
+msgstr ""
+"请输入您的代理服务器的名称。您只应该在位于防火墙之后时使用该参数。PROXY 参数"
+"应当以合法 HTTP URL 的格式给出，包括（如果必要的话）一个端口号；例如，"
+"http://192.168.1.1:3128/。如果您没有相关配置或者不了解类似配置，请直接按回车"
+"（ENTER）键跳过。"
+
+#: bin/reportbug:695
+#, python-format
+msgid "Unable to rename %s as %s~\n"
+msgstr "无法重命名 %s 为 %s~\n"
+
+#: bin/reportbug:703
+#, python-format
+msgid ""
+"Unable to save %s; most likely, you do not have a home directory.  Please "
+"fix this before using reportbug again.\n"
+msgstr ""
+"无法保存 %s；最可能的情况是，您没有一个家目录。请先修复该问题再运行 "
+"reportbug。\n"
+
+#: bin/reportbug:780
+msgid ""
+"Default preferences file written.  To reconfigure, re-run reportbug with the "
+"\"--configure\" option.\n"
+msgstr ""
+"已写入配置文件。如需重新配置，使用“--configure”选项重新运行 reportbug。\n"
+
+#: bin/reportbug:792 bin/reportbug:811
+#, python-format
+msgid "Ignored bogus setting for %s: %s\n"
+msgstr "为 %s 忽略无效的设定：%s\n"
+
+#: bin/reportbug:820
+msgid "*** Warning:"
+msgstr "*** 警告："
+
+#: bin/reportbug:843
+#, python-format
+msgid "Warning: untranslated token \"%s\"\n"
+msgstr "警告：未转义的标记“%s”\n"
+
+#: bin/reportbug:850
+msgid "do not include conffiles in report"
+msgstr "不要在报告中包含配置文件（conffiles）"
+
+#: bin/reportbug:855
+msgid "specify report class for GNATS BTSes"
+msgstr "为 GNATS 缺陷跟踪系统（BTS）指定报告类别"
+
+#: bin/reportbug:858
+msgid "send report only to yourself"
+msgstr "仅向您自己发送报告"
+
+#: bin/reportbug:861
+msgid "operate in test mode (maintainer use only)"
+msgstr "以测试模式进行操作（仅供维护者使用）"
+
+#: bin/reportbug:863
+msgid "specify an editor for your report"
+msgstr "指定编写您的报告的编辑器"
+
+#: bin/reportbug:865
+msgid "report the bug against the package containing the specified file"
+msgstr "向包含指定文件的软件包报告缺陷"
+
+#: bin/reportbug:868
+msgid "parse information from buildd format: $source_$version"
+msgstr "解析 buildd 格式的信息：$source_$version"
+
+#: bin/reportbug:871
+msgid "only search the path with -f"
+msgstr "仅使用 -f 搜索路径"
+
+#: bin/reportbug:874
+msgid "sign report with GNU Privacy Guard (GnuPG/gpg)"
+msgstr "使用 GNU 隐私卫士（GnuPG/gpg）对报告签名"
+
+#: bin/reportbug:877
+msgid "send the report using Gnus"
+msgstr "使用 Gnus 发送报告"
+
+#: bin/reportbug:880
+msgid "sign report with Pretty Good Privacy (PGP)"
+msgstr "使用 Pretty Good Privacy（PGP）对报告签名"
+
+#: bin/reportbug:884
+msgid "add a custom RFC2822 header to your report"
+msgstr "向您的报告中添加一个自定义的 RFC2822 信头"
+
+#: bin/reportbug:886
+msgid "add a custom pseudo-header to your report"
+msgstr "向您的报告中添加一个自定义的伪信头（pseudo-header）"
+
+#: bin/reportbug:888
+msgid "show copyright and license information"
+msgstr "显示授权与许可信息"
+
+#: bin/reportbug:891
+msgid "send the report to the maintainer only"
+msgstr "只向维护者发送报告"
+
+#: bin/reportbug:894
+msgid "send the report using mutt"
+msgstr "使用 mutt 发送报告"
+
+#: bin/reportbug:895
+msgid "add a BTS mirror"
+msgstr "添加一个缺陷跟踪系统（BTS）镜像"
+
+#: bin/reportbug:898
+msgid "send the report using mh/nmh"
+msgstr "使用 mh/nmh 发送报告"
+
+#: bin/reportbug:902
+msgid "specify a bug number to look for"
+msgstr "指定一个要查找的缺陷编号"
+
+#: bin/reportbug:904
+msgid "send the report using the specified mail user agent"
+msgstr "使用指定的邮件用户代理发送报告"
+
+#: bin/reportbug:907
+msgid "send the report using the specified mail transport agent"
+msgstr "使用指定的邮件传输代理发送报告"
+
+#: bin/reportbug:910
+msgid "send a copy to the specified address"
+msgstr "向指定的电子邮件地址发送一份副本"
+
+#: bin/reportbug:912
+msgid "output the report to standard output only"
+msgstr "仅将报告打印至向标准输出"
+
+#: bin/reportbug:915
+msgid "file report without any mail to the maintainer or tracking lists"
+msgstr "填写报告，但不向维护者或者跟踪邮件列表发送任何邮件"
+
+#: bin/reportbug:918
+msgid "reduce the verbosity of the output"
+msgstr "减少输出的详细程度"
+
+#: bin/reportbug:921
+msgid "the subject for your report"
+msgstr "您的报告的主题"
+
+#: bin/reportbug:923
+msgid "do not send a copy of the report to yourself"
+msgstr "不要向您自己发送报告的副本"
+
+#: bin/reportbug:926
+msgid "do not strip blank lines and comments from config files"
+msgstr "不要去除配置文件中的空行和注释"
+
+#: bin/reportbug:929
+msgid "output the report to the specified file (both mail headers and body)"
+msgstr "向指定文件输出报告内容（包括邮件头部和正文）"
+
+#: bin/reportbug:932
+msgid "disable all external queries"
+msgstr "禁用所有外部查询"
+
+#: bin/reportbug:935
+msgid "include the specified file in the report"
+msgstr "在报告中包含指定的文件"
+
+#: bin/reportbug:937
+msgid "attach the specified file to the report"
+msgstr "将指定的文件作为附件附加至报告中"
+
+#: bin/reportbug:940
+msgid "do not query the BTS for reports"
+msgstr "不要查询缺陷跟踪系统（BTS）中的报告"
+
+#: bin/reportbug:942
+msgid "query the BTS for reports"
+msgstr "查询缺陷跟踪系统（BTS）中的报告"
+
+#: bin/reportbug:947
+msgid "add the specified tag to the report"
+msgstr "向报告添加指定的标签"
+
+#: bin/reportbug:949
+msgid "use this proxy for HTTP accesses"
+msgstr "为 HTTP 访问使用该代理"
+
+#: bin/reportbug:951
+msgid "specify originating email address"
+msgstr "指定来源电子邮件地址"
+
+#: bin/reportbug:953
+msgid "specify real name for your report"
+msgstr "指定您在报告中使用的真实名称"
+
+#: bin/reportbug:955
+msgid "specify SMTP server for mailing"
+msgstr "指定发件使用的 SMTP 服务器"
+
+#: bin/reportbug:957
+msgid "use TLS to talk to SMTP servers"
+msgstr "使用 TLS 与 SMTP 服务器通信"
+
+#: bin/reportbug:960
+msgid "report the bug against the source package"
+msgstr "针对源代码包报告缺陷"
+
+#: bin/reportbug:962
+msgid "username to use for SMTP"
+msgstr "SMTP 所使用的用户名"
+
+#: bin/reportbug:963
+msgid "password to use for SMTP"
+msgstr "SMTP 所使用的密码"
+
+#: bin/reportbug:965
+msgid "specify Reply-To address for your report"
+msgstr "指定您的报告中的 Reply-To 字段"
+
+#: bin/reportbug:967
+msgid "query on source packages, not binary packages"
+msgstr "查询源代码包，而非二进制软件包"
+
+#: bin/reportbug:970
+msgid "query on binary packages only"
+msgstr "仅查询二进制软件包"
+
+#: bin/reportbug:975
+msgid "send the report only to the security team, if tag=security"
+msgstr "如果标签含有 security，仅向安全团队发送报告"
+
+#: bin/reportbug:979
+msgid "do not send the report only to the security team, if tag=security"
+msgstr "如果标签含有 security，不仅向安全团队发送报告"
+
+#: bin/reportbug:982
+msgid "include debconf settings in your report"
+msgstr "在您的报告中包含 debconf 设置"
+
+#: bin/reportbug:984
+msgid "exclude debconf settings from your report"
+msgstr "不在您的报告中包含 debconf 设置"
+
+#: bin/reportbug:986
+msgid "include justification for the severity of your report"
+msgstr "在您的报告中包含对严重性的说明信息（justification）"
+
+#: bin/reportbug:989
+msgid "specify the version number for the package"
+msgstr "指定软件包的版本号"
+
+#: bin/reportbug:994
+msgid "choose which user interface to use"
+msgstr "选择所使用的用户界面"
+
+#: bin/reportbug:996
+msgid "only query the BTS"
+msgstr "只查询缺陷跟踪系统（BTS）"
+
+#: bin/reportbug:1001
+msgid "choose the type of report to file"
+msgstr "选择要填写报告的类别"
+
+#: bin/reportbug:1006
+msgid "choose BTS to file the report with"
+msgstr "选择要提交报告的缺陷跟踪系统（BTS）"
+
+#: bin/reportbug:1010
+msgid "identify the severity of the report"
+msgstr "给出报告的严重程度"
+
+#: bin/reportbug:1012
+msgid "output a template report only"
+msgstr "仅输出一个报告模板"
+
+#: bin/reportbug:1014
+msgid "reconfigure reportbug for this user"
+msgstr "为该用户重新配置 reportbug"
+
+#: bin/reportbug:1016
+msgid "check for new releases on various sites"
+msgstr "在各个站点上检查新版本"
+
+#: bin/reportbug:1019
+msgid "do not check for new releases"
+msgstr "不要检查新版本"
+
+#: bin/reportbug:1021
+msgid "choose the operating mode for reportbug"
+msgstr "选择 reportbug 的工作模式"
+
+#: bin/reportbug:1027
+msgid "verify integrity of installed package using debsums"
+msgstr "使用 debsums 检验已安装软件包的完整性"
+
+#: bin/reportbug:1029
+msgid "do not verify package installation"
+msgstr "不要验证软件包安装情况"
+
+#: bin/reportbug:1031
+msgid ""
+"send appreciative email to the maintainer, rather than filing a bug report"
+msgstr "向软件包维护者发送感谢信，而非填写缺陷报告"
+
+#: bin/reportbug:1034
+msgid "specify the body for the report as a string"
+msgstr "以字符串形式指定报告正文内容"
+
+#: bin/reportbug:1037
+msgid "use the specified file as the body of the report"
+msgstr "使用指定文件作为报告的正文部分"
+
+#: bin/reportbug:1040
+msgid "don't check whether the package is installed"
+msgstr "不要检查软件包是否已安装"
+
+#: bin/reportbug:1043
+msgid ""
+"check whether the specified package is installed when filing a report "
+"(default)"
+msgstr "填写报告时检查对应软件包是否已经安装（默认）"
+
+#: bin/reportbug:1046
+msgid "prompt before exiting"
+msgstr "退出前提示"
+
+#: bin/reportbug:1048
+msgid "show contents of message before sending"
+msgstr "发送之前显示信件内容"
+
+#: bin/reportbug:1050
+msgid "don't show contents of message before sending (default)"
+msgstr "发送前不要显示新建内容（默认）"
+
+#: bin/reportbug:1054
+msgid "don't execute the bug script (if present)"
+msgstr "不要运行缺陷脚本（如果存在的话）"
+
+#: bin/reportbug:1056
+msgid "Save the draft in this directory"
+msgstr "在对应目录下保存草稿"
+
+#: bin/reportbug:1058
+#, python-format
+msgid "Specify the network timeout, in seconds [default: %default]"
+msgstr "指定网络超时时间，单位为秒 [默认：%default]"
+
+#: bin/reportbug:1062
+msgid "don't show additional CC menu"
+msgstr "不要显示额外 CC 菜单"
+
+#: bin/reportbug:1065
+msgid "don't show tags menu"
+msgstr "不要显示标签菜单"
+
+#: bin/reportbug:1067
+msgid "Specify the program to open the reports mbox."
+msgstr "指定打开报告 mbox 的程序"
+
+#: bin/reportbug:1069
+msgid "Specify the maximum size in byte for an attachment [default: 10485760]."
+msgstr "指定附件所允许的最大尺寸 [默认：10485760]。"
+
+#: bin/reportbug:1074
+msgid "Order bugs to show the latest first"
+msgstr "对缺陷进行排序，最先显示最新的条目"
+
+#: bin/reportbug:1076
+msgid ""
+"Specify the Envelope From (Return-path) address used to send the bug report"
+msgstr "指定用于发送缺陷报告的信封来源（返回路径）地址"
+
+#: bin/reportbug:1093
+msgid "Your email address is not valid; exiting.\n"
+msgstr "您的电子邮件地址无效；退出。\n"
+
+#: bin/reportbug:1105
+#, python-format
+msgid "The attachment file %s does not exist."
+msgstr "附件文件 %s 不存在。"
+
+#: bin/reportbug:1109
+#, python-format
+msgid ""
+"The attachment file %s size is bigger than the maximum of %d bytes: reduce "
+"its size else the report cannot be sent"
+msgstr "附件文件 %s 的大小已经超过最大 %d 字节的限制；请减小其尺寸再发送报告"
+
+#: bin/reportbug:1114
+msgid "The above files can't be attached; exiting"
+msgstr "上述文件无法附加至报告中；退出"
+
+#: bin/reportbug:1118
+msgid ""
+"Option -K/--keyid requires --gpg or --pgp sign option set, which currently "
+"is not; exiting.\n"
+msgstr ""
+"选项 -K/--keyid 要求同时设置 --gpg 或 --pgp 签名选项，然而未给出相关选项；退"
+"出\n"
+
+#: bin/reportbug:1125
+#, python-format
+msgid "The directory %s does not exist; exiting.\n"
+msgstr "目录 %s 不存在；退出。\n"
+
+#: bin/reportbug:1130
+msgid "Specified mail user agent is not supported; exiting.\n"
+msgstr "所指定的电子邮件用户代理不被支持；退出。\n"
+
+#: bin/reportbug:1134
+msgid "Selected mail user agent cannot be found; exiting.\n"
+msgstr "所选电子邮件用户代理未找到；退出。\n"
+
+#: bin/reportbug:1151
+#, python-format
+msgid "*** Unable to import %s interface: %s Falling back to text interface.\n"
+msgstr "*** 无法导入 %s 界面：%s 回退到字符界面。\n"
+
+#: bin/reportbug:1161
+#, python-format
+msgid ""
+"*** Unable to initialize %s interface. Falling back to text interface.\n"
+msgstr "*** 无法初始化 %s 界面。回退到字符界面。\n"
+
+#: bin/reportbug:1240
+#, python-format
+msgid ""
+"Body file %s size bigger than the maximum of %d bytes: reduce its size else "
+"the report cannot be sent"
+msgstr "正文文件 %s 的大小已经超过最大 %d 字节的限制；请减小其尺寸再发送报告"
+
+#: bin/reportbug:1249
+#, python-format
+msgid "Unable to read body from file %s.\n"
+msgstr "无法从文件 %s 读取正文。\n"
+
+#: bin/reportbug:1292
+#, python-format
+msgid ""
+"*** Warning: %s is no longer an appropriate smtphost setting for reportbug: "
+"it has been superseded by reportbug.debian.org and this one is forced as "
+"smtphost; please update your .reportbugrc file.\n"
+msgstr ""
+"*** 警告：%s 不再是 reportbug 中设置 smtphost 的合适选项：它已经被 reportbug."
+"debian.org 所取代，该项将强制作为 smtphost；请更新您的 .reportbugrc 文件。\n"
+
+#: bin/reportbug:1300
+msgid ""
+"Attachments are incompatible with using an MUA.  They will be ignored.\n"
+msgstr "附件在使用 MUA 的情况下是不兼容的。它们将被忽略。\n"
+
+#: bin/reportbug:1310
+#, python-format
+msgid "Warning: no reportbug configuration found.  Proceeding in %s mode.\n"
+msgstr "警告：没有找到 reportbug 配置。使用 %s 模式继续。\n"
+
+#: bin/reportbug:1321
+msgid "The signature option is ignored when using an MUA.\n"
+msgstr "签名选项在使用 MUA 时将被忽略。\n"
+
+#: bin/reportbug:1323
+msgid "The signature option is ignored when producing a template.\n"
+msgstr "签名选项在生成模板时将被忽略。\n"
+
+#: bin/reportbug:1328
+msgid "reportbug will not run as root non-interactively.\n"
+msgstr "reportbug 拒绝以 root 身份非交互式运行。\n"
+
+#: bin/reportbug:1333
+msgid "Running 'reportbug' as root is probably insecure!"
+msgstr "使用 root 身份运行“reportbug”可能不安全！"
+
+#: bin/reportbug:1335
+msgid ""
+"Running 'reportbug' as an administrative user is probably not a good idea!"
+msgstr "以超级用户身份运行“reportbug”不是个好主意！"
+
+#: bin/reportbug:1337
+msgid "  Continue"
+msgstr "  继续"
+
+#: bin/reportbug:1341
+msgid "Continue with reportbug."
+msgstr "继续运行 reportbug。"
+
+#: bin/reportbug:1342
+msgid "Exit."
+msgstr "退出。"
+
+#: bin/reportbug:1344
+msgid "reportbug stopped.\n"
+msgstr "reportbug 已停止。\n"
+
+#: bin/reportbug:1349
+msgid "To report a bug, please rerun reportbug.\n"
+msgstr "要报告一个缺陷，请重新运行 reportbug。\n"
+
+#: bin/reportbug:1364
+msgid "Please report one bug at a time.\n"
+msgstr "一次只能报告一个缺陷。\n"
+
+#: bin/reportbug:1365
+msgid "[Did you forget to put all switches before the package name?]\n"
+msgstr "[您是不是忘记删除软件包名称前面的多余字符了？]\n"
+
+#: bin/reportbug:1390
+msgid ""
+"No package specified or we were unable to find it in the apt cache; "
+"stopping.\n"
+msgstr "未指定软件包，或者我们无法从 apt 缓存中找到该软件包；停止。\n"
+
+#: bin/reportbug:1395
+msgid "*** Welcome to reportbug.  Use ? for help at prompts. ***\n"
+msgstr "*** 欢迎使用 reportbug。在命令提示符处输入 ? 以获得帮助信息。. ***\n"
+
+#: bin/reportbug:1399
+msgid ""
+"Note: bug reports are publicly archived (including the email address of the "
+"submitter).\n"
+msgstr "注意：缺陷报告将被公开存档（包括提交者的电子邮件地址）。\n"
+
+#: bin/reportbug:1406
+#, python-format
+msgid ""
+"Unable to use specified character set \"%s\"; you probably need either "
+"cjkcodecs (for users of Asian locales) or iconvcodec installed.\n"
+"Falling back to ASCII encoding.\n"
+msgstr ""
+"无法使用指定的字符集“%s”；您可能需要安装 cjkcodecs（针对使用亚洲区域语言的用"
+"户）或者 iconvcodec。\n"
+"将回退到 ASCII 编码。\n"
+
+#: bin/reportbug:1411
+#, python-format
+msgid ""
+"Detected character set: %s\n"
+" Please change you locale if this is incorrect.\n"
+"\n"
+msgstr ""
+"探测到的字符集：%s\n"
+"如果不正确，请修改您的区域语言设置。\n"
+"\n"
+
+#: bin/reportbug:1415
+#, python-format
+msgid "Using '%s' as your from address.\n"
+msgstr "将使用“%s”作为您的发件地址。\n"
+
+#: bin/reportbug:1427
+msgid ""
+"You appear to be using the \"vi\" editor, which is not suited for new "
+"users.  You probably want to change this setting by using \"update-"
+"alternatives --config editor\" as root.  (You can bypass this message in the "
+"future by using reportbug in \"standard\" mode or higher.) Do you want to "
+"continue?"
+msgstr ""
+"您似乎正在使用“vi”编辑器，它不是和新用户使用。您可能想要使用 root 用户身份运"
+"行“update-alternatives --config editor”来修改这个配置。（您可以在选"
+"用“standard“模式或更高等级运行 reportbug 来避开该提示。）您是否想要继续？"
+
+#: bin/reportbug:1434
+msgid "Continue filing this report."
+msgstr "继续填写该报告。"
+
+#: bin/reportbug:1435
+msgid "Stop reportbug to change editors."
+msgstr "停止 reportbug 以更换编辑器。"
+
+#: bin/reportbug:1486
+msgid "The report bug number provided seems to not exist.\n"
+msgstr "所提供的缺陷编号似乎不存在。\n"
+
+#: bin/reportbug:1495 bin/reportbug:1528 bin/reportbug:1567 bin/reportbug:1609
+#: bin/reportbug:1631
+#, python-format
+msgid "Getting status for %s...\n"
+msgstr "正在获取 %s 的状态……\n"
+
+#: bin/reportbug:1511
+#, python-format
+msgid "Dependency package \"%s\" corresponds to actual package \"%s\".\n"
+msgstr "依赖软件包“%s”对应实际软件包“%s”。\n"
+
+#: bin/reportbug:1523
+#, python-format
+msgid ""
+"%s is a dependency package.  Which of the following packages is the bug in?"
+msgstr "%s 是一个依赖软件包。您需要提交的缺陷对应下列软件包中的哪一个？"
+
+#: bin/reportbug:1555
+msgid "Which of the following packages is the bug in?"
+msgstr "该缺陷存在于下列哪一个软件包中？"
+
+#: bin/reportbug:1564 bin/reportbug:1629
+msgid "No package specified; stopping.\n"
+msgstr "没有指定软件包；停止。\n"
+
+#: bin/reportbug:1573
+msgid "No matching source or binary packages.\n"
+msgstr "没有匹配的源码包或二进制软件包。\n"
+
+#: bin/reportbug:1580
+#, python-format
+msgid ""
+"A package named \"%s\" does not appear to be installed; do you want to "
+"search for a similar-looking filename in an installed package"
+msgstr ""
+"名为“%s”的软件包似乎没有安装；您是否希望在已安装的软件包范围内搜索名称类似的"
+"文件名以获取建议？"
+
+#: bin/reportbug:1583
+msgid "Look for a file with a similar filename."
+msgstr "正在查找具有类似文件名的文件"
+
+#: bin/reportbug:1584
+msgid "Continue filing with this package name."
+msgstr "继续填写软件包名称。"
+
+#: bin/reportbug:1589
+#, python-format
+msgid "Getting available info for %s...\n"
+msgstr "正在获取 %s 的可用信息……\n"
+
+#: bin/reportbug:1599
+#, python-format
+msgid ""
+"A package named '%s' does not appear to be installed on your system; "
+"however, '%s' contains a file named '%s'.  Do you want to file your report "
+"on the package reportbug found"
+msgstr ""
+"名为“%s”的软件包似乎没有安装在您的系统上；然而，“%s”包含了一个名为“%s”的文"
+"件。您是否想针对 reportbug 帮您找到的软件包提交您的报告"
+
+#: bin/reportbug:1603
+msgid "Yes, use the package specified."
+msgstr "是的，使用建议的软件包。"
+
+#: bin/reportbug:1604
+msgid "No, give up the search."
+msgstr "不，放弃搜索。"
+
+#: bin/reportbug:1605 bin/reportbug:1618
+msgid "Package not installed; stopping.\n"
+msgstr "软件包未安装；停止。\n"
+
+#: bin/reportbug:1613
+msgid "This package does not appear to be installed; continue with this report"
+msgstr "这个软件包似乎没有安装；继续报告流程"
+
+#: bin/reportbug:1615 bin/reportbug:1636 bin/reportbug:2218
+msgid "Ignore this problem and continue."
+msgstr "忽略该问题并继续。"
+
+#: bin/reportbug:1616 bin/reportbug:1637 bin/reportbug:1702 bin/reportbug:1738
+#: bin/reportbug:1757 bin/reportbug:2219
+msgid "Exit without filing a report."
+msgstr "退出且未填写报告内容。"
+
+#: bin/reportbug:1623
+msgid "Which of the following installed packages is the bug in?"
+msgstr "该缺陷存在于下列哪一个已安装的软件包中？"
+
+#: bin/reportbug:1635
+msgid "This package does not appear to exist; continue"
+msgstr "该软件包似乎不存在；继续"
+
+#: bin/reportbug:1639
+msgid "Package does not exist; stopping.\n"
+msgstr "软件包不存在；停止。\n"
+
+#: bin/reportbug:1696
+#, python-brace-format
+msgid ""
+"There may be a problem with your installation of {0};\n"
+"the following problems were detected by debsums:\n"
+"{1}\n"
+"Do you still want to file a report"
+msgstr ""
+"您 {0} 的安装可能存在问题；\n"
+"下列问题由 debsums 所探测到：\n"
+"{1}\n"
+"您是否想要继续填写报告"
+
+#: bin/reportbug:1699
+msgid ""
+"Ignore this problem and continue.  This may be appropriate if you have fixed "
+"the package manually already.  This problem may also result from the use of "
+"localepurge."
+msgstr ""
+"忽略该问题并继续。如果您已经手工修复了软件包的问题，这个选项可能是合理的。这"
+"个问题也可能是 localpurge 的使用所导致的。"
+
+#: bin/reportbug:1705
+msgid "Package integrity check failed; stopping.\n"
+msgstr "软件包完整性检查失败；停止。\n"
+
+#: bin/reportbug:1712
+msgid ""
+"Please enter the version of the package this report applies to (blank OK)"
+msgstr "请输入这个报告适用的软件包版本（可以为空）"
+
+#: bin/reportbug:1721
+msgid ""
+"Checking for newer versions at madison, incoming.debian.org and http://ftp-"
+"master.debian.org/new.html\n"
+msgstr ""
+"正在从 madison、incoming.debian.org 和 http://ftp-master.debian.org/new.html "
+"检查新版本\n"
+
+#: bin/reportbug:1725
+msgid "Checking for newer versions at madison...\n"
+msgstr "正在从 mandison 检查新版本……\n"
+
+#: bin/reportbug:1732
+#, python-format
+msgid ""
+"\n"
+"Your version of %s (%s) is newer than that in Debian!\n"
+"Do you still want to file a report"
+msgstr ""
+"\n"
+"您安装的 %s 的版本（%s）比 Debian 中的版本还要新！\n"
+"您是否仍然希望继续填写报告"
+
+#: bin/reportbug:1734
+msgid ""
+"Ignore this problem and continue.  This may be appropriate if you know this "
+"bug is present in older releases of the package, or you're running a mixed "
+"stable/testing installation."
+msgstr ""
+"忽略这个问题并继续。如果您知道这个缺陷在该软件包更旧的发布版本中同样存在，或"
+"者您正在运行一个混合稳定版/测试版软件的系统的话，该选项可能是合理的。"
+
+#: bin/reportbug:1740 bin/reportbug:1758
+msgid "Newer released version; stopping.\n"
+msgstr "更新的发布版本；停止。\n"
+
+#: bin/reportbug:1749
+#, python-format
+msgid ""
+"\n"
+"Your version (%s) of %s appears to be out of date.\n"
+"The following newer release(s) are available in the Debian archive:\n"
+msgstr ""
+"\n"
+"您的版本（%s，针对 %s 软件包）似乎过时了。\n"
+"下列新版本已在 Debian 仓库中可用：\n"
+
+#: bin/reportbug:1752
+msgid ""
+"Please try to verify if the bug you are about to report is already addressed "
+"by these releases.  Do you still want to file a report"
+msgstr ""
+"请检查您将要报告的问题是否已在新的版本中得到解决。您是否要继续填写报告？"
+
+#: bin/reportbug:1754
+msgid ""
+"Ignore this problem and continue.  This may be appropriate if you know this "
+"bug is still present in more recent releases of the package."
+msgstr ""
+"忽略该问题并继续。如果您知道这个问题在该软件包更新的版本中仍然存在，选择该选"
+"项可能是合适的。"
+
+#: bin/reportbug:1763
+#, python-format
+msgid "Will send report to %s (per request).\n"
+msgstr "将会向 %s 发送报告（根据请求）。\n"
+
+#: bin/reportbug:1767
+#, python-format
+msgid "Package originates from %s.\n"
+msgstr "软件包来源于 %s。\n"
+
+#: bin/reportbug:1770
+#, python-format
+msgid "Package originates from %s; overriding your system selection.\n"
+msgstr "软件包来源于 %s；见会覆盖您系统的选择。\n"
+
+#: bin/reportbug:1775 bin/reportbug:1779 bin/reportbug:1781
+#, python-format
+msgid "Unknown origin %s; will send to %s.\n"
+msgstr "未知来源 %s；将会发送至 %s。\n"
+
+#: bin/reportbug:1784
+#, python-format
+msgid "Will use %s protocol talking to %s.\n"
+msgstr "将会使用 %s 协议和 %s 进行通信。\n"
+
+#: bin/reportbug:1792
+#, python-format
+msgid "Will send report to %s (per lsb_release).\n"
+msgstr "将会向 %s 发送报告（根据 lsb_release 信息）。\n"
+
+#: bin/reportbug:1835
+msgid ""
+"There is no record of this package in the bug tracking system.\n"
+"Send report directly to maintainer"
+msgstr ""
+"在缺陷跟踪系统中没有该软件包的记录。\n"
+"直接发送报告至维护者"
+
+#: bin/reportbug:1837
+#, python-format
+msgid "Send the report to the maintainer (%s)."
+msgstr "将报告发送至维护者（%s）。"
+
+#: bin/reportbug:1838
+msgid "Send the report to the BTS anyway."
+msgstr "无论如何将报告发送至缺陷跟踪系统。"
+
+#: bin/reportbug:1842
+msgid "No bug reports found.\n"
+msgstr "未找到缺陷报告。\n"
+
+#: bin/reportbug:1845
+msgid "Exiting at user request.\n"
+msgstr "应用户请求退出。\n"
+
+#: bin/reportbug:1847
+msgid "Nothing new to report; exiting.\n"
+msgstr "没有新缺陷以供报告；退出。\n"
+
+#: bin/reportbug:1850
+msgid "Error accessing the BTS, no bugs information available.\n"
+msgstr "无法访问缺陷跟踪系统，缺陷信息不可用。\n"
+
+#: bin/reportbug:1862
+#, python-format
+msgid "Maintainer for %s is '%s'.\n"
+msgstr "%s 的维护者是“%s”。\n"
+
+#: bin/reportbug:1865
+msgid ""
+"This package seems to be currently \"orphaned\"; it also seems you're a\n"
+"bit interested in this package, since you're reporting a bug against\n"
+"it, so you might consider being involved in the package maintenance in "
+"Debian and/or adopting it.  Please be aware that your\n"
+"report may not be resolved for a while, because the package seems to lack "
+"an\n"
+"active maintainer, but please GO ON and REPORT the bug, if there is\n"
+"one.\n"
+"\n"
+"For more details, please see: http://www.debian.org/devel/wnpp/"
+msgstr ""
+"该软件包似乎处于“孤儿”状态；看起来您对这个软件包有点兴趣，\n"
+"因为您正在为此提交一份缺陷报告，所以您可以考虑考虑参与到 Debian 的\n"
+"软件包维护工作中来和/或收留这个软件包。请注意，您将要提交的报告可能\n"
+"短时间内不会得到解决，因为这个软件包似乎缺少活跃维护者。但是如果\n"
+"问题确确实实存在，请您一定要继续并报告这个问题。\n"
+"\n"
+"如需了解详情，请见：http://www.debian.org/devel/wnpp"
+
+#: bin/reportbug:1881
+#, python-format
+msgid "Looking up dependencies of %s...\n"
+msgstr "正在查找 %s 的依赖……\n"
+
+#: bin/reportbug:1890
+#, python-format
+msgid "Getting status for related package %s...\n"
+msgstr "正在获取相关软件包 %s 的状态……\n"
+
+#: bin/reportbug:1895
+#, python-format
+msgid "Looking up 'depends' of related package %s...\n"
+msgstr "正在查找相关软件包 %s 的依赖软件包……\n"
+
+#: bin/reportbug:1900
+#, python-format
+msgid "Looking up 'recommends' of related package %s...\n"
+msgstr "正在查找相关软件包 %s 的推荐软件包……\n"
+
+#: bin/reportbug:1905
+#, python-format
+msgid "Looking up 'suggests' of related package %s...\n"
+msgstr "正在查找相关软件包 %s 的建议软件包……\n"
+
+#: bin/reportbug:1909
+msgid "Looking up status of additional packages...\n"
+msgstr "正在查找额外软件包的状态……\n"
+
+#: bin/reportbug:1915
+msgid "Getting changed configuration files...\n"
+msgstr "正在获取已修改的配置文件……\n"
+
+#: bin/reportbug:1925
+msgid "*** WARNING: The following configuration files have been modified:\n"
+msgstr "*** 警告：下列配置文件已被修改：\n"
+
+#: bin/reportbug:1927
+msgid ""
+"\n"
+"Send modified configuration files"
+msgstr ""
+"\n"
+"发送被修改的配置文件"
+
+#: bin/reportbug:1928
+msgid "Send your modified configuration files."
+msgstr "发送您经过修改的配置文件。"
+
+#: bin/reportbug:1929
+msgid "Don't send modified configuration files."
+msgstr "不要发送被修改的配置文件。"
+
+#: bin/reportbug:1930
+msgid "Display modified configuration files (exit with \"q\")."
+msgstr "显示被修改的配置文件（按“q”退出）。"
+
+#: bin/reportbug:1960
+msgid "*** The following debconf settings were detected:\n"
+msgstr "*** 检测到下列 debconf 设置：\n"
+
+#: bin/reportbug:1961
+msgid ""
+"\n"
+"Include these settings in your report"
+msgstr ""
+"\n"
+"在您的报告中包含这些设置信息"
+
+#: bin/reportbug:1962
+msgid "Send your debconf settings."
+msgstr "发送您的 debconf 设置。"
+
+#: bin/reportbug:1963
+msgid "Don't send your debconf settings."
+msgstr "不要发送您的 debconf 设置。"
+
+#: bin/reportbug:1985
+msgid "Please provide a subject for your response."
+msgstr "请为您的报告提供一个主题。"
+
+#: bin/reportbug:1990 bin/reportbug:2015
+msgid "Providing a subject is mandatory.\n"
+msgstr "您必须提供一个主题。\n"
+
+#: bin/reportbug:1994
+#, python-format
+msgid "Does this bug still exist in version %s of this package?"
+msgstr "这个问题是否在该软件 %s 的版本中仍然存在？"
+
+#: bin/reportbug:1996
+msgid "Yes, it does."
+msgstr "是的。"
+
+#: bin/reportbug:1997
+msgid "No, it doesn't (or I don't know)."
+msgstr "不（或者我不知道）。"
+
+#: bin/reportbug:2005
+msgid ""
+"Briefly describe the problem (max. 100 characters allowed). This will be the "
+"bug email subject, so keep the summary as concise as possible, for example: "
+"\"fails to send email\" or \"does not start with -q option specified"
+"\" (enter Ctrl+c to exit reportbug without reporting a bug)."
+msgstr ""
+"请简要描述问题所在（最多 100 字符，请使用英文）。这段描述将成为缺陷报告邮件的"
+"主题，所以请尽可能保持简明扼要。例如：“fails to send email”或者“does not "
+"start with -q option specified”（输入 Ctrl+c 可以停止缺陷报告流程并离开 "
+"reportbug）。"
+
+#: bin/reportbug:2019
+msgid ""
+"Your description is a bit long; please enter a shorter subject. (An empty "
+"response will retain the existing subject.)"
+msgstr ""
+"您的描述有些长了；请输入一个短一点的主题（若输入为空，已有的主题将不会变"
+"化。）"
+
+#: bin/reportbug:2025 bin/reportbug:2028
+#, python-format
+msgid "Rewriting subject to '%s'\n"
+msgstr "主题已改写为“%s”\n"
+
+#: bin/reportbug:2036
+msgid ""
+"Enter any additional addresses this report should be sent to; press ENTER "
+"after each address."
+msgstr ""
+"请输入应当额外接收该报告的收件人地址；使用回车（ENTER）键分隔各个收件地址。"
+
+#: bin/reportbug:2043
+msgid "Do you want to report a regression because of a security update? "
+msgstr "您是否想报告由安全更新导致的回归（regression）问题？"
+
+#: bin/reportbug:2044
+msgid "Yes, please inform the LTS and security teams."
+msgstr "是的，请同时通知长期支持（LTS）团队和安全团队。"
+
+#: bin/reportbug:2045
+msgid "No or I am not sure."
+msgstr "不，或者我不确定。"
+
+#: bin/reportbug:2064
+msgid ""
+"Unable to connect to security-tracker.debian.org.\n"
+"Please try again later or contact the LTS or security team via email "
+"directly.\n"
+msgstr ""
+"无法连接到 security-tracker.debian.org。\n"
+"请稍后再试，或直接使用电子邮件联系 LTS 团队或安全团队。\n"
+
+#: bin/reportbug:2067
+msgid "No support team contact address could be identified.\n"
+msgstr "无法确定支持团队联系地址。\n"
+
+#: bin/reportbug:2081
+#, python-format
+msgid "Removing release critical severities, since running in '%s' mode.\n"
+msgstr ""
+"正在移除“release critical”等级的严重程度标签，因为程序正在以“%s”模式运行。\n"
+
+#: bin/reportbug:2088
+msgid "How would you rate the severity of this problem or report?"
+msgstr "您如何评价正在报告的问题的严重程度？"
+
+#: bin/reportbug:2091
+msgid "Please select a severity level: "
+msgstr "请选择一个严重性等级："
+
+#: bin/reportbug:2100
+msgid "What sort of problem are you reporting?"
+msgstr "您正在报告的是哪一类问题？"
+
+#: bin/reportbug:2102
+msgid "Please select a class: "
+msgstr "请选择一个类别："
+
+#: bin/reportbug:2111
+#, python-brace-format
+msgid ""
+"You are reporting a {0} bug; which of the following criteria does it meet?"
+msgstr "您正要报告一个“{0}”等级的缺陷；它符合下列标准中的哪一项？"
+
+#: bin/reportbug:2114
+msgid "Please select the impact of the bug: "
+msgstr "请选择该缺陷的影响范围："
+
+#: bin/reportbug:2118
+msgid ""
+"You are reporting a serious bug; which section of the Debian Policy Manual "
+"contains the \"must\" or \"required\" directive that it violates (E.g., "
+"\"1.2.3\")? Just type \"unknown\" if you are not sure (that would downgrade "
+"severity to normal)."
+msgstr ""
+"您正要报告一个严重等级的缺陷；该缺陷违背了 Debian Pollicy Manual 中包"
+"含“must”和“required”指令的哪一个条款（例如，“1.2.3”）？如果您不确定的话，请直"
+"接输入“unknown”（这么做会将其严重性降级为“normal”）。"
+
+#: bin/reportbug:2131
+msgid "Severity downgraded to \"normal\".\n"
+msgstr "严重性已降级为“normal”。\n"
+
+#: bin/reportbug:2137
+#, python-format
+msgid "Checking buildd.debian.org for past builds of %s...\n"
+msgstr "正在从 buildd.debian.org 检查 %s 的历史构建信息……\n"
+
+#: bin/reportbug:2154
+msgid ""
+"Has this package successfully been built for this architecture in the past "
+"(you can look this up at buildd.debian.org)"
+msgstr ""
+"该软件包是否曾经在该架构上成功进行构建（您可以在 buildd.debian.org 上查询相关"
+"信息）"
+
+#: bin/reportbug:2157
+msgid "Yes, this is a recently-introduced problem."
+msgstr "是的，这是一个最近才引入的问题。"
+
+#: bin/reportbug:2158
+msgid "No, it has always been this way."
+msgstr "不，这个问题一直都存在。"
+
+#: bin/reportbug:2181
+msgid "Adding security tag to this report.\n"
+msgstr "将向该报告中添加“security”标签。\n"
+
+#: bin/reportbug:2191
+msgid ""
+"Are you reporting an undisclosed vulnerability? If so, in order to "
+"responsibly disclose the issue, it should not be sent to the public BTS "
+"right now, but instead to the private Security Team mailing list."
+msgstr ""
+"您是否正在报告一个未披露的弱点？如果是的话，为了负责任地处理这个问题，它现在"
+"不应当发送至公开缺陷跟踪系统，应当发送至安全团队的内部邮件列表。"
+
+#: bin/reportbug:2195
+msgid ""
+"Yes, it is an undisclosed vulnerability, send this report to the private "
+"Security Team mailing list and not to the BTS."
+msgstr ""
+"是的，这是一个未公开的弱点，将这份报告发送到安全团队内部邮件列表，不发送到缺"
+"陷跟踪系统。"
+
+#: bin/reportbug:2198
+msgid ""
+"No, it is already a publicly disclosed vulnerability, send this report to "
+"the BTS."
+msgstr "不，它已经是一个公开披露的弱点了，将报告发送至缺陷跟踪系统。"
+
+#: bin/reportbug:2206
+msgid "Gathering additional data, this may take a while...\n"
+msgstr "正在搜集额外信息，这可能需要一段时间……\n"
+
+#: bin/reportbug:2216
+#, python-format
+msgid ""
+"The package bug script %s exited with an error status (return code = %s). Do "
+"you still want to file a report?"
+msgstr ""
+"软件包缺陷脚本 %s 返回了一个错误状态代码（返回码 = %s）。您是否希望继续填写报"
+"告？"
+
+#: bin/reportbug:2242
+msgid "Will send a CC of this report to the Debian Security Team.\n"
+msgstr "将会向 Debian 安全团队抄送本报告。\n"
+
+#: bin/reportbug:2324
+msgid ""
+"What is the filename of the patch (if none, or you have already included it, "
+"just press ENTER)?"
+msgstr ""
+"这个补丁的文件名是什么（如果没有合适名称，或者您已经在报告中包含了相关信息，"
+"请直接按回车（ENTER）键）？"
+
+#: bin/reportbug:2335
+#, python-format
+msgid "%s not found!"
+msgstr "%s 未找到！"
+
+#: bin/reportbug:2347
+#, python-format
+msgid "Passing message to %s for signature...\n"
+msgstr "正在将信件传送给 %s 进行签名……\n"
+
+#: bin/reportbug:2351
+msgid "Signature failed; sending message unsigned.\n"
+msgstr "签名失败；将以未签名的方式发送信件。\n"
+
+#: bin/reportbug:2385
+msgid "Please press ENTER to exit reportbug: "
+msgstr "请按下回车（ENTER）键以退出 reportbug："
+
+#: bin/reportbug:2393
+msgid ""
+"\n"
+"reportbug: exiting due to user interrupt.\n"
+msgstr ""
+"\n"
+"reportbug：因用户中断而退出。\n"
+
+#: bin/reportbug:2395
+#, python-format
+msgid "error accessing BTS: %s\n"
+msgstr "访问 BTS 时出错：%s\n"

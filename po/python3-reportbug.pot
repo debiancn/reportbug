@@ -1,0 +1,1577 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-07-02 22:36+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: reportbug/bugreport.py:58
+msgid ""
+"Invalid value for followup, it must be a debianbts.Bugreport instance or an "
+"integer"
+msgstr ""
+
+#: reportbug/bugreport.py:72
+#, python-format
+msgid "invalid report type %s, defaulting to debbugs"
+msgstr ""
+
+#: reportbug/checkversions.py:92 reportbug/checkversions.py:144
+msgid "Warning:"
+msgstr ""
+
+#: reportbug/debbugs.py:64
+msgid ""
+"makes unrelated software on the system (or the\n"
+"    whole system) break, or causes serious data loss, or introduces a\n"
+"    security hole on systems where you install the package."
+msgstr ""
+
+#: reportbug/debbugs.py:67
+msgid ""
+"makes the package in question unusable by most or all users,\n"
+"    or causes data loss, or introduces a security hole allowing access\n"
+"    to the accounts of users who use the package."
+msgstr ""
+
+#: reportbug/debbugs.py:70
+msgid ""
+"is a severe violation of Debian policy (that is,\n"
+"    the problem is a violation of a 'must' or 'required' directive);\n"
+"    may or may not affect the usability of the package.  Note that non-"
+"severe\n"
+"    policy violations may be 'normal,' 'minor,' or 'wishlist' bugs.\n"
+"    (Package maintainers may also designate other bugs as 'serious' and "
+"thus\n"
+"    release-critical; however, end users should not do so.). For the "
+"canonical\n"
+"    list of issues deserving a serious severity you can refer to this "
+"webpage:\n"
+"    http://release.debian.org/testing/rc_policy.txt ."
+msgstr ""
+
+#: reportbug/debbugs.py:78
+msgid ""
+"a bug which has a major effect on the usability\n"
+"    of a package, without rendering it completely unusable to\n"
+"    everyone."
+msgstr ""
+
+#: reportbug/debbugs.py:81
+msgid ""
+"a bug that stops the package from being built\n"
+"    from source.  (This is a 'virtual severity'.)"
+msgstr ""
+
+#: reportbug/debbugs.py:83
+msgid ""
+"a bug that does not undermine the usability of the\n"
+"    whole package; for example, a problem with a particular option or\n"
+"    menu item."
+msgstr ""
+
+#: reportbug/debbugs.py:86
+msgid ""
+"things like spelling mistakes and other minor\n"
+"    cosmetic errors that do not affect the core functionality of the\n"
+"    package."
+msgstr ""
+
+#: reportbug/debbugs.py:89
+msgid "suggestions and requests for new features."
+msgstr ""
+
+#: reportbug/debbugs.py:95
+msgid ""
+"breaks unrelated software on the system\n"
+"    (packages that have a dependency relationship are not unrelated)"
+msgstr ""
+
+#: reportbug/debbugs.py:97
+msgid ""
+"renders the entire system unusable (e.g.,\n"
+"    unbootable, unable to reach a multiuser runlevel, etc.)"
+msgstr ""
+
+#: reportbug/debbugs.py:99
+msgid ""
+"causes loss of important, irreplaceable\n"
+"    data"
+msgstr ""
+
+#: reportbug/debbugs.py:101
+msgid ""
+"introduces a security hole allowing access to\n"
+"    root (or another privileged system account), or data normally\n"
+"    accessible only by such accounts"
+msgstr ""
+
+#: reportbug/debbugs.py:104 reportbug/debbugs.py:115
+msgid "not sure, or none of the above"
+msgstr ""
+
+#: reportbug/debbugs.py:107
+msgid ""
+"renders the package unusable, or mostly\n"
+"    so, on all or nearly all possible systems on which it could be "
+"installed\n"
+"    (i.e., not a hardware-specific bug); or renders package uninstallable\n"
+"    or unremovable without special effort"
+msgstr ""
+
+#: reportbug/debbugs.py:111
+msgid ""
+"causes the loss of data on the system\n"
+"    that is unimportant, or restorable without resorting to backup media"
+msgstr ""
+
+#: reportbug/debbugs.py:113
+msgid ""
+"introduces a security hole allowing access to\n"
+"    user accounts or data not normally accessible"
+msgstr ""
+
+#: reportbug/debbugs.py:134
+msgid ""
+"The product, component or concept is completely non-operational or some "
+"essential functionality is missing.  No workaround is known."
+msgstr ""
+
+#: reportbug/debbugs.py:137
+msgid ""
+"The product, component or concept is not working properly or significant "
+"functionality is missing.  Problems that would otherwise be considered "
+"critical are rated serious when a workaround is known."
+msgstr ""
+
+#: reportbug/debbugs.py:141
+msgid ""
+"The product, component or concept is working in general, but lacks features, "
+"has irritating behavior, does something wrong, or doesnt match its "
+"documentation."
+msgstr ""
+
+#: reportbug/debbugs.py:167
+msgid "The bug tracking system, @bugs.debian.org"
+msgstr ""
+
+#: reportbug/debbugs.py:168
+msgid "Problems and requests related to the Debian Buildds"
+msgstr ""
+
+#: reportbug/debbugs.py:169
+msgid "Problems related to building packages for Emdebian"
+msgstr ""
+
+#: reportbug/debbugs.py:170
+msgid "CD Image issues"
+msgstr ""
+
+#: reportbug/debbugs.py:171
+msgid "Installation system"
+msgstr ""
+
+#: reportbug/debbugs.py:172
+msgid "Issues involving Debian images for public/private clouds"
+msgstr ""
+
+#: reportbug/debbugs.py:173
+msgid ""
+"Issues with the Debian Contributors Website and coordination of maintenance"
+msgstr ""
+
+#: reportbug/debbugs.py:174
+msgid ""
+"Issues regarding the d-i.debian.org service and general Debian Installer "
+"tasks"
+msgstr ""
+
+#: reportbug/debbugs.py:175
+msgid "Problems and requests related to Debian Maintainers"
+msgstr ""
+
+#: reportbug/debbugs.py:176
+msgid "Requests regarding Internationalization (i18n) of the distribution"
+msgstr ""
+
+#: reportbug/debbugs.py:177
+msgid "General problems with Debian Live systems"
+msgstr ""
+
+#: reportbug/debbugs.py:178
+msgid "Problems with the FTP site and Package removal requests"
+msgstr ""
+
+#: reportbug/debbugs.py:179
+msgid "General problems (e.g. \"many manpages are mode 755\")"
+msgstr ""
+
+#: reportbug/debbugs.py:180
+msgid "Reports of installation problems with stable & testing"
+msgstr ""
+
+#: reportbug/debbugs.py:181
+msgid "Issues with the jenkins.debian.org service"
+msgstr ""
+
+#: reportbug/debbugs.py:182
+msgid "The mailing lists, debian-*@lists.debian.org"
+msgstr ""
+
+#: reportbug/debbugs.py:183
+msgid "Issues with the Debian Manpages Website and coordination of maintenance"
+msgstr ""
+
+#: reportbug/debbugs.py:184
+msgid "Problems with the official mirrors"
+msgstr ""
+
+#: reportbug/debbugs.py:185
+msgid "New Member process and nm.debian.org webpages"
+msgstr ""
+
+#: reportbug/debbugs.py:186
+msgid "The Debian Package Entropy Tracker"
+msgstr ""
+
+#: reportbug/debbugs.py:187
+msgid "Issues with the piuparts.debian.org service"
+msgstr ""
+
+#: reportbug/debbugs.py:188
+msgid "Press release issues"
+msgstr ""
+
+#: reportbug/debbugs.py:189
+msgid "Problems related to project administration"
+msgstr ""
+
+#: reportbug/debbugs.py:190
+msgid "The Quality Assurance group"
+msgstr ""
+
+#: reportbug/debbugs.py:191
+msgid "Requests regarding Debian releases and release team tools"
+msgstr ""
+
+#: reportbug/debbugs.py:192
+msgid "Problems with the Release Notes"
+msgstr ""
+
+#: reportbug/debbugs.py:193
+msgid ""
+"Issues in the operation of the Debian RTC services which are not package-"
+"specific bugs"
+msgstr ""
+
+#: reportbug/debbugs.py:194
+msgid "The Debian Security Bug Tracker"
+msgstr ""
+
+#: reportbug/debbugs.py:195
+msgid "The Debian Security Team"
+msgstr ""
+
+#: reportbug/debbugs.py:196
+msgid "Issues with the snapshot.debian.org service "
+msgstr ""
+
+#: reportbug/debbugs.py:197
+msgid "Spam (reassign spam to here so we can complain about it)"
+msgstr ""
+
+#: reportbug/debbugs.py:198
+msgid "Requests for package review and sponsorship"
+msgstr ""
+
+#: reportbug/debbugs.py:199
+msgid "Problems and requests related to the Debian Single Sign On system"
+msgstr ""
+
+#: reportbug/debbugs.py:200
+msgid "Problems and requests related to the DebConf Summit instance"
+msgstr ""
+
+#: reportbug/debbugs.py:201
+msgid "The Debian Technical Committee (see the Constitution)"
+msgstr ""
+
+#: reportbug/debbugs.py:202
+msgid ""
+"Issues with the Debian Package Tracker and coordination of its maintenance"
+msgstr ""
+
+#: reportbug/debbugs.py:203
+msgid "Reports of upgrade problems for stable & testing"
+msgstr ""
+
+#: reportbug/debbugs.py:204
+msgid "Problems with the Debian wiki"
+msgstr ""
+
+#: reportbug/debbugs.py:205
+msgid "Work-Needing and Prospective Packages list"
+msgstr ""
+
+#: reportbug/debbugs.py:206
+msgid "Problems with the WWW site"
+msgstr ""
+
+#: reportbug/debbugs.py:210
+msgid "Any non-package-specific bug"
+msgstr ""
+
+#: reportbug/debbugs.py:221 reportbug/debbugs.py:414 reportbug/debbugs.py:632
+msgid ""
+"What sort of request is this?  (If none of these things mean anything to "
+"you, or you are trying to report a bug in an existing package, please press "
+"Enter to exit reportbug.)"
+msgstr ""
+
+#: reportbug/debbugs.py:225
+msgid "Package removal - Request Of Maintainer."
+msgstr ""
+
+#: reportbug/debbugs.py:226
+msgid "Package removal - Requested by the QA team."
+msgstr ""
+
+#: reportbug/debbugs.py:227
+msgid "Package removal - Request of Porter."
+msgstr ""
+
+#: reportbug/debbugs.py:228
+msgid "Package removal - Not Built [by] Source."
+msgstr ""
+
+#: reportbug/debbugs.py:229
+msgid "Package removal - Never Part Of A Stable Release."
+msgstr ""
+
+#: reportbug/debbugs.py:230
+msgid "Package removal - Newer Version In Unstable."
+msgstr ""
+
+#: reportbug/debbugs.py:231
+msgid "Package removal - Architecture Not Allowed In Source."
+msgstr ""
+
+#: reportbug/debbugs.py:232
+msgid "Package removal - Internal Compiler Error."
+msgstr ""
+
+#: reportbug/debbugs.py:233
+msgid "Change override request."
+msgstr ""
+
+#: reportbug/debbugs.py:234
+msgid "Not a package removal request, report other problems."
+msgstr ""
+
+#: reportbug/debbugs.py:235 reportbug/debbugs.py:426 reportbug/debbugs.py:641
+msgid "Choose the request type: "
+msgstr ""
+
+#: reportbug/debbugs.py:237
+msgid ""
+"To report a bug in a package, use the name of the package, not ftp.debian."
+"org.\n"
+msgstr ""
+
+#: reportbug/debbugs.py:244 reportbug/debbugs.py:442
+msgid "Please enter the name of the package: "
+msgstr ""
+
+#: reportbug/debbugs.py:247
+msgid "You seem to want to report a generic bug, not request a removal\n"
+msgstr ""
+
+#: reportbug/debbugs.py:250 reportbug/debbugs.py:448 reportbug/debbugs.py:659
+msgid "Checking status database...\n"
+msgstr ""
+
+#: reportbug/debbugs.py:262 reportbug/debbugs.py:460 reportbug/debbugs.py:704
+msgid "This package doesn't appear to exist; continue?"
+msgstr ""
+
+#: reportbug/debbugs.py:263 reportbug/debbugs.py:461 reportbug/debbugs.py:705
+msgid "Ignore this problem and continue."
+msgstr ""
+
+#: reportbug/debbugs.py:264 reportbug/debbugs.py:462 reportbug/debbugs.py:673
+#: reportbug/debbugs.py:706
+msgid "Exit without filing a report."
+msgstr ""
+
+#: reportbug/debbugs.py:276
+msgid "Select the new section"
+msgstr ""
+
+#: reportbug/debbugs.py:293
+msgid "Choose the section: "
+msgstr ""
+
+#: reportbug/debbugs.py:297
+msgid "Select the new priority"
+msgstr ""
+
+#: reportbug/debbugs.py:303
+msgid "Choose the priority: "
+msgstr ""
+
+#: reportbug/debbugs.py:309
+msgid ""
+"You didn't change section nor priority: is this because it's ftp.debian.org "
+"override file that needs updating?"
+msgstr ""
+
+#: reportbug/debbugs.py:311
+msgid "ftp.debian.org override file needs updating"
+msgstr ""
+
+#: reportbug/debbugs.py:312
+msgid "No, it's not the override file"
+msgstr ""
+
+#: reportbug/debbugs.py:315
+msgid "There's nothing we can do for you, then; exiting..."
+msgstr ""
+
+#: reportbug/debbugs.py:319
+msgid "Is this request for an archive section other than \"main\"?"
+msgstr ""
+
+#: reportbug/debbugs.py:323
+msgid "Choose the archive section: "
+msgstr ""
+
+#: reportbug/debbugs.py:331
+msgid "(Describe here the reason for this change)"
+msgstr ""
+
+#: reportbug/debbugs.py:334
+msgid ""
+"Is the removal to be done in a suite other than \"unstable\"?  Don't select "
+"anything for \"unstable\""
+msgstr ""
+
+#: reportbug/debbugs.py:336
+msgid "Old stable."
+msgstr ""
+
+#: reportbug/debbugs.py:337
+msgid "Old stable proposed updates."
+msgstr ""
+
+#: reportbug/debbugs.py:338
+msgid "Stable."
+msgstr ""
+
+#: reportbug/debbugs.py:339
+msgid "Stable proposed updates."
+msgstr ""
+
+#: reportbug/debbugs.py:340
+msgid "Testing only (NOT unstable)"
+msgstr ""
+
+#: reportbug/debbugs.py:341
+msgid "Testing proposed updates"
+msgstr ""
+
+#: reportbug/debbugs.py:342
+msgid "Experimental."
+msgstr ""
+
+#: reportbug/debbugs.py:343 reportbug/debbugs.py:515
+msgid "Choose the suite: "
+msgstr ""
+
+#: reportbug/debbugs.py:349
+msgid "Your report will be carbon-copied to debian-release.\n"
+msgstr ""
+
+#: reportbug/debbugs.py:357
+msgid "Is this removal request for specific architectures?"
+msgstr ""
+
+#: reportbug/debbugs.py:358
+msgid "This is a partial (specific architectures) removal."
+msgstr ""
+
+#: reportbug/debbugs.py:359
+msgid "This removal is for all architectures."
+msgstr ""
+
+#: reportbug/debbugs.py:361 reportbug/debbugs.py:499
+msgid "Please enter the arch list separated by a space: "
+msgstr ""
+
+#: reportbug/debbugs.py:364
+msgid "Partial removal requests must have a list of architectures.\n"
+msgstr ""
+
+#: reportbug/debbugs.py:368
+msgid ""
+"Partial removal for testing; forcing suite to 'unstable', since it's the "
+"proper way to do that."
+msgstr ""
+
+#: reportbug/debbugs.py:372
+msgid ""
+"(please explain the reason for the removal here)\n"
+"\n"
+"Note: this was a request for a partial removal from testing, converted in "
+"one for unstable"
+msgstr ""
+
+#: reportbug/debbugs.py:389
+msgid "Please use release.debian.org pseudo-package and report a bug there."
+msgstr ""
+
+#: reportbug/debbugs.py:418
+msgid "binNMU requests"
+msgstr ""
+
+#: reportbug/debbugs.py:419
+msgid "testing migration script bugs"
+msgstr ""
+
+#: reportbug/debbugs.py:420
+msgid "transition tracking"
+msgstr ""
+
+#: reportbug/debbugs.py:421
+msgid "unblock requests"
+msgstr ""
+
+#: reportbug/debbugs.py:423
+#, python-format
+msgid "%s proposed updates requests"
+msgstr ""
+
+#: reportbug/debbugs.py:424
+msgid "Stable/Testing removal requests"
+msgstr ""
+
+#: reportbug/debbugs.py:425
+msgid "None of the other options"
+msgstr ""
+
+#: reportbug/debbugs.py:428
+msgid ""
+"To report a bug in a package, use the name of the package, not release."
+"debian.org.\n"
+msgstr ""
+
+#: reportbug/debbugs.py:436
+msgid "Please enter the subject of the bug report: "
+msgstr ""
+
+#: reportbug/debbugs.py:438
+msgid "No subject specified, exiting"
+msgstr ""
+
+#: reportbug/debbugs.py:445
+msgid "You seem to want to report a generic bug.\n"
+msgstr ""
+
+#: reportbug/debbugs.py:475
+#, python-format
+msgid "Latest version seems to be %s, is this the proper one ?"
+msgstr ""
+
+#: reportbug/debbugs.py:476
+msgid "This is the correct version"
+msgstr ""
+
+#: reportbug/debbugs.py:477
+msgid "Enter the proper version"
+msgstr ""
+
+#: reportbug/debbugs.py:481
+msgid "Please enter the version of the package: "
+msgstr ""
+
+#: reportbug/debbugs.py:483
+#, python-format
+msgid "A version is required for action %s, not sending bug\n"
+msgstr ""
+
+#: reportbug/debbugs.py:488
+msgid "Is this request for specific architectures?"
+msgstr ""
+
+#: reportbug/debbugs.py:489
+msgid "This is a partial (specific architectures) request."
+msgstr ""
+
+#: reportbug/debbugs.py:490
+msgid "This request is for all architectures."
+msgstr ""
+
+#: reportbug/debbugs.py:493
+msgid ""
+"The proper way to request a partial removal from testing is to file a "
+"partial removal from unstable: this way the package for the specified "
+"architectures will be automatically removed from testing too. Please re-run "
+"reportbug against ftp.debian.org package."
+msgstr ""
+
+#: reportbug/debbugs.py:502
+msgid "No architecture specified, skipping..."
+msgstr ""
+
+#: reportbug/debbugs.py:505
+msgid ""
+"For which suite are you requesting this binNMU?  Don't select anything for "
+"\"unstable\""
+msgstr ""
+
+#: reportbug/debbugs.py:527
+msgid "binNMU changelog entry: "
+msgstr ""
+
+#: reportbug/debbugs.py:532
+msgid ""
+"(please explain about the transition: impacted packages, reason, ...\n"
+" for more info see: https://wiki.debian.org/Teams/ReleaseTeam/Transitions)\n"
+msgstr ""
+
+#: reportbug/debbugs.py:534 reportbug/debbugs.py:535 reportbug/debbugs.py:536
+msgid "<Fill out>"
+msgstr ""
+
+#: reportbug/debbugs.py:538
+msgid ""
+"To assist the release team, please fill in the following information. You "
+"will be asked to provide package names of the library package(s) that are "
+"the source of the transition.  If more than one library is changing the "
+"name, please use a space separated list.  Alternatively you can use a regex "
+"by enclosing the regex in slashes (\"/\").  Please ensure that the \"old\" "
+"regex does not match the \"new\" packages.  Example: old=\"/libapt-pkg4.10|"
+"libapt-inst1.2/ libept1\" new=\"/libapt-pkg4.12|libapt-inst1.5|libept1.4.12/"
+"\". For further reference, please refer to http://ben.debian.net/ ."
+msgstr ""
+
+#: reportbug/debbugs.py:548
+msgid ""
+"Please enter old binary package name of the library (or a regex matching it):"
+msgstr ""
+
+#: reportbug/debbugs.py:551
+msgid ""
+"Please enter new binary package name of the library (or a regex matching it):"
+msgstr ""
+
+#: reportbug/debbugs.py:596
+msgid "(please explain the reason for this update here)\n"
+msgstr ""
+
+#: reportbug/debbugs.py:599
+msgid "(explain the reason for the removal here)\n"
+msgstr ""
+
+#: reportbug/debbugs.py:636
+msgid ""
+"The package has been `Orphaned'. It needs a new maintainer as soon as "
+"possible."
+msgstr ""
+
+#: reportbug/debbugs.py:637
+msgid ""
+"This is a `Request for Adoption'. Due to lack of time, resources, interest "
+"or something similar, the current maintainer is asking for someone else to "
+"maintain this package. They will maintain it in the meantime, but perhaps "
+"not in the best possible way. In short: the package needs a new maintainer."
+msgstr ""
+
+#: reportbug/debbugs.py:638
+msgid ""
+"This is a `Request For Help'. The current maintainer wants to continue to "
+"maintain this package, but they need some help to do this because their time "
+"is limited or the package is quite big and needs several maintainers."
+msgstr ""
+
+#: reportbug/debbugs.py:639
+msgid ""
+"This is an `Intent To Package'. Please submit a package description along "
+"with copyright and URL in such a report."
+msgstr ""
+
+#: reportbug/debbugs.py:640
+msgid ""
+"This is a `Request For Package'. You have found an interesting piece of "
+"software and would like someone else to maintain it for Debian. Please "
+"submit a package description along with copyright and URL in such a report."
+msgstr ""
+
+#: reportbug/debbugs.py:643
+msgid "To report a bug in a package, use the name of the package, not wnpp.\n"
+msgstr ""
+
+#: reportbug/debbugs.py:651
+msgid "Please enter the proposed package name: "
+msgstr ""
+
+#: reportbug/debbugs.py:653
+msgid "Please enter the package name: "
+msgstr ""
+
+#: reportbug/debbugs.py:656
+msgid "Invalid package name"
+msgstr ""
+
+#: reportbug/debbugs.py:668
+#, python-format
+msgid ""
+"A package called %s already appears to exist (at least on your system); "
+"continue?"
+msgstr ""
+
+#: reportbug/debbugs.py:670
+msgid ""
+"Ignore this problem and continue.  If you have already locally created a "
+"package with this name, this warning message may have been produced in error."
+msgstr ""
+
+#: reportbug/debbugs.py:683
+msgid ""
+"Please briefly describe this package; this should be an appropriate short "
+"description for the eventual package: "
+msgstr ""
+
+#: reportbug/debbugs.py:690
+msgid "Your report will be carbon-copied to debian-devel, per Debian policy.\n"
+msgstr ""
+
+#: reportbug/debbugs.py:722
+msgid ""
+"Your request will be carbon-copied to debian-devel, per Debian policy.\n"
+msgstr ""
+
+#: reportbug/debbugs.py:803
+msgid ""
+"The problem is a bug in the software or code.  For example, a crash would be "
+"a sw-bug."
+msgstr ""
+
+#: reportbug/debbugs.py:805
+msgid ""
+"The problem is in the documentation.  For example, an error in a man page "
+"would be a doc-bug."
+msgstr ""
+
+#: reportbug/debbugs.py:807
+msgid ""
+"You are requesting a new feature or a change in the behavior of software, or "
+"are making a suggestion.  For example, if you wanted reportbug to be able to "
+"get your local weather forecast, as well as report bugs, that would be a "
+"change-request."
+msgstr ""
+
+#: reportbug/debbugs.py:817 reportbug/debbugs.py:821
+msgid "This problem is a security vulnerability in Debian."
+msgstr ""
+
+#: reportbug/debbugs.py:825
+msgid "You are including a patch to fix this problem."
+msgstr ""
+
+#: reportbug/debbugs.py:826
+msgid "This bug applies to the upstream part of the package."
+msgstr ""
+
+#: reportbug/debbugs.py:827
+msgid "This bug is relevant to the development of debian-installer."
+msgstr ""
+
+#: reportbug/debbugs.py:828
+msgid "This bug affects support for Internet Protocol version 6."
+msgstr ""
+
+#: reportbug/debbugs.py:829
+msgid "This bug affects support for large files (over 2 gigabytes)."
+msgstr ""
+
+#: reportbug/debbugs.py:830
+msgid "This bug reports a localization/internationalization issue."
+msgstr ""
+
+#: reportbug/debbugs.py:831
+msgid "This bug is relevant to the accessibility of the package."
+msgstr ""
+
+#: reportbug/debbugs.py:832
+msgid ""
+"This bug has a known solution but the maintainer requests someone else "
+"implement it."
+msgstr ""
+
+#: reportbug/submit.py:107
+#, python-format
+msgid "gpg/pgp failed; input file in %s\n"
+msgstr ""
+
+#: reportbug/submit.py:142
+#, python-format
+msgid "Warning: opening '%s' failed: %s.\n"
+msgstr ""
+
+#: reportbug/submit.py:230
+msgid "Error: Message creation failed, not sending\n"
+msgstr ""
+
+#: reportbug/submit.py:290
+msgid "Does your report seem satisfactory"
+msgstr ""
+
+#: reportbug/submit.py:291
+msgid "Yes, send it."
+msgstr ""
+
+#: reportbug/submit.py:292
+msgid "No, don't send it."
+msgstr ""
+
+#: reportbug/submit.py:310
+#, python-format
+msgid "Unable to rename existing %s as %s~\n"
+msgstr ""
+
+#: reportbug/submit.py:317
+#, python-format
+msgid "Writing to %s failed; using instead %s\n"
+msgstr ""
+
+#: reportbug/submit.py:337
+#, python-format
+msgid "Sending message via %s...\n"
+msgstr ""
+
+#: reportbug/submit.py:344
+#, python-format
+msgid "Saving a backup of the report at %s\n"
+msgstr ""
+
+#: reportbug/submit.py:356
+#, python-format
+msgid "Connecting to %s via SMTP...\n"
+msgstr ""
+
+#: reportbug/submit.py:376
+#, python-format
+msgid "Enter SMTP password for %s@%s: "
+msgstr ""
+
+#: reportbug/submit.py:384
+msgid "SMTP error: authentication failed.  Try again.\n"
+msgstr ""
+
+#: reportbug/submit.py:395
+#, python-format
+msgid ""
+"SMTP send failure: %s. Do you want to retry (or else save the report and "
+"exit)?"
+msgstr ""
+
+#: reportbug/submit.py:396
+msgid "Yes, please retry."
+msgstr ""
+
+#: reportbug/submit.py:397
+msgid "No, save and exit."
+msgstr ""
+
+#: reportbug/submit.py:407 reportbug/submit.py:417
+#, python-format
+msgid "Wrote bug report to %s\n"
+msgstr ""
+
+#: reportbug/submit.py:411
+#, python-format
+msgid "Unable to send report to %s: %d %s\n"
+msgstr ""
+
+#: reportbug/submit.py:423
+#, python-format
+msgid "Bug report written as %s\n"
+msgstr ""
+
+#: reportbug/submit.py:434
+#, python-format
+msgid "Error: send/write operation failed, bug report saved to %s\n"
+msgstr ""
+
+#: reportbug/submit.py:439 reportbug/ui/text_ui.py:1053
+#, python-format
+msgid "Spawning %s...\n"
+msgstr ""
+
+#: reportbug/submit.py:445
+msgid ""
+"Mutt users should be aware it is mandatory to edit the draft before "
+"sending.\n"
+msgstr ""
+
+#: reportbug/submit.py:447
+msgid "Report has not been sent yet; what do you want to do now?"
+msgstr ""
+
+#: reportbug/submit.py:449
+msgid "Edit the message."
+msgstr ""
+
+#: reportbug/submit.py:450
+msgid "Quit reportbug; will save the draft for future use."
+msgstr ""
+
+#: reportbug/submit.py:457
+#, python-format
+msgid "Draft saved into %s\n"
+msgstr ""
+
+#: reportbug/submit.py:464
+#, python-format
+msgid ""
+"\n"
+"Message sent to: %s\n"
+msgstr ""
+
+#: reportbug/submit.py:466
+#, python-format
+msgid ""
+"\n"
+"Bug report submitted to: %s\n"
+msgstr ""
+
+#: reportbug/submit.py:474
+msgid "Copies sent to:\n"
+msgstr ""
+
+#: reportbug/submit.py:479
+msgid "Copies will be sent after processing to:\n"
+msgstr ""
+
+#: reportbug/submit.py:487
+#, python-format
+msgid ""
+"If you want to provide additional information, please wait to\n"
+"receive the bug tracking number via email; you may then send any extra\n"
+"information to %s (e.g. %s), where n is the bug number.  Normally you\n"
+"will receive an acknowledgement via email including the bug report number\n"
+"within an hour; if you haven't received a confirmation, then the bug "
+"reporting process failed at some point (reportbug or MTA failure, BTS "
+"maintenance, etc.).\n"
+msgstr ""
+
+#: reportbug/submit.py:504
+#, python-format
+msgid "A copy of the report is stored as: %s\n"
+msgstr ""
+
+#: reportbug/urlutils.py:97
+#, python-format
+msgid "Enter username for %s at %s: "
+msgstr ""
+
+#: reportbug/urlutils.py:99
+#, python-format
+msgid "Enter password for %s in %s at %s: "
+msgstr ""
+
+#: reportbug/urlutils.py:166
+msgid "http_proxy environment variable must be formatted as a valid URI"
+msgstr ""
+
+#: reportbug/urlutils.py:170
+#, python-format
+msgid "Failed to open %(url)r (%(exc_name)s: %(exc)s)"
+msgstr ""
+
+#: reportbug/utils.py:60
+msgid "Offer simple prompts, bypassing technical questions."
+msgstr ""
+
+#: reportbug/utils.py:61
+msgid ""
+"Offer more extensive prompts, including asking about things that a "
+"moderately sophisticated user would be expected to know about Debian."
+msgstr ""
+
+#: reportbug/utils.py:64
+msgid ""
+"Like standard, but assumes you know a bit more about Debian, including "
+"\"incoming\"."
+msgstr ""
+
+#: reportbug/utils.py:66
+msgid ""
+"Bypass most handholding measures and preliminary triage routines.  This mode "
+"should not be used by people unfamiliar with Debian's policies and operating "
+"procedures."
+msgstr ""
+
+#: reportbug/utils.py:263
+#, python-format
+msgid "Invalid entry in %s"
+msgstr ""
+
+#: reportbug/utils.py:1056
+#, python-format
+msgid "Unrecognized token: %s\n"
+msgstr ""
+
+#: reportbug/ui/__init__.py:29
+msgid "A text-oriented console user interface"
+msgstr ""
+
+#: reportbug/ui/__init__.py:30
+msgid "A menu-based console user interface"
+msgstr ""
+
+#: reportbug/ui/__init__.py:31
+msgid "A graphical (GTK+) user interface."
+msgstr ""
+
+#: reportbug/ui/gtk2_ui.py:28
+msgid "No graphical display detected, falling back to text UI."
+msgstr ""
+
+#: reportbug/ui/gtk2_ui.py:54
+msgid ""
+"Please install the python3-gi and gir1.2-gtk-3.0 packages to use this "
+"interface."
+msgstr ""
+
+#: reportbug/ui/gtk2_ui.py:82
+msgid "<MainContext of UI thread>"
+msgstr ""
+
+#: reportbug/ui/gtk2_ui.py:84
+msgid "<MainContext of reportbug thread>"
+msgstr ""
+
+#: reportbug/ui/gtk2_ui.py:94
+#, python-format
+msgid "Function should be called in %s but was called in %s"
+msgstr ""
+
+#: reportbug/ui/gtk2_ui.py:98
+#, python-format
+msgid "Function should be called with %s acquired"
+msgstr ""
+
+#: reportbug/ui/gtk2_ui.py:135 reportbug/ui/gtk2_ui.py:144
+#: reportbug/ui/gtk2_ui.py:151 reportbug/ui/gtk2_ui.py:255
+#: reportbug/ui/gtk2_ui.py:672 reportbug/ui/gtk2_ui.py:1557
+msgid "Reportbug"
+msgstr ""
+
+#: reportbug/ui/gtk2_ui.py:229
+msgid ""
+"An error has occurred while doing an operation in Reportbug.\n"
+"Please report the bug."
+msgstr ""
+
+#: reportbug/ui/gtk2_ui.py:236
+msgid "More details"
+msgstr ""
+
+#: reportbug/ui/gtk2_ui.py:412
+msgid "Retrieving bug information."
+msgstr ""
+
+#: reportbug/ui/gtk2_ui.py:423
+msgid "Could not acquire my own main-context"
+msgstr ""
+
+#: reportbug/ui/gtk2_ui.py:453
+msgid "The bug can't be fetched or it doesn't exist."
+msgstr ""
+
+#: reportbug/ui/gtk2_ui.py:463
+msgid "Description: "
+msgstr ""
+
+#: reportbug/ui/gtk2_ui.py:482
+msgid "Open in browser"
+msgstr ""
+
+#: reportbug/ui/gtk2_ui.py:486
+msgid "Reply"
+msgstr ""
+
+#: reportbug/ui/gtk2_ui.py:513
+msgid "Reportbug: bug information"
+msgstr ""
+
+#: reportbug/ui/gtk2_ui.py:546
+msgid "Could not acquire UI context"
+msgstr ""
+
+#: reportbug/ui/gtk2_ui.py:717
+msgid ""
+"\n"
+"<b>Reportbug</b> is a tool designed to make the reporting of bugs in Debian "
+"and derived distributions relatively painless.\n"
+"\n"
+"This wizard will guide you through the bug reporting process step by step.\n"
+"\n"
+"<b>Note:</b> bug reports are publicly archived(including the email address "
+"of the submitter)."
+msgstr ""
+
+#: reportbug/ui/gtk2_ui.py:729
+msgid "Homepage of reportbug project"
+msgstr ""
+
+#: reportbug/ui/gtk2_ui.py:764
+msgid "(enter Ctrl+c to exit reportbug without reporting a bug)"
+msgstr ""
+
+#: reportbug/ui/gtk2_ui.py:906
+msgid "Add a new item to the list"
+msgstr ""
+
+#: reportbug/ui/gtk2_ui.py:986
+msgid "Option"
+msgstr ""
+
+#: reportbug/ui/gtk2_ui.py:990 reportbug/ui/gtk2_ui.py:1122
+msgid "Description"
+msgstr ""
+
+#: reportbug/ui/gtk2_ui.py:1049
+#, python-format
+msgid "Querying %s bug tracking system for reports on %s"
+msgstr ""
+
+#: reportbug/ui/gtk2_ui.py:1051
+#, python-format
+msgid "Querying %s bug tracking system for reports %s"
+msgstr ""
+
+#: reportbug/ui/gtk2_ui.py:1060
+#, python-format
+msgid "Unable to connect to %s BTS."
+msgstr ""
+
+#: reportbug/ui/gtk2_ui.py:1071
+#, python-format
+msgid "%d bug reports found"
+msgstr ""
+
+#: reportbug/ui/gtk2_ui.py:1073
+msgid "One bug report found"
+msgstr ""
+
+#: reportbug/ui/gtk2_ui.py:1088 reportbug/ui/text_ui.py:607
+msgid "No record of this package found."
+msgstr ""
+
+#: reportbug/ui/gtk2_ui.py:1100
+msgid "List of bugs. Select a bug to retrieve and submit more information."
+msgstr ""
+
+#: reportbug/ui/gtk2_ui.py:1119
+msgid "ID"
+msgstr ""
+
+#: reportbug/ui/gtk2_ui.py:1120
+msgid "Tag"
+msgstr ""
+
+#: reportbug/ui/gtk2_ui.py:1121
+msgid "Package"
+msgstr ""
+
+#: reportbug/ui/gtk2_ui.py:1123
+msgid "Status"
+msgstr ""
+
+#: reportbug/ui/gtk2_ui.py:1124
+msgid "Submitter"
+msgstr ""
+
+#: reportbug/ui/gtk2_ui.py:1125
+msgid "Date"
+msgstr ""
+
+#: reportbug/ui/gtk2_ui.py:1126
+msgid "Severity"
+msgstr ""
+
+#: reportbug/ui/gtk2_ui.py:1127
+msgid "Version"
+msgstr ""
+
+#: reportbug/ui/gtk2_ui.py:1128
+msgid "Filed date"
+msgstr ""
+
+#: reportbug/ui/gtk2_ui.py:1129
+msgid "Modified date"
+msgstr ""
+
+#: reportbug/ui/gtk2_ui.py:1136
+msgid "Retrieve and submit bug information"
+msgstr ""
+
+#: reportbug/ui/gtk2_ui.py:1161
+msgid "Please select one or more bugs"
+msgstr ""
+
+#: reportbug/ui/gtk2_ui.py:1212
+#, python-format
+msgid "%s. Double-click a bug to retrieve and submit more information."
+msgstr ""
+
+#: reportbug/ui/gtk2_ui.py:1306 reportbug/ui/gtk2_ui.py:1316
+msgid "Thanks for your report"
+msgstr ""
+
+#: reportbug/ui/gtk2_ui.py:1324
+msgid "Subject: "
+msgstr ""
+
+#: reportbug/ui/gtk2_ui.py:1349
+msgid "Other system information"
+msgstr ""
+
+#: reportbug/ui/gtk2_ui.py:1359
+msgid "Please install <b>python3-gtkspellcheck</b> to enable spell checking"
+msgstr ""
+
+#: reportbug/ui/gtk2_ui.py:1417
+msgid "*** Please type your report below this line ***"
+msgstr ""
+
+#: reportbug/ui/gtk2_ui.py:1418
+msgid ""
+"Please type your report here.\n"
+"The text will be wrapped to be max 79 chars long per line."
+msgstr ""
+
+#: reportbug/ui/gtk2_ui.py:1457
+msgid "(e to edit)"
+msgstr ""
+
+#: reportbug/ui/gtk2_ui.py:1464
+msgid "Change editor"
+msgstr ""
+
+#: reportbug/ui/gtk2_ui.py:1467
+msgid "Pipe the message through the pager"
+msgstr ""
+
+#: reportbug/ui/gtk2_ui.py:1470
+msgid "Print message to stdout"
+msgstr ""
+
+#: reportbug/ui/gtk2_ui.py:1471
+msgid "Display message in a text view"
+msgstr ""
+
+#: reportbug/ui/gtk2_ui.py:1548
+msgid "This operation may take a while"
+msgstr ""
+
+#: reportbug/ui/gtk2_ui.py:1582
+msgid "_Quit"
+msgstr ""
+
+#: reportbug/ui/gtk2_ui.py:1587
+msgid "_Continue"
+msgstr ""
+
+#: reportbug/ui/gtk2_ui.py:1634
+msgid "Are you sure you want to quit Reportbug?"
+msgstr ""
+
+#: reportbug/ui/gtk2_ui.py:1752
+msgid "ENTER"
+msgstr ""
+
+#: reportbug/ui/gtk2_ui.py:1805
+#, python-format
+msgid ""
+"Please install the %s package to use the GTK+(known as 'gtk2' in reportbug) "
+"interface.\n"
+"Falling back to 'text' interface."
+msgstr ""
+
+#: reportbug/ui/gtk2_ui.py:1822
+msgid "Could not acquire new main-context"
+msgstr ""
+
+#: reportbug/ui/text_ui.py:121 reportbug/ui/text_ui.py:720
+#: reportbug/ui/text_ui.py:764 reportbug/ui/text_ui.py:938
+#: reportbug/ui/text_ui.py:986
+#, python-format
+msgid "Invalid report number: %s\n"
+msgstr ""
+
+#: reportbug/ui/text_ui.py:159
+msgid ""
+"\n"
+"User interrupt (^D).\n"
+msgstr ""
+
+#: reportbug/ui/text_ui.py:202
+msgid "Only the following entries are allowed: "
+msgstr ""
+
+#: reportbug/ui/text_ui.py:211
+msgid "Display this help."
+msgstr ""
+
+#: reportbug/ui/text_ui.py:214
+msgid "(default) "
+msgstr ""
+
+#: reportbug/ui/text_ui.py:218
+msgid "No help for this option."
+msgstr ""
+
+#: reportbug/ui/text_ui.py:226
+msgid "Invalid selection.\n"
+msgstr ""
+
+#: reportbug/ui/text_ui.py:275
+msgid "  Press ENTER on a blank line to continue.\n"
+msgstr ""
+
+#: reportbug/ui/text_ui.py:425
+#, python-format
+msgid "Retrieving report #%d from %s bug tracking system...\n"
+msgstr ""
+
+#: reportbug/ui/text_ui.py:435
+#, python-format
+msgid "No report available: #%s\n"
+msgstr ""
+
+#: reportbug/ui/text_ui.py:442
+msgid "Cannot retrieve bug's package, exiting...\n"
+msgstr ""
+
+#: reportbug/ui/text_ui.py:473
+msgid "What do you want to do now?"
+msgstr ""
+
+#: reportbug/ui/text_ui.py:474
+msgid "Provide extra information."
+msgstr ""
+
+#: reportbug/ui/text_ui.py:475
+msgid "Show other bug reports (return to bug listing)."
+msgstr ""
+
+#: reportbug/ui/text_ui.py:476
+msgid "Show next message (followup)."
+msgstr ""
+
+#: reportbug/ui/text_ui.py:477
+msgid "Show previous message (followup)."
+msgstr ""
+
+#: reportbug/ui/text_ui.py:478
+msgid "Redisplay this message."
+msgstr ""
+
+#: reportbug/ui/text_ui.py:479
+msgid "Launch e-mail client to read full log."
+msgstr ""
+
+#: reportbug/ui/text_ui.py:480
+msgid "Launch web browser to read full log."
+msgstr ""
+
+#: reportbug/ui/text_ui.py:481 reportbug/ui/text_ui.py:676
+#: reportbug/ui/text_ui.py:893
+msgid "I'm bored; quit please."
+msgstr ""
+
+#: reportbug/ui/text_ui.py:511
+#, python-format
+msgid "%s bug tracking system has no web URL; bypassing query\n"
+msgstr ""
+
+#: reportbug/ui/text_ui.py:520 reportbug/ui/text_ui.py:523
+#, python-format
+msgid "Querying %s BTS for reports on %s%s...\n"
+msgstr ""
+
+#: reportbug/ui/text_ui.py:533
+#, python-format
+msgid "Unable to connect to %s BTS (error: \"%s\"); "
+msgstr ""
+
+#: reportbug/ui/text_ui.py:534
+msgid "continue"
+msgstr ""
+
+#: reportbug/ui/text_ui.py:535
+msgid "Keep going."
+msgstr ""
+
+#: reportbug/ui/text_ui.py:536
+msgid "Abort."
+msgstr ""
+
+#: reportbug/ui/text_ui.py:598
+#, python-format
+msgid ""
+"%d bug report found:\n"
+"\n"
+msgstr ""
+
+#: reportbug/ui/text_ui.py:600
+#, python-format
+msgid ""
+"%d bug reports found:\n"
+"\n"
+msgstr ""
+
+#: reportbug/ui/text_ui.py:656 reportbug/ui/text_ui.py:873
+msgid " (s to skip rest)"
+msgstr ""
+
+#: reportbug/ui/text_ui.py:665 reportbug/ui/text_ui.py:882
+msgid "Is the bug you found listed above"
+msgstr ""
+
+#: reportbug/ui/text_ui.py:667 reportbug/ui/text_ui.py:884
+msgid "What would you like to do next"
+msgstr ""
+
+#: reportbug/ui/text_ui.py:670 reportbug/ui/text_ui.py:887
+msgid "Problem already reported; optionally add extra information."
+msgstr ""
+
+#: reportbug/ui/text_ui.py:671 reportbug/ui/text_ui.py:888
+msgid "Problem not listed above; possibly check more."
+msgstr ""
+
+#: reportbug/ui/text_ui.py:672 reportbug/ui/text_ui.py:889
+msgid "Open the complete bugs list in a web browser."
+msgstr ""
+
+#: reportbug/ui/text_ui.py:673 reportbug/ui/text_ui.py:890
+msgid ""
+"Get more information about a bug (you can also enter a number\n"
+"     without selecting \"m\" first)."
+msgstr ""
+
+#: reportbug/ui/text_ui.py:675 reportbug/ui/text_ui.py:892
+msgid "Redisplay the last bugs shown."
+msgstr ""
+
+#: reportbug/ui/text_ui.py:677 reportbug/ui/text_ui.py:894
+msgid "Skip remaining problems; file a new report immediately."
+msgstr ""
+
+#: reportbug/ui/text_ui.py:678 reportbug/ui/text_ui.py:897
+msgid "Open the report using an e-mail client."
+msgstr ""
+
+#: reportbug/ui/text_ui.py:679
+msgid "Filter bug list using a pattern."
+msgstr ""
+
+#: reportbug/ui/text_ui.py:681 reportbug/ui/text_ui.py:900
+msgid " (skip to Next page)."
+msgstr ""
+
+#: reportbug/ui/text_ui.py:708 reportbug/ui/text_ui.py:926
+msgid ""
+"Enter the number of the bug report you want to give more info on,\n"
+"or press ENTER to exit: #"
+msgstr ""
+
+#: reportbug/ui/text_ui.py:733 reportbug/ui/text_ui.py:957
+msgid "Please enter the number of the bug you would like to view: #"
+msgstr ""
+
+#: reportbug/ui/text_ui.py:742 reportbug/ui/text_ui.py:964
+msgid "Please enter the number of the bug you would like more info on: #"
+msgstr ""
+
+#: reportbug/ui/text_ui.py:813
+msgid ""
+"Enter the search pattern (a Perl-compatible regular expression)\n"
+"or press ENTER to exit: "
+msgstr ""
+
+#: reportbug/ui/text_ui.py:822
+msgid "Invalid regular expression, press ENTER to continue."
+msgstr ""
+
+#: reportbug/ui/text_ui.py:829
+msgid "No match found, press ENTER to continue."
+msgstr ""
+
+#: reportbug/ui/text_ui.py:859
+#, python-format
+msgid " %s: %d report%s (%d remain%s)\n"
+msgstr ""
+
+#: reportbug/ui/text_ui.py:862
+#, python-format
+msgid " %s: %d report%s\n"
+msgstr ""
+
+#: reportbug/ui/text_ui.py:895
+msgid "Filter (search) bug list using a pattern."
+msgstr ""
+
+#: reportbug/ui/text_ui.py:896
+msgid "Up one level of filter."
+msgstr ""
+
+#: reportbug/ui/text_ui.py:898
+msgid "Top of the bug list (remove all filters)."
+msgstr ""
+
+#: reportbug/ui/text_ui.py:1009
+msgid ""
+"\n"
+"(You may need to press 'q' to exit your pager and continue using\n"
+"reportbug at this point.)"
+msgstr ""
+
+#: reportbug/ui/text_ui.py:1021
+msgid "No editor found!\n"
+msgstr ""
+
+#: reportbug/ui/text_ui.py:1050
+#, python-format
+msgid "Spawning %s in background; please press Enter when done editing.\n"
+msgstr ""
+
+#: reportbug/ui/text_ui.py:1058
+#, python-format
+msgid "Warning: possible error exit from %s: %d\n"
+msgstr ""
+
+#: reportbug/ui/text_ui.py:1061
+#, python-format
+msgid "Bug report file %s removed!"
+msgstr ""
+
+#: reportbug/ui/text_ui.py:1071
+msgid "No changes were made in the editor.\n"
+msgstr ""
