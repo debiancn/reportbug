@@ -1,3 +1,10 @@
+reportbug (7.5.0+debiancn1) unstable; urgency=medium
+
+  * Rebuild for debiancn release. 
+  * Refresh Simplified Chinese translation.
+
+ -- Boyuan Yang <073plan@gmail.com>  Mon, 02 Jul 2018 20:03:23 +0800
+
 reportbug (7.5.0) unstable; urgency=medium
 
   * debian/control

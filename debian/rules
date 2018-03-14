@@ -8,11 +8,6 @@ REPORTBUG_VERSION := $(shell python3 -c "import reportbug; print(reportbug.VERSI
 	dh $@ --with=python3
 
 override_dh_auto_build:
-	# Test if versions are synchronized (only if releasing); this will bomb if not synced
-	if [ "$(DEB_DISTRIBUTION)" != "UNRELEASED" -a "$(REPORTBUG_VERSION)" != "$(DEB_VERSION)" ] ; \
-	then \
-		echo 'Please update VERSION_NUMBER variable in reportbug/__init__.py'; exit 1 ; \
-	fi
 	# Real build
 	python3 setup.py build
 
