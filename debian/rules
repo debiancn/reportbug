@@ -13,7 +13,7 @@ override_dh_auto_build:
 	then \
 		echo 'Please update VERSION_NUMBER variable in reportbug/__init__.py'; exit 1 ; \
 	fi
-
+	# Real build
 	python3 setup.py build
 
 override_dh_auto_install:
@@ -21,6 +21,15 @@ override_dh_auto_install:
 	mv $(CURDIR)/debian/reportbug/usr/lib $(CURDIR)/debian/python3-reportbug/usr
 	chmod 0755 $(CURDIR)/debian/reportbug/usr/bin/*
 	cp -p conf/reportbug.conf $(CURDIR)/debian/reportbug/etc
+	# Install translation mo files
+	make generate-translations
+	(for i in po/*; do \
+	    if [ -d "$${i}" ]; then \
+	        install -D -m644 -t "$(CURDIR)/debian/reportbug/usr/share/locale/$$(basename $$i)/LC_MESSAGES" \
+	            "$${i}/reportbug.mo" \
+	            "$${i}/python3-reportbug.mo"; \
+	    fi \
+	 done;)
 
 override_dh_installman:
 	dh_installman man/*
